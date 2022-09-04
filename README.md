@@ -8,6 +8,7 @@
 
 ```sh
 # clone
+git clone git@github.com:GDZ528/vite-blog.git
 
 # install
 yarn install
