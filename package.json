@@ -42,11 +42,13 @@
     "@vitejs/plugin-react": "^2.0.1",
     "eslint": "^8.23.0",
     "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.31.4",
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
+    "react-router-dom": "^6.3.0",
     "typescript": "^4.6.4",
     "vite": "^3.0.7"
   }
