@@ -4,6 +4,7 @@ export interface IRoute {
   // 路由地址
   path?: string;
   // 路由组件
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   element?: any;
   // 重定向地址
   redirect?: string;
