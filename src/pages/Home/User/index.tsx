@@ -1,14 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const LoginPage: React.FC = () => {
+const UserPage: React.FC = () => {
   return (
     <div>
-      LoginPage
+      UserPage
       <br />
-      <Link to="/home">go to Home</Link>
+      <Link to="/login">go to Login</Link>
     </div>
   );
 };
 
-export default LoginPage;
+export default UserPage;
