@@ -1,8 +1,6 @@
 export interface IRoute {
   // 路由信息
   title?: string;
-  // 是否是根路由，当index为true是，path和children是无效的
-  index?: boolean;
   // 路由地址
   path?: string;
   // 路由组件
@@ -30,8 +28,15 @@ export const routes: IRoute[] = [
     element: () => import("@/layout/BasicLayout"),
     children: [
       {
-        index: true,
+        // index: true,
+        path: "/home",
+        title: "HomeIndex",
         element: () => import("@/pages/Home"),
+      },
+      {
+        path: "/home/user",
+        title: "HomeUser",
+        element: () => import("@/pages/Home/User"),
       },
     ],
   },

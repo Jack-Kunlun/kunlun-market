@@ -1,12 +1,12 @@
 import React from "react";
-// import LoginPage from "../Login";
-import LoginPage from "@/pages/Login";
+import { Link } from "react-router-dom";
 
 const HomePage: React.FC = () => {
   return (
     <div>
       HomePage
-      <LoginPage />
+      <br />
+      <Link to="/home/user">go to /home/user</Link>
     </div>
   );
 };
