@@ -16,7 +16,7 @@ module.exports = {
     ecmaVersion: "latest",
     sourceType: "module",
   },
-  plugins: ["react", "@typescript-eslint", "prettier"],
+  plugins: ["react", "@typescript-eslint", "import", "prettier"],
   rules: {
     // 强制或禁止箭头函数体使用大括号
     // "arrow-body-style": "off",
@@ -69,5 +69,36 @@ module.exports = {
         ],
       },
     ],
+    // 对比排序前后代码，排序后的代码看起来更整洁
+    "import/order": [
+      "error",
+      {
+        groups: ["builtin", "external", "internal", "parent", "sibling", "index"],
+        pathGroups: [
+          {
+            pattern: "~/**",
+            group: "internal",
+          },
+        ],
+        alphabetize: {
+          order: "asc",
+          caseInsensitive: true,
+        },
+        "newlines-between": "never",
+      },
+    ],
+    // 验证所有命名导入是否是引用模块中命名导出集的一部分
+    "import/named": "error",
+    // 导入/无重复
+    "import/no-duplicates": "error",
+    // 防止在 import 和 require 语句中出现不必要的路径段
+    "import/no-useless-path-segments": [
+      "error",
+      {
+        noUselessIndex: true,
+      },
+    ],
+    // 顶级导入语句或要求调用之后有一个或多个空行
+    "import/newline-after-import": "error",
   },
 };
