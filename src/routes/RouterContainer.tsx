@@ -1,6 +1,7 @@
 import React, { ReactNode, Suspense } from "react";
 import { Routes, Route, Navigate, BrowserRouter as Router } from "react-router-dom";
 import { routes, IRoute } from "./routes";
+import NPorgress from "@/components/NPorgress";
 
 const renderRouter = (routes: IRoute[]): ReactNode => {
   return routes.map((item, key) => {
@@ -19,7 +20,7 @@ const renderRouter = (routes: IRoute[]): ReactNode => {
 export const RouterContainer: React.FC = () => {
   return (
     <Router>
-      <Suspense fallback={<div>loading</div>}>
+      <Suspense fallback={<NPorgress />}>
         <Routes>{renderRouter(routes)}</Routes>
       </Suspense>
     </Router>

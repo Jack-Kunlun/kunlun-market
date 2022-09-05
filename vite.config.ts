@@ -6,9 +6,6 @@ import { defineConfig } from "vite";
 export default defineConfig({
   plugins: [react()],
   cacheDir: ".vite",
-  // esbuild: {
-  //   jsxInject: "import React from 'react'",
-  // },
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "src"),
