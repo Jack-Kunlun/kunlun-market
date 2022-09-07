@@ -1,50 +1,45 @@
-import { AxiosResponse } from "axios";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { AxiosRequestConfig } from "axios";
 import service from "./Service";
-import { EndpointType } from "./types";
+import { EndpointType, ErrorHandler, SuccessHandler } from "./types";
 
-const httpget = <T, P = any>(endpoint: EndpointType, params: P): Promise<AxiosResponse<T>> => {
-  return new Promise((resolve, reject) => {
-    service
-      .get(endpoint, params)
-      .then((res) => {
-        resolve(res);
-      })
-      .catch((err) => {
-        reject(err);
-      });
-  });
+const httpget = <R>(
+  url: EndpointType,
+  onSuccess?: SuccessHandler<R>,
+  onFailure?: ErrorHandler,
+  config?: AxiosRequestConfig
+) => {
+  service({ url, method: "GET", ...config })
+    .then((res) => {
+      if (onSuccess && typeof onSuccess === "function") {
+        onSuccess(res);
+      }
+    })
+    .catch((err) => {
+      if (onFailure && typeof onFailure === "function") {
+        onFailure(err);
+      }
+    });
 };
 
-// const test = (params: string) => {
-//   httpget<{ username: string; password: string }>("test", params).then((res) => {
-//     console.log(res.data);
-//   });
-// };
+const httppost = <R, D = any>(
+  url: EndpointType,
+  data: D,
+  onSuccess?: SuccessHandler<R>,
+  onFailure?: ErrorHandler,
+  config?: AxiosRequestConfig
+) => {
+  service({ url, data, method: "POST", ...config })
+    .then((res) => {
+      if (onSuccess && typeof onSuccess === "function") {
+        onSuccess(res);
+      }
+    })
+    .catch((err) => {
+      if (onFailure && typeof onFailure === "function") {
+        onFailure(err);
+      }
+    });
+};
 
-// function httpget<P>({ endpoint, params }: HttpgetProps<P>) {
-//   return new Promise((resolve, reject) => {
-//     service
-//       .get(endpoint, params)
-//       .then((res) => {
-//         resolve(res);
-//       })
-//       .catch((err) => {
-//         reject(err);
-//       });
-//   });
-// }
-
-// const httppost = (endpoint: EndpointType, params: HttpParams) => {
-//   return new Promise((resolve, reject) => {
-//     service
-//       .get(endpoint, params)
-//       .then((res) => {
-//         resolve(res);
-//       })
-//       .catch((err) => {
-//         reject(err);
-//       });
-//   });
-// };
-
-export { httpget };
+export { httpget, httppost };

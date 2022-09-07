@@ -27,8 +27,12 @@ service.interceptors.request.use(
 service.interceptors.response.use(
   (res) => {
     // 我们一般在这里处理，请求成功后的错误状态码 例如状态码是500，404，403
+    if (res.status === 200) {
+      return Promise.resolve(res.data);
+    }
+
     // res 是所有相应的信息
-    return Promise.resolve(res);
+    return Promise.reject(res);
   },
   (err) => {
     // 服务器响应发生错误时的处理
