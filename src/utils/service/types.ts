@@ -1,12 +1,16 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-unused-vars */
-import { AxiosResponse, AxiosError } from "axios";
-
 export type EndpointType = string;
 
-export interface SuccessHandler<T> {
-  (res: AxiosResponse<T>): void;
+export interface Response<T = any> {
+  code: RequestCodes;
+  message: string;
+  data: T;
 }
 
-export interface ErrorHandler<T = any> {
-  (error: AxiosError<T>): void;
+export enum RequestCodes {
+  TIMEOUT = 20000,
+  OVERDUE = 600, // 登录失效
+  FAIL = 999, // 请求失败
+  SUCCESS = 200, // 请求成功
 }
