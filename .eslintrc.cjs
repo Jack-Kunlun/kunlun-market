@@ -16,7 +16,7 @@ module.exports = {
     ecmaVersion: "latest",
     sourceType: "module",
   },
-  plugins: ["react", "@typescript-eslint", "import", "prettier"],
+  plugins: ["react", "@typescript-eslint", "import", "unicorn"],
   rules: {
     // 强制或禁止箭头函数体使用大括号
     // "arrow-body-style": "off",
@@ -100,5 +100,23 @@ module.exports = {
     ],
     // 顶级导入语句或要求调用之后有一个或多个空行
     "import/newline-after-import": "error",
+    // 不要使用for,可以用循环替换的for-of循环
+    "unicorn/no-for-loop": "error",
+    // 将函数定义移动到可能的最高范围
+    "unicorn/consistent-function-scoping": "error",
+    // 强制显式比较值的lengthorsize属性
+    "unicorn/explicit-length-check": "error",
+    // 需要Array.isArray()而不是instanceof Array
+    "unicorn/no-array-instanceof": "error",
+    // 优先使用.find(…)或.findLast(…)而不是.filter(…)
+    "unicorn/prefer-array-find": "error",
+    // 优先使用.includes()而不是.indexOf()
+    "unicorn/prefer-includes": "error",
+    // 字符串优先使用String#slice() 而不是 String#substr() 和 String#substring()
+    "unicorn/prefer-string-slice": "error",
+    // 在属性上使用解构变量
+    "unicorn/consistent-destructuring": "error",
+    // 禁止嵌套三元表达式
+    "unicorn/no-nested-ternary": "error",
   },
 };
