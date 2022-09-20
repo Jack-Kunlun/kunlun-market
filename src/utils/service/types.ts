@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-unused-vars */
 export type EndpointType = string;
 
@@ -6,6 +5,11 @@ export interface Response<T = any> {
   code: RequestCodes;
   message: string;
   data: T;
+}
+
+export interface ResponseError {
+  code: RequestCodes;
+  message: string;
 }
 
 export enum RequestCodes {

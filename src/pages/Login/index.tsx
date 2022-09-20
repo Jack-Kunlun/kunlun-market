@@ -11,8 +11,9 @@ const LoginPage: React.FC = () => {
       .then((res) => {
         setTest(res.data);
       })
-      .catch(() => {
-        // console.log("进入err环节", err);
+      .catch((error) => {
+        // eslint-disable-next-line no-console
+        console.log("进入err环节", error);
       });
   };
 

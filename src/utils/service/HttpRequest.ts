@@ -1,5 +1,5 @@
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
-import { RequestCodes, Response, EndpointType } from "./types";
+import { RequestCodes, Response, EndpointType, ResponseError } from "./types";
 
 //默认路径，这里也可以使用env来判断环境
 // "https://localhost:3000/"
@@ -67,7 +67,7 @@ class Http {
 
         return data;
       },
-      (error: AxiosError) => {
+      (error: AxiosError<ResponseError>) => {
         const { response } = error;
 
         if (response) {
@@ -76,7 +76,6 @@ class Http {
 
         // 可以跳转到错误页面，也可以不做操作
         if (!window.navigator.onLine) {
-          // return router.replace({ // path: '/404' // });
           // eslint-disable-next-line no-console
           console.error("网络连接失败");
         }
