@@ -1,5 +1,6 @@
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { RequestCodes, Response, EndpointType, ResponseError } from "./types";
+import { handleCode } from "./utils";
 
 //默认路径，这里也可以使用env来判断环境
 // "https://localhost:3000/"
@@ -48,64 +49,39 @@ class Http {
       (response: AxiosResponse<Response>) => {
         const { data } = response;
 
-        // 登录信息失效，应跳转到登录页面，并清空本地的token
-        if (data.code === RequestCodes.OVERDUE) {
+        // 登录过期，清空本地的token
+        if (data.code === RequestCodes.EXPIRED) {
           localStorage.setItem("token", "");
-          // router.replace({ // path: '/login' // })
 
           return Promise.reject(data);
         }
 
-        // 全局错误信息拦截（防止下载文件得时候返回数据流，没有code，直接报错）
-        if (data.code && data.code !== RequestCodes.SUCCESS) {
-          // 此处也可以使用组件提示报错信息
-          // eslint-disable-next-line no-console
-          console.error(data);
-
-          return Promise.reject(data);
+        // 接口正常时直接返回数据，其他状态都被视为错误
+        if (data.code && data.code === RequestCodes.SUCCESS) {
+          return data;
         }
 
-        return data;
+        return Promise.reject(data);
       },
       (error: AxiosError<ResponseError>) => {
         const { response } = error;
 
-        if (response) {
-          this.handleCode(response.status);
+        if (response && response?.status !== RequestCodes.SUCCESS) {
+          handleCode(response.status, response.data.message);
         }
 
-        // 可以跳转到错误页面，也可以不做操作
         if (!window.navigator.onLine) {
           // eslint-disable-next-line no-console
           console.error("网络连接失败");
         }
+
+        return Promise.reject(response?.data);
       }
     );
   }
 
   /**
-   * 请求拦截器
-   * 错误处理方法
-   */
-  handleCode(code: number): void {
-    switch (code) {
-      case 401:
-        // eslint-disable-next-line no-console
-        console.error("登录失败，请重新登录");
-        break;
-      case 404:
-        // eslint-disable-next-line no-console
-        console.error("当前接口请求失败，请假查是否存在！");
-        break;
-      default:
-        // eslint-disable-next-line no-console
-        console.error("请求失败");
-        break;
-    }
-  }
-
-  /**
-   * 常用方法封装
+   * @description 常用方法封装
    * T：返回类型定义
    * P：参数类型定义
    * url：请求地址
