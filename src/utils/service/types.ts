@@ -8,13 +8,13 @@ export interface Response<T = any> {
 }
 
 export interface ResponseError {
-  code: RequestCodes;
+  error: string;
   message: string;
+  statusCode: number;
 }
 
 export enum RequestCodes {
-  TIMEOUT = 20000,
-  OVERDUE = 600, // 登录失效
+  SUCCESS = 200,
   FAIL = 999, // 请求失败
-  SUCCESS = 200, // 请求成功
+  EXPIRED = 600, // 登录过期
 }
