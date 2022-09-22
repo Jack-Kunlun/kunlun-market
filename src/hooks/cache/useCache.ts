@@ -58,11 +58,13 @@ export const useCache = <T>({ defaultValue, ...options }: CacheOptions<T>) => {
     const [error, setError] = useState<ResponseError>();
 
     const refresh = () => {
+      // console.log("refresh");
+      // set(key, { loading, data: defaultValue });
       set(key, { loading: true, data: defaultValue, state: "loading" });
       fetch()
         .then((data) => {
           setData(data);
-          set(key, { loading: false, data, state: "success" });
+          // set(key, { loading: false, data, state: "success" });
         })
         .catch((error) => {
           setError(error);

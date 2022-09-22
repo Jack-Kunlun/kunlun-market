@@ -19,6 +19,8 @@ const LoginPage: React.FC = () => {
 
   // console.log(data, loading, error);
 
+  // console.log(data, loading, error);
+
   const doLogin = () => {
     HttpRequest.get<string>("/api/login", { test: 666 })
       .then((res) => {
