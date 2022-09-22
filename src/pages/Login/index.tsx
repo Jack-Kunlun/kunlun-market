@@ -17,6 +17,8 @@ const LoginPage: React.FC = () => {
     return <ASpin />;
   }
 
+  // console.log(data, loading, error);
+
   const doLogin = () => {
     HttpRequest.get<string>("/api/login", { test: 666 })
       .then((res) => {
