@@ -12,6 +12,8 @@ const LoginPage: React.FC = () => {
   // eslint-disable-next-line no-unused-vars
   const { data, loading, error } = getLogin();
 
+  // console.log(data, loading, error);
+
   const doLogin = () => {
     HttpRequest.get<string>("/api/login", { test: 666 })
       .then((res) => {

@@ -1,27 +1,15 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { CacheOptions, CacheKey, CacheResult, Nullable } from "./types";
 import { ResponseError } from "@/utils";
+import { getLoadingState, noop } from "@/utils/cache";
 
 const infinity = 5 * 30 * 1000;
-
-type CacheKey = string | number;
-
-interface CacheOptions<T> {
-  defaultValue: T;
-  maxAge?: number;
-  // eslint-disable-next-line no-unused-vars
-  dispose?: (key: CacheKey, value: T) => void;
-}
-
-interface CacheResult<T> {
-  loading: boolean;
-  data?: T;
-  error?: ResponseError;
-}
 
 export const useCache = <T>({ defaultValue, ...options }: CacheOptions<T>) => {
   const temp = new Map<CacheKey, CacheResult<T>>();
   const cache = new Map<CacheKey, { time: number; value: CacheResult<T>; maxAge: number }>();
   const refreshers = new Map<CacheKey, () => void>();
+  const loadingState = getLoadingState(defaultValue);
 
   const set = (key: CacheKey, data: CacheResult<T>, maxAge?: number) => {
     temp.delete(key);
@@ -51,12 +39,16 @@ export const useCache = <T>({ defaultValue, ...options }: CacheOptions<T>) => {
     return cache.get(key)?.value ?? current?.value;
   };
 
-  const init = (key: CacheKey, fetch: () => Promise<T>) => {
+  const init = (key: Nullable<CacheKey>, fetch: () => Promise<T>) => {
+    if (typeof key === "undefined" || key === null) {
+      return { ...loadingState, refresh: noop };
+    }
+
     const [loading, setLoading] = useState(true);
     const [data, setData] = useState<T>(defaultValue);
     const [error, setError] = useState<ResponseError>();
 
-    set(key, { loading, data });
+    const initrd = useRef(false);
 
     const getValue = useMemo(() => {
       const value = get(key);
@@ -65,14 +57,16 @@ export const useCache = <T>({ defaultValue, ...options }: CacheOptions<T>) => {
     }, [loading, data, error]);
 
     const refresh = () => {
+      // console.log("refresh");
+      // set(key, { loading, data: defaultValue });
       fetch()
         .then((data) => {
           setData(data);
-          set(key, { loading: false, data });
+          // set(key, { loading: false, data });
         })
         .catch((error) => {
           setError(error);
-          set(key, { loading: false, error });
+          // set(key, { loading: false, error });
         })
         .finally(() => {
           setLoading(false);
@@ -82,7 +76,10 @@ export const useCache = <T>({ defaultValue, ...options }: CacheOptions<T>) => {
     refreshers.set(key, refresh);
 
     useEffect(() => {
-      refresh();
+      if (!initrd.current) {
+        initrd.current = true;
+        refresh();
+      }
     }, []);
 
     return {
