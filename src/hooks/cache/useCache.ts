@@ -1,43 +1,95 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { ResponseError } from "@/utils";
 
-export interface CacheOptions {
-  cacheTime: string;
+const infinity = 5 * 30 * 1000;
+
+type CacheKey = string | number;
+
+interface CacheOptions<T> {
+  defaultValue: T;
+  maxAge?: number;
+  // eslint-disable-next-line no-unused-vars
+  dispose?: (key: CacheKey, value: T) => void;
 }
 
-export const useCache = <T>() => {
-  const valueMap = new Map<string | number, T>();
+interface CacheResult<T> {
+  loading: boolean;
+  data?: T;
+  error?: ResponseError;
+}
 
-  const init = (key: string, fetch: () => Promise<T>) => {
-    const [data, setData] = useState<T>();
-    const [error, setError] = useState();
-    const [loading, setLoading] = useState(false);
+export const useCache = <T>({ defaultValue, ...options }: CacheOptions<T>) => {
+  const temp = new Map<CacheKey, CacheResult<T>>();
+  const cache = new Map<CacheKey, { time: number; value: CacheResult<T>; maxAge: number }>();
+  const refreshers = new Map<CacheKey, () => void>();
+
+  const set = (key: CacheKey, data: CacheResult<T>, maxAge?: number) => {
+    temp.delete(key);
+    cache.set(key, { time: Date.now(), value: data, maxAge: maxAge ?? options.maxAge ?? infinity });
+  };
+
+  const get = (key: CacheKey): CacheResult<T> | undefined => {
+    const current = cache.get(key);
+    const now = Date.now();
+    const doDispose = current ? current.time + current.maxAge <= now : false;
+
+    if (doDispose && current) {
+      cache.delete(key);
+      // eslint-disable-next-line no-console
+      console.log("disposing", { key, current });
+
+      if (!current.value.error) {
+        temp.set(key, current.value);
+
+        // Refresh data that has passed its maxAge automatically:
+        if (refreshers.has(key)) {
+          refreshers.get(key)?.();
+        }
+      }
+    }
+
+    return cache.get(key)?.value ?? current?.value;
+  };
+
+  const init = (key: CacheKey, fetch: () => Promise<T>) => {
+    const [loading, setLoading] = useState(true);
+    const [data, setData] = useState<T>(defaultValue);
+    const [error, setError] = useState<ResponseError>();
+
+    set(key, { loading, data });
+
+    const getValue = useMemo(() => {
+      const value = get(key);
+
+      return value;
+    }, [loading, data, error]);
 
     const refresh = () => {
-      setLoading(true);
       fetch()
-        .then((res) => {
-          setData(res);
-          valueMap.set(key, res);
+        .then((data) => {
+          setData(data);
+          set(key, { loading: false, data });
         })
-        .catch((err) => {
-          setError(err);
+        .catch((error) => {
+          setError(error);
+          set(key, { loading: false, error });
         })
         .finally(() => {
           setLoading(false);
         });
     };
 
+    refreshers.set(key, refresh);
+
     useEffect(() => {
       refresh();
-    }, [key]);
+    }, []);
 
     return {
-      data,
-      error,
-      loading,
+      ...getValue,
       refresh,
     };
   };
 
-  return { init };
+  return { init, set, get };
 };
