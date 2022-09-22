@@ -1,12 +1,16 @@
 import { Button, message } from "antd";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { getLogin } from "@/apis/login";
 import { HttpRequest } from "@/utils/service";
 
 const LoginPage: React.FC = () => {
   const [test, setTest] = useState<string>();
 
   const navigate = useNavigate();
+
+  // eslint-disable-next-line no-unused-vars
+  const { data, loading, error } = getLogin();
 
   const doLogin = () => {
     HttpRequest.get<string>("/api/login", { test: 666 })
