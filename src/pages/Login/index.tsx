@@ -26,7 +26,7 @@ const LoginPage: React.FC = () => {
     <div>
       LoginPage
       <br />
-      <Button type={"primary"} onClick={goHome}>
+      <Button type={"primary"} onClick={goHome} className="bg-red-500 hover:bg-blue-700">
         go to Home
       </Button>
       <Button onClick={doLogin}>Login</Button>
