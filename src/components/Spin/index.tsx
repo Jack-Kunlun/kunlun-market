@@ -1,17 +1,13 @@
 import { Spin } from "antd";
 import React from "react";
 
-const styles = {
-  height: "100%",
-  width: "100%",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-};
+interface Props {
+  size?: "small" | "large" | "default";
+}
 
-const ASpin: React.FC = () => (
-  <div style={styles}>
-    <Spin size="large" />
+const ASpin: React.FC<Props> = ({ size = "large" }) => (
+  <div className="w-full h-full flex justify-center items-center">
+    <Spin size={size} />
   </div>
 );
 
