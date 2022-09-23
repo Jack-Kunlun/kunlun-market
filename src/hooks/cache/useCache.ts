@@ -3,7 +3,7 @@ import { CacheOptions, CacheKey, CacheResult, Nullable } from "./types";
 import { ResponseError } from "@/utils";
 import { getLoadingState, noop } from "@/utils/cache";
 
-const infinity = 5 * 30 * 1000;
+const infinity = 5 * 60 * 1000;
 
 export const useCache = <T>({ defaultValue, ...options }: CacheOptions<T>) => {
   const temp = new Map<CacheKey, CacheResult<T>>();
@@ -39,51 +39,57 @@ export const useCache = <T>({ defaultValue, ...options }: CacheOptions<T>) => {
     return cache.get(key)?.value ?? current?.value;
   };
 
+  /**
+   * @description
+   * @param {Nullable<CacheKey>} key
+   * @param {() => Promise<T>} fetch
+   * @return {*}
+   */
   const init = (key: Nullable<CacheKey>, fetch: () => Promise<T>) => {
     if (typeof key === "undefined" || key === null) {
       return { ...loadingState, refresh: noop };
     }
 
-    const [loading, setLoading] = useState(true);
-    const [data, setData] = useState<T>(defaultValue);
-    const [error, setError] = useState<ResponseError>();
+    const value = get(key);
 
     const initrd = useRef(false);
 
-    const getValue = useMemo(() => {
-      const value = get(key);
-
-      return value;
-    }, [loading, data, error]);
+    const [data, setData] = useState<T>();
+    const [error, setError] = useState<ResponseError>();
 
     const refresh = () => {
-      // console.log("refresh");
-      // set(key, { loading, data: defaultValue });
+      set(key, { loading: true, data: defaultValue, state: "loading" });
       fetch()
         .then((data) => {
           setData(data);
-          // set(key, { loading: false, data });
+          set(key, { loading: false, data, state: "success" });
         })
         .catch((error) => {
           setError(error);
-          // set(key, { loading: false, error });
-        })
-        .finally(() => {
-          setLoading(false);
+          set(key, { loading: false, error, state: "error" });
         });
     };
 
     refreshers.set(key, refresh);
 
+    const finalValue = useMemo(() => {
+      return get(key);
+    }, [data, error]);
+
+    /**
+     * @description 初始化数据
+     * value: 当前数据集合中是否存在，存在则直接使用旧值
+     * initrd: 防止重复请求数据
+     */
     useEffect(() => {
-      if (!initrd.current) {
+      if (!value && !initrd.current) {
         initrd.current = true;
         refresh();
       }
     }, []);
 
     return {
-      ...getValue,
+      ...finalValue,
       refresh,
     };
   };

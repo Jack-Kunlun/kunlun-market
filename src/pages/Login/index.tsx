@@ -2,6 +2,7 @@ import { Button, message } from "antd";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getLogin } from "@/apis/login";
+import ASpin from "@/components/Spin";
 import { HttpRequest } from "@/utils/service";
 
 const LoginPage: React.FC = () => {
@@ -10,9 +11,11 @@ const LoginPage: React.FC = () => {
   const navigate = useNavigate();
 
   // eslint-disable-next-line no-unused-vars
-  const { data, loading, error } = getLogin();
+  const { loading, data, error } = getLogin();
 
-  // console.log(data, loading, error);
+  if (loading) {
+    return <ASpin />;
+  }
 
   const doLogin = () => {
     HttpRequest.get<string>("/api/login", { test: 666 })
@@ -37,6 +40,7 @@ const LoginPage: React.FC = () => {
       </Button>
       <Button onClick={doLogin}>Login</Button>
       <div> API 请求结果是： {test}</div>
+      <div> 缓存的数据：{data} </div>
     </div>
   );
 };
