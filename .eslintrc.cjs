@@ -4,7 +4,13 @@ module.exports = {
     es2021: true,
     node: true,
   },
-  extends: ["eslint:recommended", "plugin:react/recommended", "plugin:@typescript-eslint/recommended", "prettier"],
+  extends: [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:storybook/recommended",
+    "prettier",
+  ],
   settings: {
     react: {
       version: "detect",
@@ -29,7 +35,12 @@ module.exports = {
     // 需要使用 === 和 !== (消除类型不安全的相等运算符)
     eqeqeq: ["error", "always"],
     "object-shorthand": ["error", "always"],
-    "no-sequences": ["error", { allowInParentheses: false }],
+    "no-sequences": [
+      "error",
+      {
+        allowInParentheses: false,
+      },
+    ],
     // 字符串拼接使用字符串模板而不是+
     "prefer-template": "error",
     // 确保将块语句包裹在花括号中来防止错误并提高代码清晰度
@@ -41,7 +52,11 @@ module.exports = {
         prev: ["function", "class", "const", "let", "var", "block-like"],
         next: "*",
       },
-      { blankLine: "always", prev: "*", next: ["return", "block-like"] },
+      {
+        blankLine: "always",
+        prev: "*",
+        next: ["return", "block-like"],
+      },
       {
         blankLine: "any",
         prev: ["const", "let", "var"],
@@ -104,7 +119,7 @@ module.exports = {
     "unicorn/no-for-loop": "error",
     // 将函数定义移动到可能的最高范围
     "unicorn/consistent-function-scoping": "error",
-    // 强制显式比较值的lengthorsize属性
+    // 强制显式比较值的length or size属性
     "unicorn/explicit-length-check": "error",
     // 需要Array.isArray()而不是instanceof Array
     "unicorn/no-array-instanceof": "error",
