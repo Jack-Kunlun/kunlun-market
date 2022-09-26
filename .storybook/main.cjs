@@ -1,5 +1,6 @@
 const path = require("path");
 const vitePluginImp = require("vite-plugin-imp");
+const WindiCSS = require("vite-plugin-windicss").default;
 
 module.exports = {
   stories: ["../src/**/*.stories.mdx", "../src/**/*.stories.@(js|jsx|ts|tsx)"],
@@ -11,7 +12,7 @@ module.exports = {
   features: {
     storyStoreV7: true,
   },
-  async viteFinal(config, { configType: env }) {
+  async viteFinal(config, { configType }) {
     // customize the Vite config here
     const customConfig = {
       css: {
@@ -43,8 +44,10 @@ module.exports = {
             style: (name) => `antd/es/${name}/style`,
           },
         ],
-      })
+      }),
+      WindiCSS({ config: path.join(__dirname, "..", "windi.config.ts") })
     );
+
     // return the customized config
     return { ...config, ...customConfig };
   },
