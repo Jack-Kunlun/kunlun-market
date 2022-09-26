@@ -1,9 +1,8 @@
-// eslint-disable-next-line import/named
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import type { ComponentStory, ComponentMeta } from "@storybook/react";
 import ASpin from ".";
 
 export default {
-  title: "Example/ASpin",
+  title: "Components/ASpin",
   component: ASpin,
   argTypes: {
     size: {
