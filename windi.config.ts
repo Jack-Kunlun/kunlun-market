@@ -8,8 +8,18 @@ export default defineConfig({
   },
   theme: {
     extend: {
-      colors: {
-        while: "#fff",
+      colors: {},
+      backgroundImage: {
+        login: "linear-gradient(to right, #fbc2eb, #a6c1ee)",
+      },
+      width: {
+        card: "358px",
+      },
+      height: {
+        card: "588px",
+      },
+      borderRadius: {
+        15: "15px",
       },
     },
   },
