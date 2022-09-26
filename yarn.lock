@@ -1251,7 +1251,7 @@
     "@babel/parser" "^7.18.10"
     "@babel/types" "^7.18.10"
 
-"@babel/traverse@^7.1.6", "@babel/traverse@^7.12.11", "@babel/traverse@^7.12.9", "@babel/traverse@^7.13.0", "@babel/traverse@^7.19.0", "@babel/traverse@^7.19.1":
+"@babel/traverse@^7.1.6", "@babel/traverse@^7.12.11", "@babel/traverse@^7.12.12", "@babel/traverse@^7.12.9", "@babel/traverse@^7.13.0", "@babel/traverse@^7.19.0", "@babel/traverse@^7.19.1":
   version "7.19.1"
   resolved "https://registry.yarnpkg.com/@babel/traverse/-/traverse-7.19.1.tgz#0fafe100a8c2a603b4718b1d9bf2568d1d193347"
   integrity sha512-0j/ZfZMxKukDaag2PtOPDbwuELqIar6lLskVPPJDjXMXjfLb1Obo/1yjxIGqqAJrmfaTIY3z2wFLAQ7qSkLsuA==
@@ -8169,7 +8169,7 @@ lazy-universal-dotenv@^3.0.1:
 
 less@^4.1.3:
   version "4.1.3"
-  resolved "https://registry.npmjs.org/less/-/less-4.1.3.tgz"
+  resolved "https://registry.yarnpkg.com/less/-/less-4.1.3.tgz#175be9ddcbf9b250173e0a00b4d6920a5b770246"
   integrity sha512-w16Xk/Ta9Hhyei0Gpz9m7VS8F28nieJaL/VyShID7cYvP6IL5oHeL6p4TXSDJqZE/lNv0oJ2pGVjJsRkfwm5FA==
   dependencies:
     copy-anything "^2.0.1"
@@ -9317,7 +9317,7 @@ parallel-transform@^1.1.0:
     inherits "^2.0.3"
     readable-stream "^2.1.5"
 
-param-case@^3.0.3:
+param-case@^3.0.3, param-case@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/param-case/-/param-case-3.0.4.tgz#7d17fe4aa12bde34d4a77d91acfb6219caad01c5"
   integrity sha512-RXlj7zCYokReqWpOPH9oYivUzLYZ5vAPIfEmCTNViosC78F8F0H9y7T7gG2M39ymgutxF5gcFEsyZQSph9Bp3A==
@@ -12319,6 +12319,19 @@ vfile@^4.0.0:
     is-buffer "^2.0.0"
     unist-util-stringify-position "^2.0.0"
     vfile-message "^2.0.0"
+
+vite-plugin-imp@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/vite-plugin-imp/-/vite-plugin-imp-2.3.0.tgz#c53a3af947004a30e11b8267bf74c174dfeab90d"
+  integrity sha512-I7xSzptQw0yBxUmXawXqkzYvtZbqRF99ZeylmaTuYmJTVjZw5/TbKE7z3h95IKE4r/lkSWdKYmHEs3QwiXKS7g==
+  dependencies:
+    "@babel/core" "^7.12.10"
+    "@babel/generator" "^7.12.11"
+    "@babel/parser" "^7.12.11"
+    "@babel/traverse" "^7.12.12"
+    chalk "^4.1.0"
+    param-case "^3.0.4"
+    pascal-case "^3.1.2"
 
 vite@^3.0.7:
   version "3.0.9"

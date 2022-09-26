@@ -1,14 +1,37 @@
 import path from "path";
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
+import vitePluginImp from "vite-plugin-imp";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  // 使用.less是为了方便设置主题色
+  css: {
+    preprocessorOptions: {
+      less: {
+        javascriptEnabled: true,
+      },
+      modifyVars: {
+        // 在这里自定义主题色等样式
+      },
+    },
+  },
+  plugins: [
+    react(),
+    vitePluginImp({
+      libList: [
+        {
+          libName: "antd",
+          style: (name) => `antd/es/${name}/style`,
+        },
+      ],
+    }),
+  ],
   cacheDir: ".vite",
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "src"),
+      "@assets": path.resolve("src/assets"),
     },
   },
   server: {
