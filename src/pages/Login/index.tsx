@@ -32,10 +32,10 @@ const LoginPage: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className="*full bg-while">
       LoginPage
       <br />
-      <Button type={"primary"} onClick={goHome} className="bg-red-500 hover:bg-blue-700">
+      <Button type={"primary"} onClick={goHome}>
         go to Home
       </Button>
       <Button onClick={doLogin}>Login</Button>
