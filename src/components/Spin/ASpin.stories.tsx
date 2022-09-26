@@ -1,6 +1,5 @@
 // eslint-disable-next-line import/named
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import React from "react";
 import ASpin from ".";
 
 export default {
