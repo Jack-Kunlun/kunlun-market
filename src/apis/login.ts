@@ -1,4 +1,4 @@
-import { useCache } from "@/hooks/cache/useCache";
+import { useCache } from "@/hooks/cache";
 import { HttpRequest } from "@/utils";
 
 const loginCache = useCache<string>({ defaultValue: "", maxAge: 5 * 30 * 1000 });
@@ -16,5 +16,5 @@ const doLogin = () => {
 };
 
 export const getLogin = () => {
-  return loginCache.init("login", doLogin);
+  return loginCache.wrap("login", doLogin);
 };
