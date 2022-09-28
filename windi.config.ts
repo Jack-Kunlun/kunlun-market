@@ -1,6 +1,5 @@
 import { defineConfig } from "windicss/helpers";
-import plugin from "windicss/plugin";
-import { safelist } from "./config/windicss";
+import { safelist, plugins } from "./config/windicss";
 
 export default defineConfig({
   darkMode: "class",
@@ -10,6 +9,7 @@ export default defineConfig({
   },
   attributify: true,
   safelist,
+  plugins,
   shortcuts: {},
   theme: {
     extend: {
@@ -29,19 +29,21 @@ export default defineConfig({
         card: "400px",
       },
       height: {
-        sm: "32px",
-        md: "40px",
-        lg: "48px",
+        sm: "24px",
+        md: "32px",
+        lg: "40px",
         card: "600px",
       },
       borderRadius: {
         smm: "4px",
-        sm: "8px",
-        md: "16px",
-        lg: "24px",
+        sm: "16px",
+        md: "24px",
+        lg: "32px",
         xl: "48px",
+        50: "50%",
       },
       padding: {
+        smm: "4px",
         sm: "8px",
         md: "16px",
         lg: "24px",
@@ -49,40 +51,4 @@ export default defineConfig({
       },
     },
   },
-  plugins: [
-    plugin(({ addComponents }) => {
-      addComponents({
-        ".btn": {
-          padding: "4px 16px",
-          minWidth: "50px",
-          textAlign: "center",
-          fontSize: "14px",
-          borderRadius: "2px",
-          cursor: "pointer",
-          transition: "all .3s",
-        },
-        ".btn-default": {
-          background: "#fff",
-          color: "#000",
-          border: "1px solid transparent",
-          boxShadow: "0 2px #00000004",
-          borderColor: "#d9d9d9",
-          "&:hover": {
-            color: "#40a9ff",
-            borderColor: "#1890ff",
-            background: "#fff",
-          },
-        },
-        ".btn-text": {
-          backgroundColor: "transparent",
-          color: "#000",
-          "&:hover": {
-            color: "#000000d9",
-            background: "rgba(0,0,0,.018)",
-            borderColor: "transparent",
-          },
-        },
-      });
-    }),
-  ],
 });

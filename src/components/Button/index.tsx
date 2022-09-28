@@ -1,43 +1,51 @@
 import classNames from "classnames";
 import { FC, ReactNode } from "react";
 
-type Size = "large" | "middle" | "small";
+type Size = "lg" | "md" | "sm";
 
 type BtnType = "primary" | "dashed" | "link" | "text" | "default";
 
-enum HeightClass {
-  large = "lg",
-  middle = "md",
-  small = "sm",
-}
-
-enum BtnTypeClass {
-  default = "btn-default",
-  primary = "btn-default",
-  dashed = "btn-default",
-  link = "btn-default",
-  text = "btn-text",
-}
+type Shape = "default" | "circle" | "round";
 
 interface ButtonProps {
   class?: string;
   type?: BtnType;
   size?: Size;
+  shape?: Shape;
   disabled?: boolean;
   children?: ReactNode;
 }
 
+const getBorderRadius = (shape: Shape, size: Size) => {
+  let borderRadius = "";
+
+  switch (shape) {
+    case "default":
+      borderRadius = "rounded-smm";
+      break;
+    case "circle":
+      borderRadius = "rounded-50";
+      break;
+    case "round":
+      borderRadius = `rounded-${size}`;
+      break;
+  }
+
+  return borderRadius;
+};
+
 const Button: FC<ButtonProps> = ({
   type = "default",
+  shape = "default",
   class: className,
-  size = "middle",
+  size = "md",
   disabled = false,
   children,
 }) => {
-  const btnClass = BtnTypeClass[type];
+  const borderRadius = getBorderRadius(shape, size);
 
   return (
-    <button disabled={disabled} className={classNames("btn", btnClass, `h-${HeightClass[size]}`, className)}>
+    <button disabled={disabled} className={classNames("btn", `btn-${type}`, `h-${size}`, borderRadius, className)}>
       {children}
     </button>
   );
