@@ -65,7 +65,8 @@ module.exports = {
       },
     ],
     "padded-blocks": ["error", "never"],
-    "no-unused-vars": [
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": [
       "error",
       {
         varsIgnorePattern: "^_",
