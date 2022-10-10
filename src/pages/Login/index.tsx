@@ -1,7 +1,7 @@
-import { LockOutlined, UserOutlined } from "@ant-design/icons";
-import { Form, Input, Button as AButton } from "antd";
+import { Form, Input, Button } from "antd";
 import React from "react";
-import Button from "@/components/Button";
+
+const notHaveAccount = "Don't have account? ";
 
 const LoginPage: React.FC = () => {
   // eslint-disable-next-line unicorn/consistent-function-scoping, @typescript-eslint/no-explicit-any
@@ -13,34 +13,26 @@ const LoginPage: React.FC = () => {
   return (
     <div className="*full bg-gradientPink *flex-center">
       <div className="w-card h-card bg-white rounded-md px-xl">
-        <div className="text-38 font-semibold text-center">Login</div>
+        <div className="text-38 h-200 font-semibold text-center *flex-center">Login</div>
 
         <Form name="normal_login" className="login-form" initialValues={{ remember: true }} onFinish={onFinish}>
           <Form.Item name="username" rules={[{ required: true, message: "Please input your Username!" }]}>
-            <Input size="large" prefix={<UserOutlined />} placeholder="Username" />
+            <Input className="!border-0 !border-b !border-b-grey" size="large" placeholder="Username" />
           </Form.Item>
           <Form.Item name="password" rules={[{ required: true, message: "Please input your Password!" }]}>
-            <Input size="large" prefix={<LockOutlined />} type="password" placeholder="Password" />
+            <Input className="!border-0 !border-b !border-b-grey" size="large" type="password" placeholder="Password" />
           </Form.Item>
 
           <Form.Item>
             {/* class="!bg-gradientViolet" */}
-            <Button class="w-full" type="default">
-              default button
+            <Button className="w-full !bg-gradientViolet !text-white" size="large">
+              Login
             </Button>
-
-            <AButton size="large" type="ghost" shape="round">
-              button
-            </AButton>
-            <AButton size="large" type="ghost" shape="circle">
-              button
-            </AButton>
-            <div>
-              {/* eslint-disable-next-line react/no-unescaped-entities */}
-              Don't have account?
-              <a href="#">Sign up</a>
-            </div>
-            <div>
+            <div className="mt-smm flex justify-between">
+              <div>
+                {notHaveAccount}
+                <a href="#">Sign up</a>
+              </div>
               <a className="login-form-forgot" href="">
                 Forgot password
               </a>

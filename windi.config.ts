@@ -13,7 +13,10 @@ export default defineConfig({
   shortcuts: {},
   theme: {
     extend: {
-      colors: {},
+      colors: {
+        white: "#fff",
+        grey: "#d9d9d9",
+      },
       fontSize: {
         sm: "8px",
         md: "16px",
@@ -32,6 +35,7 @@ export default defineConfig({
         sm: "24px",
         md: "32px",
         lg: "40px",
+        200: "200px",
         card: "600px",
       },
       borderRadius: {
@@ -43,6 +47,13 @@ export default defineConfig({
         50: "50%",
       },
       padding: {
+        smm: "4px",
+        sm: "8px",
+        md: "16px",
+        lg: "24px",
+        xl: "48px",
+      },
+      margin: {
         smm: "4px",
         sm: "8px",
         md: "16px",
