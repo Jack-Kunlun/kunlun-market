@@ -1,21 +1,6 @@
-# Vite + React + Typescript + Antd
+# 项目介绍
 
-一个使用`vite`搭建的`react`项目，支持`TypeScript`、`Antd`，以及`eslint`/`prettier`/`stylelint`/`commitlint`等工程化管理~
-
-## 开发
-
-- **克隆到本地**
-
-```sh
-# clone
-git clone git@github.com:GDZ528/vite-blog.git
-
-# install
-yarn install
-
-# dev serve
-yarn dev
-```
+使用`vite`搭建的`react`项目，支持`TypeScript`、以及`eslint`/`prettier`/`commitlint`工程化管理。
 
 ## 特性
 
@@ -27,47 +12,54 @@ yarn dev
 - 支持`HMR`快速热更新
 - 支持`Antd`按需引入与主题样式覆盖
 - 支持`Proxy`代理、`alias`别名
-- 兼容传统浏览器
-- 开发启动速度要够快，以秒计算
-- 支持懒加载和`chunk`分割
+- 支持`windcss`以及 windcss 的模块化配置
+- 支持使用`storybook`来开发展示本地组件库
+
+## 开发
+
+- **运行**
+
+```sh
+# install
+yarn
+
+# dev serve
+yarn dev
+```
 
 ## 目录结构
 
 ```js
 ├── dist                                // 默认的 build 输出目录
 ├── config                              // 全局配置文件
-└── src                                 // 源码目录
+├── public
+└── src
+    ├── apis                            // api接口地址
     ├── assets                          // 公共的文件（如image、css、font等）
-    ├── components                      // 项目组件
-    ├── constants                       // 常量/接口地址等
-    ├── layout                          // 全局布局
+    ├── components                      // 组件，组件命名方式为大驼峰
+    ├── constants                       // 全局常量
+    ├── hooks                           // 自定义hook
+    ├── layout                          // 布局
     ├── routes                          // 路由
     ├── store                           // 状态管理器
     ├── utils                           // 工具库
     ├── pages                           // 页面模块
-        ├── Home                        // Home模块，建议组件统一大写开头
+        ├── Home                        // Home模块，组件统一大写开头
         ├── ...
     ├── App.tsx                         // react顶层文件
     ├── main.ts                         // 项目入口文件
     ├── typing.d.ts                     // ts类型文件
-├── .editorconfig                       // IDE格式规范
 ├── .env                                // 环境变量
+├── .commitlintrc                       // commitlint配置文件
 ├── .eslintignore                       // eslint忽略
 ├── .eslintrc                           // eslint配置文件
 ├── .gitignore                          // git忽略
 ├── .npmrc                              // npm配置文件
-├── .prettierignore                     // prettierc忽略
-├── .prettierrc                         // prettierc配置文件
-├── .stylelintignore                    // stylelint忽略
-├── .stylelintrc                        // stylelint配置文件
 ├── index.html                          // 项目入口文件
-├── LICENSE.md                          // LICENSE
-├── package.json                        // package
-├── pnpm-lock.yaml                      // pnpm-lock
-├── postcss.config.js                   // postcss
+├── package.json
 ├── README.md                           // README
 ├── tsconfig.json                       // typescript配置文件
-└── vite.config.ts                      // vite
+└── vite.config.ts                      // vite配置文件
 ```
 
 ## 计划
