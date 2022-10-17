@@ -20,6 +20,6 @@
       "@assets": ["./src/assets"]
     }
   },
-  "include": ["src"],
+  "include": ["src", "types"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

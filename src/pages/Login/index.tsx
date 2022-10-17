@@ -5,14 +5,14 @@ const notHaveAccount = "Don't have account? ";
 
 const LoginPage: React.FC = () => {
   // eslint-disable-next-line unicorn/consistent-function-scoping, @typescript-eslint/no-explicit-any
-  const onFinish = (values: any) => {
+  const onFinish = (values: Nullable<string>) => {
     // eslint-disable-next-line no-console
     console.log("Received values of form: ", values);
   };
 
   return (
     <div className="*full bg-gradientPink *flex-center">
-      <div className="w-card h-card bg-white rounded-md px-xl">
+      <div className="w-card h-card bg-white rounded-md px-xl" h="full">
         <div className="text-38 h-200 font-semibold text-center *flex-center">Login</div>
 
         <Form name="normal_login" className="login-form" initialValues={{ remember: true }} onFinish={onFinish}>
