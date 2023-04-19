@@ -135,6 +135,8 @@ module.exports = {
     "unicorn/consistent-destructuring": "error",
     // 禁止嵌套三元表达式
     "unicorn/no-nested-ternary": "error",
+    // 禁用 export default 规则
+    "import/no-default-export": "error",
     "react/no-unknown-property": [
       "error",
       {

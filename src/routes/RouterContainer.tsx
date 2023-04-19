@@ -1,23 +1,28 @@
-import React, { ReactNode, Suspense } from "react";
+import { FC, ReactNode, Suspense, lazy } from "react";
 import { Routes, Route, Navigate, BrowserRouter as Router } from "react-router-dom";
-import { routes, IRoute } from "./routes";
+import { routes } from "./routes";
+import { IRoute } from "./types";
 import NPorgress from "@/components/NPorgress";
 
 const renderRouter = (routes: IRoute[]): ReactNode => {
   return routes.map((item, key) => {
     const { redirect, children = [], path, element } = item;
 
-    const Component: React.FC = element ? React.lazy(element) : () => null;
+    const AsyncLoadComponent = element ? lazy(async () => ({ default: element })) : () => null;
 
     return (
-      <Route path={path} key={key} element={redirect !== undefined ? <Navigate to={redirect} /> : <Component />}>
+      <Route
+        path={path}
+        key={key}
+        element={redirect !== undefined ? <Navigate to={redirect} /> : <AsyncLoadComponent />}
+      >
         {renderRouter(children)}
       </Route>
     );
   });
 };
 
-export const RouterContainer: React.FC = () => {
+export const RouterContainer: FC = () => {
   return (
     <Router>
       <Suspense fallback={<NPorgress />}>

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const UserPage: React.FC = () => {
+export const UserPage: React.FC = () => {
   return (
     <div>
       UserPage
@@ -10,5 +10,3 @@ const UserPage: React.FC = () => {
     </div>
   );
 };
-
-export default UserPage;
