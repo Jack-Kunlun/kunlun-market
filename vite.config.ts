@@ -4,6 +4,7 @@ import { defineConfig } from "vite";
 import vitePluginImp from "vite-plugin-imp";
 import WindiCSS from "vite-plugin-windicss";
 
+// eslint-disable-next-line import/no-default-export
 export default defineConfig({
   // 使用.less是为了方便设置主题色
   css: {

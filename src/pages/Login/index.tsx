@@ -1,9 +1,12 @@
 import { Form, Input, Button } from "antd";
-import React from "react";
+import { FC } from "react";
+import { useNavigate } from "react-router-dom";
 
 const notHaveAccount = "Don't have account? ";
 
-const LoginPage: React.FC = () => {
+export const LoginPage: FC = () => {
+  const navigate = useNavigate();
+
   // eslint-disable-next-line unicorn/consistent-function-scoping, @typescript-eslint/no-explicit-any
   const onFinish = (values: Nullable<string>) => {
     // eslint-disable-next-line no-console
@@ -25,7 +28,13 @@ const LoginPage: React.FC = () => {
 
           <Form.Item>
             {/* class="!bg-gradientViolet" */}
-            <Button className="w-full !bg-gradientViolet !text-white" size="large">
+            <Button
+              className="w-full !bg-gradientViolet !text-white"
+              size="large"
+              onClick={() => {
+                navigate("/home");
+              }}
+            >
               Login
             </Button>
             <div className="mt-smm flex justify-between">
@@ -43,5 +52,3 @@ const LoginPage: React.FC = () => {
     </div>
   );
 };
-
-export default LoginPage;
