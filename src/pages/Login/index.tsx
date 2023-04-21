@@ -15,7 +15,7 @@ export const LoginPage: FC = () => {
 
   return (
     <div className="*full bg-gradientPink *flex-center">
-      <div className="w-card h-card bg-white rounded-md px-xl" h="full">
+      <div className="bg-white rounded-md px-xl w-card h-card">
         <div className="text-38 h-200 font-semibold text-center *flex-center">Login</div>
 
         <Form name="normal_login" className="login-form" initialValues={{ remember: true }} onFinish={onFinish}>
