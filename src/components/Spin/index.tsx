@@ -5,10 +5,8 @@ interface Props {
   size?: "small" | "large" | "default";
 }
 
-const ASpin: React.FC<Props> = ({ size = "large" }) => (
+export const ASpin: React.FC<Props> = ({ size = "large" }) => (
   <div className="*full *flex-center">
     <Spin size={size} />
   </div>
 );
-
-export default ASpin;

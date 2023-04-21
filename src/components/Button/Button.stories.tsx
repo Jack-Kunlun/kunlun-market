@@ -1,5 +1,5 @@
 import type { ComponentStory, ComponentMeta } from "@storybook/react";
-import Button from ".";
+import { Button } from ".";
 
 export default {
   title: "Components/Button",
@@ -7,7 +7,7 @@ export default {
   argTypes: {},
 } as ComponentMeta<typeof Button>;
 
-const Template: ComponentStory<typeof Button> = (args) => <Button {...args}></Button>;
+const Template: ComponentStory<typeof Button> = (args) => <Button {...args}>测试</Button>;
 
 export const MiddleButton = Template.bind({});
 MiddleButton.args = { size: "md", shape: "default", type: "default" };

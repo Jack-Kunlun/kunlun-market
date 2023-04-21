@@ -136,7 +136,12 @@ module.exports = {
     // 禁止嵌套三元表达式
     "unicorn/no-nested-ternary": "error",
     // 禁用 export default 规则
-    "import/no-default-export": "error",
+    "import/no-default-export": [
+      "error",
+      {
+        ignore: ["**/*.stories.tsx", "*.config.ts", "*.config.js"],
+      },
+    ],
     "react/no-unknown-property": [
       "error",
       {

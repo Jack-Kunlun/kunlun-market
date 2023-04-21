@@ -1,5 +1,5 @@
 import type { ComponentStory, ComponentMeta } from "@storybook/react";
-import ASpin from ".";
+import { ASpin } from ".";
 
 export default {
   title: "Components/ASpin",
