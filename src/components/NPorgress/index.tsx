@@ -2,7 +2,7 @@ import nprogress from "nprogress";
 import React, { useEffect } from "react";
 import "nprogress/nprogress.css";
 
-const NPorgress: React.FC = () => {
+export const NPorgress: React.FC = () => {
   useEffect(() => {
     nprogress.start();
 
@@ -13,5 +13,3 @@ const NPorgress: React.FC = () => {
 
   return <></>;
 };
-
-export default NPorgress;

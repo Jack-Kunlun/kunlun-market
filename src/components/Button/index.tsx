@@ -34,7 +34,7 @@ const getBorderRadius = (shape: Shape, size: Size) => {
   return borderRadius;
 };
 
-const Button: FC<ButtonProps> = ({
+export const Button: FC<ButtonProps> = ({
   type = "default",
   shape = "default",
   class: className,
@@ -50,5 +50,3 @@ const Button: FC<ButtonProps> = ({
     </button>
   );
 };
-
-export default Button;
