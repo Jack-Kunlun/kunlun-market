@@ -7,6 +7,7 @@ export default defineConfig({
     full: "w-full h-full",
     "flex-center": "flex justify-center items-center",
   },
+  // 开启属性化模式
   attributify: true,
   safelist,
   plugins,
@@ -29,14 +30,14 @@ export default defineConfig({
         gradientViolet: "linear-gradient(to right, #a6c1ee, #fbc2eb)",
       },
       width: {
-        card: "400px",
+        card: "500px",
       },
       height: {
         sm: "24px",
         md: "32px",
         lg: "40px",
         200: "200px",
-        card: "600px",
+        card: "500px",
       },
       borderRadius: {
         smm: "4px",
