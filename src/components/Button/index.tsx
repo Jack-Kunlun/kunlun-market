@@ -14,6 +14,7 @@ interface ButtonProps {
   shape?: Shape;
   disabled?: boolean;
   children?: ReactNode;
+  onClick?: () => void;
 }
 
 const getBorderRadius = (shape: Shape, size: Size) => {
@@ -41,11 +42,16 @@ export const Button: FC<ButtonProps> = ({
   size = "md",
   disabled = false,
   children,
+  onClick,
 }) => {
   const borderRadius = getBorderRadius(shape, size);
 
   return (
-    <button disabled={disabled} className={classNames("btn", `btn-${type}`, `h-${size}`, borderRadius, className)}>
+    <button
+      disabled={disabled}
+      className={classNames("btn", `btn-${type}`, `h-${size}`, borderRadius, className)}
+      onClick={onClick}
+    >
       {children}
     </button>
   );

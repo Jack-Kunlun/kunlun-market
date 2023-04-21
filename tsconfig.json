@@ -18,7 +18,8 @@
     "paths": {
       "@/*": ["./src/*"],
       "@assets": ["./src/assets"]
-    }
+    },
+    "types": ["vitest/globals"]
   },
   "include": ["src", "types"],
   "references": [{ "path": "./tsconfig.node.json" }]
