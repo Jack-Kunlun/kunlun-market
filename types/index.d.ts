@@ -1,5 +1,5 @@
-import { AttributifyAttributes } from "windicss/types/jsx";
 import { TestingLibraryMatchers } from "@testing-library/jest-dom/matchers";
+import { AttributifyAttributes } from "windicss/types/jsx";
 
 declare global {
   declare type Nullable<T> = T | undefined | null;

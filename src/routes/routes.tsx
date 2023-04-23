@@ -1,5 +1,5 @@
 import { IRoute } from "./types";
-import BasicLayout from "@/layout/BasicLayout";
+import { BasicLayout } from "@/layout/BasicLayout";
 import { NoMatch } from "@/pages/404";
 import { HomePage } from "@/pages/Home";
 import { UserPage } from "@/pages/Home/User";
