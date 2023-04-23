@@ -17,7 +17,14 @@ module.exports = {
       version: "detect",
     },
   },
-  overrides: [],
+  overrides: [
+    {
+      files: ["*.config.{ts,js}", "**/*.stories.{tsx,ts,js,jsx}"],
+      rules: {
+        "import/no-default-export": "off",
+      },
+    },
+  ],
   parser: "@typescript-eslint/parser",
   parserOptions: {
     ecmaVersion: "latest",
@@ -136,12 +143,7 @@ module.exports = {
     // 禁止嵌套三元表达式
     "unicorn/no-nested-ternary": "error",
     // 禁用 export default 规则
-    "import/no-default-export": [
-      "error",
-      {
-        ignore: ["**/*.stories.tsx", "*.config.ts", "*.config.js"],
-      },
-    ],
+    "import/no-default-export": "error",
     "react/no-unknown-property": [
       "error",
       {

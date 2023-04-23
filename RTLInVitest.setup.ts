@@ -1,6 +1,6 @@
-import { expect, afterEach } from "vitest";
-import { cleanup } from "@testing-library/react";
 import matchers from "@testing-library/jest-dom/matchers";
+import { cleanup } from "@testing-library/react";
+import { expect, afterEach } from "vitest";
 
 // 继承 testing-library 的扩展 except
 expect.extend(matchers);

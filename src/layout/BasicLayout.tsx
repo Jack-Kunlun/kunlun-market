@@ -1,7 +1,7 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 
-const BasicLayout: React.FC = () => {
+export const BasicLayout: React.FC = () => {
   return (
     <div
       style={{
@@ -14,5 +14,3 @@ const BasicLayout: React.FC = () => {
     </div>
   );
 };
-
-export default BasicLayout;
