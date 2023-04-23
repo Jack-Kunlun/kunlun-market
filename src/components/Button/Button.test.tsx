@@ -7,9 +7,7 @@ import { Button } from ".";
 
 describe("Button", () => {
   it("test button content", () => {
-    const button = render(<Button>test</Button>);
-
-    console.log(screen.getByText("test"));
+    render(<Button>test</Button>);
 
     expect(screen.getByText("test")).toBeInTheDocument();
   });
@@ -42,13 +40,15 @@ describe("Button", () => {
     it(`${size} size button`, () => {
       const button = render(<Button size={size as any}>{expected}</Button>);
       const element = button.getByRole("button");
+
       expect(element.classList.contains(expected)).toBeTruthy();
     });
   });
 
-  it.each(defineSize)(`test the size of button`, ({ size, expected }) => {
+  it.each(defineSize)("test the size of button", ({ size, expected }) => {
     const button = render(<Button size={size as any}>{expected}</Button>);
     const element = button.getByRole("button");
+
     expect(element.classList.contains(expected)).toBeTruthy();
   });
 });
