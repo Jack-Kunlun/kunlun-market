@@ -11,7 +11,9 @@
     "prepare": "husky install",
     "pre-commit": "lint-staged",
     "sb": "start-storybook -p 6006",
-    "build-sb": "build-storybook"
+    "build-sb": "build-storybook",
+    "test": "vitest --run",
+    "coverage": "vitest run --coverage"
   },
   "prettier": {
     "arrowParens": "always",
@@ -31,9 +33,11 @@
     ]
   },
   "dependencies": {
+    "@testing-library/jest-dom": "^5.16.5",
     "antd": "^4.23.0",
     "axios": "^0.27.2",
     "classnames": "^2.3.2",
+    "jsdom": "^21.1.1",
     "less": "^4.1.3",
     "nprogress": "^0.2.0",
     "qs": "^6.11.0",
@@ -52,6 +56,7 @@
     "@storybook/builder-vite": "^0.2.2",
     "@storybook/react": "^6.5.12",
     "@storybook/testing-library": "^0.0.13",
+    "@testing-library/react": "^14.0.0",
     "@types/nprogress": "^0.2.0",
     "@types/qs": "^6.9.7",
     "@types/react": "^18.0.17",
@@ -74,6 +79,7 @@
     "typescript": "^4.6.4",
     "vite": "^3.0.7",
     "vite-plugin-windicss": "^1.8.8",
+    "vitest": "^0.30.1",
     "windicss": "^3.5.6"
   }
 }
