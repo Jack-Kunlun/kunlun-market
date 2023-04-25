@@ -1,0 +1,11 @@
+{
+  "login": "登录",
+  "signUp": "注册",
+  "forgotPassword": "忘记密码",
+  "config": "确认",
+  "username": "用户名",
+  "password": "密码",
+  "please input your Username": "请输入用户名",
+  "please input your Password": "请输入密码",
+  "Don't have account": "没有帐号？"
+}

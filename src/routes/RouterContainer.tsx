@@ -1,5 +1,5 @@
 import { FC, ReactNode, Suspense, lazy } from "react";
-import { Routes, Route, Navigate, BrowserRouter as Router } from "react-router-dom";
+import { Routes, Route, Navigate, BrowserRouter } from "react-router-dom";
 import { routes } from "./routes";
 import { IRoute } from "./types";
 import { NPorgress } from "@/components/NPorgress";
@@ -24,10 +24,10 @@ const renderRouter = (routes: IRoute[]): ReactNode => {
 
 export const RouterContainer: FC = () => {
   return (
-    <Router>
+    <BrowserRouter>
       <Suspense fallback={<NPorgress />}>
         <Routes>{renderRouter(routes)}</Routes>
       </Suspense>
-    </Router>
+    </BrowserRouter>
   );
 };
