@@ -1,0 +1,9 @@
+{
+  "name": "windi-config",
+  "version": "0.0.0",
+  "private": true,
+  "devDependencies": {
+    "windicss": "^3.5.6",
+    "public-utils": "*"
+  }
+}

@@ -1,5 +1,5 @@
 import { defineConfig } from "windicss/helpers";
-import { safelist, plugins } from "./config/windicss";
+import { safelist, plugins } from "./config";
 
 export default defineConfig({
   darkMode: "class",

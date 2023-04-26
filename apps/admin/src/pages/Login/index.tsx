@@ -2,6 +2,7 @@ import { Form, Input, Button } from "antd";
 import { FC } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import { Button as TestButton } from "ui";
 
 export const LoginPage: FC = () => {
   const navigate = useNavigate();
@@ -38,6 +39,7 @@ export const LoginPage: FC = () => {
             <Button className="w-full !bg-gradientViolet !text-white" size="large" htmlType="submit">
               {t("config")}
             </Button>
+            <TestButton />
             <div className="mt-smm flex justify-between">
               <div>
                 {t("Don't have account")}

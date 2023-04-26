@@ -1,4 +1,6 @@
 {
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Default",
   "compilerOptions": {
     "target": "ESNext",
     "useDefineForClassFields": true,
@@ -14,13 +16,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx",
-    "paths": {
-      "@/*": ["./src/*"],
-      "@assets": ["./src/assets"]
-    },
-    "types": ["vitest/globals"]
+    "jsx": "react-jsx"
   },
-  "include": ["src", "types"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "exclude": ["node_modules"]
 }
