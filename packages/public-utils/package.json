@@ -8,30 +8,10 @@
     "access": "public"
   },
   "scripts": {
-    "lint": "lint-staged",
-    "eslint": "eslint --ext .js,.jsx,.ts,.tsx --fix --quiet ./"
-  },
-  "prettier": {
-    "arrowParens": "always",
-    "bracketSpacing": true,
-    "printWidth": 120,
-    "singleQuote": false,
-    "tabWidth": 2,
-    "trailingComma": "es5"
-  },
-  "lint-staged": {
-    "*.{js,jsx,tsx,ts}": [
-      "yarn eslint",
-      "prettier --write"
-    ],
-    "*.{json,md,yaml}": [
-      "prettier --write"
-    ]
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx --fix --quiet ./"
   },
   "devDependencies": {
     "eslint": "^8.23.0",
-    "lint-staged": "^13.0.3",
-    "prettier": "^2.7.1",
     "eslint-config-custom": "*",
     "tsconfig": "*"
   }
