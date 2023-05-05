@@ -1,5 +1,5 @@
-import { CacheKey, CacheResult } from "@/hooks/cache/types";
-import { ResponseError } from "@/utils";
+import { ResponseError } from "public-utils";
+import { CacheKey, CacheResult } from "./types";
 
 export const infinity = 5 * 60 * 1000;
 

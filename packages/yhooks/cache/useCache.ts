@@ -1,7 +1,7 @@
+import { ResponseError } from "public-utils";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { CacheOptions, CacheKey, CacheResult, Nullable } from "./types";
-import { getCacheKeys, getErrorState, getLoadingState, infinity, noop } from "@/hooks/cache/utils";
-import { ResponseError } from "@/utils";
+import { getCacheKeys, getErrorState, getLoadingState, infinity, noop } from "./utils";
 
 class CacheInstanceWrapper<T> {
   wrapped(options: CacheOptions<T>) {

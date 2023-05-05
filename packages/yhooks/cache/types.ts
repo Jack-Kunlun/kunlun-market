@@ -1,4 +1,4 @@
-import { ResponseError } from "@/utils";
+import { ResponseError } from "public-utils";
 
 export type Nullable<T> = T | undefined | null;
 
