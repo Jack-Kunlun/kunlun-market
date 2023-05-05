@@ -1,14 +1,4 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-# 获取所有子应用目录
-APPS=$(find . -maxdepth 2 -name package.json | grep -v node_modules | grep -v "/package.json" | xargs dirname)
-
-for APP in $APPS; do
-  if [ -f "$APP/.husky/pre-commit" ]; then
-    # 如果子应用中存在 pre-commit 钩子，则执行子应用中的钩子
-    (cd "$APP" && yarn husky pre-commit)
-  fi
-done
-
 yarn pre-commit

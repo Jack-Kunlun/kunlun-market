@@ -1,8 +1,8 @@
 import { FC, ReactNode, Suspense, lazy } from "react";
 import { Routes, Route, Navigate, BrowserRouter } from "react-router-dom";
+import { NPorgress } from "ui";
 import { routes } from "./routes";
 import { IRoute } from "./types";
-import { NPorgress } from "@/components/NPorgress";
 
 const renderRouter = (routes: IRoute[]): ReactNode => {
   return routes.map((item, key) => {

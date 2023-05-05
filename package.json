@@ -15,7 +15,13 @@
     "dev": "turbo run dev --parallel",
     "lint": "turbo run lint",
     "dev:admin": "yarn workspace admin dev",
-    "test": "turbo run test"
+    "test": "turbo run test",
+    "pre-commit": "turbo run lint test",
+    "test:ui": "yarn workspace ui test",
+    "lint:ui": "yarn workspace ui lint"
+  },
+  "dependencies": {
+    "eslint-config-turbo": "latest"
   },
   "devDependencies": {
     "turbo": "^1.9.3",
@@ -26,9 +32,7 @@
     "lint-staged": "^13.0.3",
     "@commitlint/cli": "^17.1.2",
     "@commitlint/config-conventional": "^17.1.0",
-    "tsconfig": "*",
-    "ui": "*",
-    "vite-config": "*"
+    "tsconfig": "*"
   },
   "prettier": {
     "arrowParens": "always",

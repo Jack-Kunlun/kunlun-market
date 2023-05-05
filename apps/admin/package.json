@@ -7,13 +7,8 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "lint": "eslint --ext .js,.jsx,.ts,.tsx --fix --quiet ./",
-    "prepare": "husky install",
-    "pre-commit": "lint-staged && yarn test",
-    "sb": "start-storybook -p 6006",
-    "build-sb": "build-storybook",
-    "test": "vitest --run",
-    "coverage": "vitest run --coverage"
+    "lint": "lint-staged",
+    "eslint": "eslint --ext .js,.jsx,.ts,.tsx --fix --quiet ./"
   },
   "prettier": {
     "arrowParens": "always",
@@ -25,7 +20,7 @@
   },
   "lint-staged": {
     "*.{js,jsx,tsx,ts}": [
-      "yarn lint",
+      "yarn eslint",
       "prettier --write"
     ],
     "*.{json,md,yaml}": [
@@ -33,15 +28,12 @@
     ]
   },
   "dependencies": {
-    "@testing-library/jest-dom": "^5.16.5",
     "antd": "^4.23.0",
     "axios": "^0.27.2",
     "classnames": "^2.3.2",
     "i18next": "^22.4.15",
     "jsdom": "^21.1.1",
     "less": "^4.1.3",
-    "nprogress": "^0.2.0",
-    "qs": "^6.11.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-i18next": "^12.2.2",
@@ -49,34 +41,21 @@
   },
   "devDependencies": {
     "@babel/core": "^7.19.1",
-    "@commitlint/cli": "^17.1.2",
-    "@commitlint/config-conventional": "^17.1.0",
-    "@storybook/addon-actions": "^6.5.12",
-    "@storybook/addon-essentials": "^6.5.12",
-    "@storybook/addon-interactions": "^6.5.12",
-    "@storybook/addon-links": "^6.5.12",
-    "@storybook/builder-vite": "^0.2.2",
-    "@storybook/react": "^6.5.12",
-    "@storybook/testing-library": "^0.0.13",
-    "@testing-library/react": "^14.0.0",
-    "@types/nprogress": "^0.2.0",
-    "@types/qs": "^6.9.7",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
     "@vitejs/plugin-react": "^2.0.1",
     "babel-loader": "^8.2.5",
-    "eslint-config-custom": "*",
-    "husky": "^8.0.1",
+    "eslint": "^8.23.0",
     "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
     "react-router-dom": "^6.3.0",
     "typescript": "^4.6.4",
     "vite": "^3.0.7",
     "vite-plugin-windicss": "^1.8.8",
-    "vitest": "^0.30.1",
     "windicss": "^3.5.6",
-    "tsconfig": "*",
+    "windi-config": "*",
     "ui": "*",
-    "windi-config": "*"
+    "yhooks": "*",
+    "public-utils": "*"
   }
 }

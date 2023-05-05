@@ -1,5 +1,5 @@
-import { useCache } from "@/hooks/cache";
-import { HttpRequest } from "@/utils";
+import { HttpRequest } from "public-utils";
+import { useCache } from "yhooks";
 
 const loginCache = useCache<string>({ defaultValue: "", maxAge: 5 * 30 * 1000 });
 

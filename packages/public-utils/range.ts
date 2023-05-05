@@ -1,3 +1,3 @@
-export function range(safelist: string[], prefix: string) {
+export const range = (safelist: string[], prefix: string) => {
   return safelist.map((i) => `${prefix}-${i}`);
-}
+};
