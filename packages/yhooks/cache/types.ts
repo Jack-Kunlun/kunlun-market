@@ -7,7 +7,6 @@ export type CacheKey = string | number;
 export interface CacheOptions<T> {
   defaultValue: T;
   maxAge?: number;
-  // eslint-disable-next-line no-unused-vars
   dispose?: (key: CacheKey, value: T) => void;
 }
 
