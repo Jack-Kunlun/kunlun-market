@@ -1,0 +1,19 @@
+{
+  "name": "yhooks",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "main": "index.ts",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx --fix --quiet ./"
+  },
+  "devDependencies": {
+    "eslint": "^8.23.0",
+    "eslint-config-custom": "*",
+    "tsconfig": "*",
+    "public-utils": "*"
+  }
+}
