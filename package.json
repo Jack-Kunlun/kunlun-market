@@ -17,7 +17,7 @@
     "dev:admin": "yarn workspace admin dev",
     "dev:backend": "yarn workspace backend dev",
     "test": "turbo run test",
-    "pre-commit": "turbo run lint test && lint-staged",
+    "pre-commit": "lint-staged && turbo run test",
     "test:ui": "yarn workspace ui test",
     "lint:ui": "yarn workspace ui lint"
   },
