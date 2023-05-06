@@ -1,35 +1,12 @@
 module.exports = {
+  root: true,
   env: {
-    browser: true,
-    es2021: true,
     node: true,
+    jest: true,
   },
-  extends: [
-    "eslint:recommended",
-    "plugin:react/recommended",
-    "plugin:react/jsx-runtime",
-    "plugin:@typescript-eslint/recommended",
-    "prettier",
-  ],
-  settings: {
-    react: {
-      version: "detect",
-    },
-  },
-  overrides: [
-    {
-      files: ["*.config.{ts,js}", "**/*.stories.{tsx,ts,js,jsx}"],
-      rules: {
-        "import/no-default-export": "off",
-      },
-    },
-  ],
+  extends: ["plugin:@typescript-eslint/recommended", "plugin:prettier/recommended", "prettier"],
   parser: "@typescript-eslint/parser",
-  parserOptions: {
-    ecmaVersion: "latest",
-    sourceType: "module",
-  },
-  plugins: ["react", "@typescript-eslint", "import", "unicorn"],
+  plugins: ["@typescript-eslint", "import", "unicorn", "@typescript-eslint/eslint-plugin"],
   rules: {
     // 强制或禁止箭头函数体使用大括号
     "arrow-body-style": "off",
@@ -81,17 +58,17 @@ module.exports = {
       },
     ],
     "no-console": "error",
-    "no-restricted-imports": [
-      "error",
-      {
-        patterns: [
-          {
-            group: ["~/localization/*"],
-            message: "Don't import any internals from a module, only use its public api",
-          },
-        ],
-      },
-    ],
+    // "no-restricted-imports": [
+    //   "error",
+    //   {
+    //     patterns: [
+    //       {
+    //         group: ["~/localization/*"],
+    //         message: "Don't import any internals from a module, only use its public api",
+    //       },
+    //     ],
+    //   },
+    // ],
     // 对比排序前后代码，排序后的代码看起来更整洁
     "import/order": [
       "error",
@@ -143,55 +120,13 @@ module.exports = {
     "unicorn/no-nested-ternary": "error",
     // 禁用 export default 规则
     "import/no-default-export": "error",
-    "react/no-unknown-property": [
-      "error",
-      {
-        ignore: [
-          "p",
-          "m",
-          "w",
-          "h",
-          "z",
-          "border",
-          "grid",
-          "flex",
-          "bg",
-          "text",
-          "font",
-          "opacity",
-          "animate",
-          "transition",
-          "transform",
-          "align",
-          "justify",
-          "items",
-          "block",
-          "content",
-          "pos",
-          "box",
-          "overflow",
-          "underline",
-          "list",
-          "gradient",
-          "divide",
-          "gap",
-          "ring",
-          "icon",
-          "container",
-          "space",
-          "table",
-          "order",
-          "place",
-          "display",
-          "shadow",
-          "blend",
-          "filter",
-          "backdrop",
-          "cursor",
-          "outline",
-          "select",
-        ],
-      },
-    ],
+    // 强制所有接口名称必须以 "I" 为前缀
+    "@typescript-eslint/interface-name-prefix": "off",
+    // 需要函数和类方法的显式返回类型
+    "@typescript-eslint/explicit-function-return-type": "off",
+    // 要求在导出函数和类的公共类方法上显式返回和参数类型
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    // 不允许any类型
+    "@typescript-eslint/no-explicit-any": "off",
   },
 };

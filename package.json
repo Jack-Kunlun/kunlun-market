@@ -15,6 +15,7 @@
     "dev": "turbo run dev --parallel",
     "lint": "turbo run lint",
     "dev:admin": "yarn workspace admin dev",
+    "dev:backend": "yarn workspace backend dev",
     "test": "turbo run test",
     "pre-commit": "turbo run lint test && lint-staged",
     "test:ui": "yarn workspace ui test",
@@ -43,7 +44,24 @@
     "trailingComma": "es5"
   },
   "lint-staged": {
-    "*.{js,jsx,tsx,ts}": [
+    "apps/admin/src/**/*.{js,jsx,ts,tsx}": [
+      "eslint --fix --config apps/admin/.eslintrc.cjs",
+      "prettier --write"
+    ],
+    "packages/ui/**/*.{js,jsx,ts,tsx}": [
+      "eslint --fix --config packages/ui/.eslintrc.cjs",
+      "prettier --write"
+    ],
+    "packages/public-utils/**/*.{js,jsx,ts,tsx}": [
+      "eslint --fix --config packages/public-utils/.eslintrc.cjs",
+      "prettier --write"
+    ],
+    "packages/yhooks/**/*.{js,jsx,ts,tsx}": [
+      "eslint --fix --config packages/yhooks/.eslintrc.cjs",
+      "prettier --write"
+    ],
+    "apps/backend/{src,apps,libs,test}/**/*.ts": [
+      "eslint --fix --config apps/backend/.eslintrc.js",
       "prettier --write"
     ],
     "*.{json,md,yaml}": [
