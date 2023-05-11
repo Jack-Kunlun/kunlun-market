@@ -1,10 +1,10 @@
 import * as Path from "path";
 import * as Util from "util";
+import { log4jsConfig } from "@config/log4js";
 import Chalk from "chalk";
 import * as Log4js from "log4js";
 import Moment from "moment";
 import * as StackTrace from "stacktrace-js";
-import { log4jsConfig } from "../../../config/log4js";
 import { LoggerLevel } from "./types";
 
 class ContextTrace {

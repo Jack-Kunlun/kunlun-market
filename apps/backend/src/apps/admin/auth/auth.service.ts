@@ -2,18 +2,17 @@ import { Injectable } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
 import { AdminUser } from "../../../entity/admin/admin.entity";
 import { encryptPassword } from "../../../utils/cryptogram";
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { AdminService } from "../admin/admin.service";
+import { UserService } from "../user/user.service";
 import { JwtPayload } from "./types";
 
 @Injectable()
 export class AuthService {
-  constructor(private readonly AdminService: AdminService, private readonly jwtService: JwtService) {}
+  constructor(private readonly userService: UserService, private readonly jwtService: JwtService) {}
 
   // JWT验证 - Step 2: 校验用户信息
   async validateUser(username: string, password: string): Promise<any> {
     try {
-      const user = await this.AdminService.findUserByUsername(username);
+      const user = await this.userService.findUserByUsername(username);
 
       if (!user) {
         return {

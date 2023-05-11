@@ -1,11 +1,11 @@
+import { AdminUser } from "@entity/admin/admin.entity";
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
+import { encryptPassword, makeSalt } from "@utils/cryptogram";
 import { Repository } from "typeorm";
-import { AdminUser } from "../../../entity/admin/admin.entity";
-import { encryptPassword, makeSalt } from "../../../utils/cryptogram";
 
 @Injectable()
-export class AdminService {
+export class UserService {
   constructor(
     @InjectRepository(AdminUser)
     private adminUserRepository: Repository<AdminUser>

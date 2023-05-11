@@ -14,7 +14,13 @@
       "@config/*": ["src/config/*"],
       "@utils/*": ["src/utils/*"],
       "@entity/*": ["src/entity/*"],
-      "@decorator/*": ["src/decorator/*"]
+      "@decorator/*": ["src/decorator/*"],
+      "@guard/*": ["src/guard/*"],
+      "@filter/*": ["src/filter/*"],
+      "@pipe/*": ["src/pipe/*"],
+      "@interceptor/*": ["src/interceptor/*"],
+      "@middleware/*": ["src/middleware/*"],
+      "@apps/*": ["src/apps/*"]
     },
     "incremental": true,
     "skipLibCheck": true,
