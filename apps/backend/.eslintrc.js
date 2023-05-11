@@ -134,5 +134,8 @@ module.exports = {
     "@typescript-eslint/explicit-module-boundary-types": "off",
     // 不允许any类型
     "@typescript-eslint/no-explicit-any": "off",
+    // Note: you must disable the base rule as it can report incorrect errors
+    "no-empty-function": "off",
+    "@typescript-eslint/no-empty-function": "off",
   },
 };

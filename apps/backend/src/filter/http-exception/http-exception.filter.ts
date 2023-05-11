@@ -10,13 +10,11 @@ export class HttpExceptionFilter implements ExceptionFilter {
     const request = ctx.getRequest<Request>();
     const status = exception.getStatus();
 
-    const logFormat = ` <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-    Request original url: ${request.originalUrl}
-    Method: ${request.method}
-    IP: ${request.ip}
-    Status code: ${status}
-    Response: ${exception.toString()} \n  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-    `;
+    const logFormat = ` Request original url: ${request.originalUrl}
+  Method: ${request.method}
+  IP: ${request.ip}
+  Status code: ${status}
+  Response: ${exception.toString()} \n`;
 
     loggerWarn(logFormat);
     response.status(status).json({

@@ -13,13 +13,11 @@ export class AllExceptionsFilter implements ExceptionFilter {
 
     const status = exception instanceof HttpException ? exception.getStatus() : HttpStatus.INTERNAL_SERVER_ERROR;
 
-    const logFormat = ` <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-    Request original url: ${request.originalUrl}
-    Method: ${request.method}
-    IP: ${request.ip}
-    Status code: ${status}
-    Response: ${exception} \n  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-    `;
+    const logFormat = ` Request original url: ${request.originalUrl}
+  Method: ${request.method}
+  IP: ${request.ip}
+  Status code: ${status}
+  Response: ${exception} \n`;
 
     loggerError(logFormat);
     response.status(status).json({

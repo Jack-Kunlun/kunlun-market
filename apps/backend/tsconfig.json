@@ -10,6 +10,12 @@
     "sourceMap": true,
     "outDir": "./dist",
     "baseUrl": "./",
+    "paths": {
+      "@config/*": ["src/config/*"],
+      "@utils/*": ["src/utils/*"],
+      "@entity/*": ["src/entity/*"],
+      "@decorator/*": ["src/decorator/*"]
+    },
     "incremental": true,
     "skipLibCheck": true,
     "strictNullChecks": true,
