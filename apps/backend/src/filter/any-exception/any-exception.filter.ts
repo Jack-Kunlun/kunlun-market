@@ -2,10 +2,12 @@
  * 捕获所有异常
  */
 import { ExceptionFilter, Catch, ArgumentsHost, HttpException, HttpStatus } from "@nestjs/common";
-import { loggerError } from "../../utils";
+import { loggerWithPublic } from "../../utils";
 
 @Catch()
 export class AllExceptionsFilter implements ExceptionFilter {
+  constructor(private readonly serviceType: ServiceType) {}
+
   catch(exception: unknown, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
     const response = ctx.getResponse();
@@ -19,7 +21,8 @@ export class AllExceptionsFilter implements ExceptionFilter {
   Status code: ${status}
   Response: ${exception} \n`;
 
-    loggerError(logFormat);
+    loggerWithPublic(this.serviceType, "error", logFormat);
+
     response.status(status).json({
       statusCode: status,
       msg: `Service Error: ${exception}`,

@@ -1,7 +1,7 @@
 import { AllExceptionsFilter } from "@filter/any-exception/any-exception.filter";
 import { HttpExceptionFilter } from "@filter/http-exception/http-exception.filter";
 import { TransformInterceptor } from "@interceptor/transform/transform.interceptor";
-import { logger } from "@middleware/logger/logger.middleware";
+import { createLoggerMiddleware } from "@middleware/logger/logger.middleware";
 import { NestFactory } from "@nestjs/core";
 import { ValidationPipe } from "@pipe/validation/validation.pipe";
 import * as express from "express";
@@ -18,17 +18,18 @@ export const initAdminService = async () => {
   // For parsing application/x-www-form-urlencoded
   app.use(express.urlencoded({ extended: true }));
   // 监听所有的请求路由，并打印日志
-  app.use(logger);
+  app.use(createLoggerMiddleware("admin"));
+
   // 使用全局拦截器打印出参
-  app.useGlobalInterceptors(new TransformInterceptor());
+  app.useGlobalInterceptors(new TransformInterceptor("admin"));
 
   app.useGlobalPipes(new ValidationPipe());
 
   // 注意：AllExceptionsFilter 要在 HttpExceptionFilter 的上面，否则 HttpExceptionFilter 就不生效了，全被 AllExceptionsFilter 捕获了。
   // 捕获处理所有异常
-  app.useGlobalFilters(new AllExceptionsFilter());
+  app.useGlobalFilters(new AllExceptionsFilter("admin"));
   // 过滤处理 HTTP 异常
-  app.useGlobalFilters(new HttpExceptionFilter());
+  app.useGlobalFilters(new HttpExceptionFilter("admin"));
 
   await app.listen(3000);
 };

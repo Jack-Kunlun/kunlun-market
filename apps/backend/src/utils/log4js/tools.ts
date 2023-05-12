@@ -1,22 +1,12 @@
 import * as Path from "path";
 import * as Util from "util";
-import { log4jsConfig } from "@config/log4js";
 import Chalk from "chalk";
 import * as Log4js from "log4js";
 import Moment from "moment";
 import * as StackTrace from "stacktrace-js";
-import { LoggerLevel } from "./types";
+import { ContextTrace, LoggerLevel } from "./types";
 
-class ContextTrace {
-  constructor(
-    public readonly context: string,
-    public readonly path?: string,
-    public readonly lineNumber?: number,
-    public readonly columnNumber?: number
-  ) {}
-}
-
-Log4js.addLayout("backend", (logConfig: any) => {
+export const addLayout = (logConfig: any) => {
   return (logEvent: Log4js.LoggingEvent): string => {
     let moduleName = "";
     let position = "";
@@ -75,17 +65,9 @@ Log4js.addLayout("backend", (logConfig: any) => {
 
     return `${Chalk.green(typeOutput)}${dateOutput}  ${Chalk.yellow(moduleOutput)}${levelOutput}${positionOutput}`;
   };
-});
+};
 
-// 注入配置
-Log4js.configure(log4jsConfig);
-
-// 实例化
-const logger = Log4js.getLogger();
-
-logger.level = LoggerLevel.TRACE;
-
-const getStackTrace = (deep = 2) => {
+export const getStackTrace = (deep = 2) => {
   const stackList: StackTrace.StackFrame[] = StackTrace.getSync();
   const stackInfo: StackTrace.StackFrame = stackList[deep];
 
@@ -95,34 +77,4 @@ const getStackTrace = (deep = 2) => {
   const basename = fileName ? Path.basename(fileName) : "";
 
   return `${basename}(line: ${lineNumber}, column: ${columnNumber}): \n`;
-};
-
-export const loggerTrace = (...args: any) => {
-  logger.trace(getStackTrace(), ...args);
-};
-
-export const loggerDebug = (...args: any[]) => {
-  logger.debug(getStackTrace(), ...args);
-};
-
-export const loggerInfo = (...args: any[]) => {
-  logger.info(getStackTrace(), ...args);
-};
-
-export const loggerWarn = (...args: any[]) => {
-  logger.warn(getStackTrace(), ...args);
-};
-
-export const loggerError = (...args: any[]) => {
-  logger.error(getStackTrace(), ...args);
-};
-
-export const loggerFatal = (...args: any[]) => {
-  logger.fatal(getStackTrace(), ...args);
-};
-
-export const loggerAccess = (...args: any[]) => {
-  const loggerCustom = Log4js.getLogger("http");
-
-  loggerCustom.info(getStackTrace(), ...args);
 };
