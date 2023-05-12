@@ -2,7 +2,8 @@ import { AllExceptionsFilter } from "@filter/any-exception/any-exception.filter"
 import { HttpExceptionFilter } from "@filter/http-exception/http-exception.filter";
 import { TransformInterceptor } from "@interceptor/transform/transform.interceptor";
 import { createLoggerMiddleware } from "@middleware/logger/logger.middleware";
-import { NestFactory } from "@nestjs/core";
+import { ClassSerializerInterceptor } from "@nestjs/common";
+import { NestFactory, Reflector } from "@nestjs/core";
 import { ValidationPipe } from "@pipe/validation/validation.pipe";
 import * as express from "express";
 import { AppModule } from "./app.module";
@@ -30,6 +31,8 @@ export const initAdminService = async () => {
   app.useGlobalFilters(new AllExceptionsFilter("admin"));
   // 过滤处理 HTTP 异常
   app.useGlobalFilters(new HttpExceptionFilter("admin"));
+  // class serializer interceptor
+  app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
 
   await app.listen(3000);
 };

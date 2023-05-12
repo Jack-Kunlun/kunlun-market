@@ -9,7 +9,7 @@ export const config: TypeOrmModuleOptions = {
   username: "****",
   password: "****",
   database: "****",
-  entities: [`${__dirname}/../src/entity/**/*.entity{.ts,.js}`],
+  entities: [`${__dirname}/../entity/**/*.entity{.ts,.js}`],
   // 警告：设置 synchronize: true 不能被用于生产环境，否则您可能会丢失生产环境数据
   synchronize: false,
   // 让entity中的属性，在映射到数据库的时候，默认转下划线

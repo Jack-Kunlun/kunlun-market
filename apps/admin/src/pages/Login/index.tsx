@@ -1,19 +1,28 @@
 import { Form, Input, Button } from "antd";
-import { FC } from "react";
+import { FC, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import { LoginUserInfo, doLogin } from "@/apis/user";
 
 export const LoginPage: FC = () => {
   const navigate = useNavigate();
 
   const { t } = useTranslation();
+  const [loading, setLoading] = useState(false);
 
-  // eslint-disable-next-line unicorn/consistent-function-scoping, @typescript-eslint/no-explicit-any
-  const onFinish = (values: Nullable<string>) => {
-    // eslint-disable-next-line no-console
-    console.log("Received values of form: ", values);
+  const onFinish = async (values: LoginUserInfo) => {
+    setLoading(true);
 
-    navigate("/home");
+    try {
+      const _ = await doLogin(values);
+
+      navigate("/home");
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -35,7 +44,7 @@ export const LoginPage: FC = () => {
           </Form.Item>
 
           <Form.Item>
-            <Button className="w-full !bg-gradientViolet !text-white" size="large" htmlType="submit">
+            <Button className="w-full !bg-gradientViolet !text-white" size="large" htmlType="submit" loading={loading}>
               {t("config")}
             </Button>
             <div className="mt-smm flex justify-between">

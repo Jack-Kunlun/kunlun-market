@@ -1,7 +1,7 @@
 import { Public } from "@decorator/public.decorator";
 import { Body, Controller, Get, Param, Post } from "@nestjs/common";
 import { AuthService } from "../auth/auth.service";
-import { RegisterInfoDTO } from "./user.dto";
+import { LoginDto, RegisterInfoDTO } from "./user.dto";
 import { UserService } from "./user.service";
 
 @Controller("user")
@@ -26,9 +26,9 @@ export class UserController {
 
   @Post("login")
   @Public()
-  async login(@Body() { username, password }: { username: string; password: string }) {
+  async login(@Body() body: LoginDto) {
     try {
-      const authResult = await this.authService.validateUser(username, password);
+      const authResult = await this.authService.validateUser(body.username, body.password);
 
       if (authResult.code === 200) {
         return await this.authService.certificate(authResult.data);
