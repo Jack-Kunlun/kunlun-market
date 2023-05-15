@@ -2,7 +2,7 @@ import { Form, Input, Button } from "antd";
 import { FC, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import { LoginUserInfo, doLogin } from "@/apis/user";
+import { LoginParams, doLogin } from "@/apis/user";
 
 export const LoginPage: FC = () => {
   const navigate = useNavigate();
@@ -10,13 +10,16 @@ export const LoginPage: FC = () => {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
 
-  const onFinish = async (values: LoginUserInfo) => {
+  const onFinish = async (values: LoginParams) => {
     setLoading(true);
 
     try {
-      const _ = await doLogin(values);
+      const res = await doLogin(values);
 
-      navigate("/home");
+      if (res && res.code === 200) {
+        localStorage.setItem("token", res.data.token);
+        navigate("/home");
+      }
     } catch (error) {
       // eslint-disable-next-line no-console
       console.log(error);

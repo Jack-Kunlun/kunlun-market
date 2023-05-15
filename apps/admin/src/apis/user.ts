@@ -1,14 +1,22 @@
 import { HttpRequest } from "public-utils";
 
-export interface LoginUserInfo {
+export interface LoginParams {
   username: string;
   password: string;
 }
 
-export const doLogin = (params: LoginUserInfo) => {
-  return new Promise((resolve, reject) => {
-    HttpRequest.post("/api/user/login", params)
-      .then((res) => resolve(res))
-      .catch((error) => reject(error));
-  });
+export interface LoginResponse {
+  username: string;
+  password: string;
+  token: string;
+}
+
+export const doLogin = async (params: LoginParams) => {
+  try {
+    const res = await HttpRequest.post<LoginResponse>("/api/user/login", params);
+
+    return res;
+  } catch (error) {
+    // return error;
+  }
 };
