@@ -12,11 +12,11 @@ export class AdminUser {
   @Column({ type: "varchar", length: 30 })
   realName: string;
 
-  @Exclude()
+  @Exclude({ toPlainOnly: true })
   @Column({ type: "varchar", length: 30 })
   password: string;
 
-  @Exclude()
+  @Exclude({ toPlainOnly: true })
   @Column({ type: "varchar", length: 30 })
   passwordSalt: string;
 

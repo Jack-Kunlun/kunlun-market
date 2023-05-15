@@ -1,6 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
-import { AdminUser } from "../../../entity/admin/admin.entity";
+import { instanceToPlain } from "class-transformer";
+import { AdminUser } from "../../../entity/admin/admin-user.entity";
 import { encryptPassword } from "../../../utils/cryptogram";
 import { UserService } from "../user/user.service";
 import { JwtPayload } from "./types";
@@ -51,7 +52,7 @@ export class AuthService {
       return {
         code: 200,
         data: {
-          ...user,
+          ...instanceToPlain(user),
           token,
         },
         msg: "登录成功",
