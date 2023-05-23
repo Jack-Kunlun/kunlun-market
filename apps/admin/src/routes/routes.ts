@@ -5,13 +5,29 @@ import { BlankLayout } from "@/layout/BlankLayout";
 import { NoMatch } from "@/pages/404";
 import { Help } from "@/pages/Help";
 import { HomePage } from "@/pages/Home";
-import { UserPage } from "@/pages/Home/User";
 import { LoginPage } from "@/pages/Login";
 import { UserSetting } from "@/pages/Settings/UserSetting";
+import { UserPage } from "@/pages/User";
 
-export const menuRoute = [
+export const menuRoute: IRoute[] = [
   {
-    path: "/home/user",
+    path: "/admin/home",
+    title: "首页",
+    key: "Home",
+    icon: UsergroupDeleteOutlined,
+    unnecessaryLazy: true,
+    element: BlankLayout,
+    children: [
+      {
+        path: "/admin/home",
+        key: "HomeIndex",
+        title: "首页",
+        element: HomePage,
+      },
+    ],
+  },
+  {
+    path: "/admin/user",
     title: "用户管理",
     key: "User",
     icon: UsergroupDeleteOutlined,
@@ -19,13 +35,13 @@ export const menuRoute = [
     element: BlankLayout,
     children: [
       {
-        path: "/home/user",
+        path: "/admin/user",
         key: "UserIndex",
         title: "用户管理",
         element: HomePage,
       },
       {
-        path: "/home/user/user",
+        path: "/admin/user/role",
         title: "角色管理",
         key: "UserAdmin",
         element: UserPage,
@@ -33,21 +49,22 @@ export const menuRoute = [
     ],
   },
   {
-    path: "/home/help",
+    path: "/admin/help",
     title: "帮助",
     key: "Help",
     element: Help,
     icon: UsergroupDeleteOutlined,
   },
   {
-    path: "/home/settings",
+    path: "/admin/settings",
     title: "设置",
     key: "Settings",
     icon: UsergroupDeleteOutlined,
     element: BlankLayout,
+    unnecessaryLazy: true,
     children: [
       {
-        path: "/home/settings/userSetting",
+        path: "/admin/settings/userSetting",
         title: "用户设置",
         key: "UserSetting",
         element: UserSetting,
@@ -67,10 +84,10 @@ export const routes: IRoute[] = [
     element: LoginPage,
   },
   {
-    path: "/home",
-    title: "Home",
+    path: "/admin",
+    title: "Admin",
     element: BasicLayout,
-    key: "Home",
+    key: "Admin",
     unnecessaryLazy: true,
     children: [...menuRoute],
   },
@@ -79,3 +96,21 @@ export const routes: IRoute[] = [
     element: NoMatch,
   },
 ];
+
+const formatRoutePaths = (routers: IRoute[]) => {
+  const paths: string[] = [];
+
+  routers.forEach((router) => {
+    if (router.path) {
+      paths.push(router.path);
+    }
+
+    if (router.children) {
+      paths.push(...formatRoutePaths(router.children));
+    }
+  });
+
+  return paths;
+};
+
+export const routePaths = formatRoutePaths(routes);

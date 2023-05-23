@@ -18,7 +18,7 @@ export const LoginPage: FC = () => {
 
       if (res && res.code === 200) {
         localStorage.setItem("token", res.data.token);
-        navigate("/home");
+        navigate("/admin/home");
       }
     } catch (error) {
       // eslint-disable-next-line no-console
@@ -43,6 +43,7 @@ export const LoginPage: FC = () => {
               size="large"
               type="password"
               placeholder={`${t("password")}`}
+              autoComplete="off"
             />
           </Form.Item>
 

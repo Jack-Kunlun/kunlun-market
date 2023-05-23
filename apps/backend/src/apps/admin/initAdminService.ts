@@ -4,6 +4,7 @@ import { TransformInterceptor } from "@interceptor/transform/transform.intercept
 import { createLoggerMiddleware } from "@middleware/logger/logger.middleware";
 import { ClassSerializerInterceptor } from "@nestjs/common";
 import { NestFactory, Reflector } from "@nestjs/core";
+import { ParseNumberPipe } from "@pipe/parseNumber/parseNumber.pipe";
 import { ValidationPipe } from "@pipe/validation/validation.pipe";
 import * as express from "express";
 import { AppModule } from "./app.module";
@@ -21,8 +22,8 @@ export async function initAdminService() {
   // 监听所有的请求路由，并打印日志
   app.use(createLoggerMiddleware("admin"));
 
-  // 全局管道严重
-  app.useGlobalPipes(new ValidationPipe());
+  // 全局验证管道
+  app.useGlobalPipes(new ParseNumberPipe(), new ValidationPipe());
 
   app.useGlobalInterceptors(
     // class serializer interceptor

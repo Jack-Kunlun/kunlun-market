@@ -8,7 +8,7 @@ export interface IRoute {
   /**
    * 地址
    */
-  path?: string;
+  path: string;
   /**
    * 组件
    */

@@ -1,57 +1,19 @@
 import { UserOutlined, MenuUnfoldOutlined, MenuFoldOutlined } from "@ant-design/icons";
 import { Avatar, Breadcrumb, Button, Dropdown, Layout, Menu } from "antd";
 import type { MenuProps } from "antd";
-import React, { FC, useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
-import { menuRoute } from "@/routes";
+import { IRoute, menuRoute } from "@/routes";
 
 const { Header, Content, Sider } = Layout;
 
 const routeList = new Map<string, { path: string; title: string }>();
 
-interface Routes {
-  /**
-   * 名称
-   */
-  title: string;
-  /**
-   * 地址
-   */
-  path: string;
-  /**
-   * 组件
-   */
-  element?: FC;
-  /**
-   * 重定向地址
-   */
-  redirect?: string;
-  /**
-   * 是否校验权限, false或不存在时不校验, true为校验, 子路由会继承父路由的 auth 属性
-   */
-  auth?: boolean;
-  /**
-   * 子路由
-   */
-  children?: Routes[];
-  /**
-   * 图标
-   */
-  icon?: FC;
-  /**
-   * 路由的key，唯一值，请勿重复
-   */
-  key: string;
-  /**
-   * 不需要懒加载
-   */
-  unnecessaryLazy?: boolean;
-}
-
-const formatMenu = (routes: Routes[], level = 0) => {
+const formatMenu = (routes: IRoute[], level = 0) => {
   const menus: MenuProps["items"] = [];
 
   routes.forEach((route) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const menuItem: any = {
       key: route.key,
       icon: route.icon ? React.createElement(route.icon) : route.icon,
@@ -63,7 +25,7 @@ const formatMenu = (routes: Routes[], level = 0) => {
       menuItem.children = formatMenu(route.children, level + 1);
     }
 
-    routeList.set(route.key, { path: route.path, title: route.title });
+    routeList.set(route.key as string, { path: route.path, title: route.title as string });
 
     menus.push(menuItem);
   });
@@ -89,7 +51,7 @@ export const BasicLayout: React.FC = () => {
   const [collapsed, setCollapsed] = useState(false);
   const navigate = useNavigate();
 
-  const [keyPath, setKeyPath] = useState<string[]>(["UserIndex", "User"]);
+  const [keyPath, setKeyPath] = useState<string[]>(["HomeIndex", "Home"]);
 
   const menus = formatMenu(menuRoute);
 

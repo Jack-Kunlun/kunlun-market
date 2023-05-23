@@ -64,4 +64,31 @@ export class UserService {
       return error;
     }
   }
+
+  async getUserPage({ current, pageSize, username }: PagingParameter & { username?: string }) {
+    try {
+      const queryBuilder = this.adminUserRepository
+        .createQueryBuilder()
+        .where("1 = 1")
+        .addOrderBy("update_time", "DESC")
+        .skip(pageSize * (current - 1))
+        .take(pageSize);
+
+      if (username) {
+        queryBuilder.andWhere("username = :username", { username });
+      }
+
+      const res = await queryBuilder.getManyAndCount();
+
+      return {
+        code: 200,
+        data: {
+          data: res[0],
+          totalCount: res[1],
+        },
+      };
+    } catch (error) {
+      return error;
+    }
+  }
 }
