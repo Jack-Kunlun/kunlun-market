@@ -3,6 +3,7 @@ import { HttpExceptionFilter } from "@filter/http-exception/http-exception.filte
 import { TransformInterceptor } from "@interceptor/transform/transform.interceptor";
 import { createLoggerMiddleware } from "@middleware/logger/logger.middleware";
 import { ClassSerializerInterceptor } from "@nestjs/common";
+import { ConfigService } from "@nestjs/config";
 import { NestFactory, Reflector } from "@nestjs/core";
 import { ParseNumberPipe } from "@pipe/parseNumber/parseNumber.pipe";
 import { ValidationPipe } from "@pipe/validation/validation.pipe";
@@ -12,8 +13,14 @@ import { AppModule } from "./app.module";
 export async function initAdminService() {
   const app = await NestFactory.create(AppModule);
 
-  // 设置全局前缀为 'admin'
-  app.setGlobalPrefix("admin");
+  const configService = app.get(ConfigService);
+  const port = configService.get<number>("port");
+  const globalPrefix = configService.get<string>("globalPrefix");
+
+  // 设置全局前缀为
+  if (globalPrefix) {
+    app.setGlobalPrefix(globalPrefix);
+  }
 
   // For parsing application/json
   app.use(express.json());
@@ -39,5 +46,5 @@ export async function initAdminService() {
   // 过滤处理 HTTP 异常
   app.useGlobalFilters(new HttpExceptionFilter("admin"));
 
-  await app.listen(3000);
+  await app.listen(port || 3000);
 }
