@@ -2,6 +2,7 @@ import { AdminUser } from "@entity/admin/admin-user.entity";
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { encryptPassword, makeSalt } from "@utils/cryptogram";
+import { formatResponse } from "@utils/formatResponse";
 import { Repository } from "typeorm";
 
 @Injectable()
@@ -11,13 +12,9 @@ export class UserService {
     private adminUserRepository: Repository<AdminUser>
   ) {}
 
-  async findOneById(id: number): Promise<AdminUser> {
+  async findOneById(id: number): Promise<AdminUser | null> {
     try {
       const user = await this.adminUserRepository.findOne({ where: { id } });
-
-      if (!user) {
-        throw "error";
-      }
 
       return user;
     } catch (error) {
@@ -43,23 +40,20 @@ export class UserService {
     } catch (error) {}
   }
 
-  async insertOne(params: Omit<AdminUser, "id" | "createTime" | "updateTime" | "passwordSalt">) {
+  async insertOne(params: Omit<AdminUser, "id" | "createTime" | "updateTime" | "passwordSalt" | "roleId">) {
     try {
       const user = await this.findUserByUsername(params.username);
 
       if (user) {
-        return {
-          code: 400,
-          msg: "用户已存在",
-        };
+        return formatResponse({ code: 400, message: "用户已存在", data: null });
       }
 
       const salt = makeSalt(); // 制作密码盐
       const hashPwd = encryptPassword(params.password, salt); // 加密密码
 
-      const result = await this.adminUserRepository.insert({ ...params, passwordSalt: salt, password: hashPwd });
+      await this.adminUserRepository.insert({ ...params, passwordSalt: salt, password: hashPwd });
 
-      return result;
+      return formatResponse({ data: null });
     } catch (error) {
       return error;
     }

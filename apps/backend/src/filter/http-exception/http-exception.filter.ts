@@ -23,7 +23,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
     response.status(status).json({
       statusCode: status,
       error: exception.message,
-      msg: `${status >= 500 ? "Service Error" : "Client Error"}`,
+      message: `${status >= 500 ? "Service Error" : "Client Error"}`,
     });
   }
 }

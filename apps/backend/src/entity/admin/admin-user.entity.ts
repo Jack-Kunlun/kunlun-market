@@ -24,16 +24,16 @@ export class AdminUser {
   phone: string;
 
   @Column({ type: "varchar", length: 30, nullable: true })
-  email: string;
+  email?: string;
 
-  @Column({ type: "smallint", default: 1 })
-  status: number;
+  @Column({ type: "smallint", default: 1, nullable: true })
+  status?: number;
 
-  @Column({ type: "smallint", default: 1 })
+  @Column({ type: "smallint", default: 1, nullable: true })
   roleId: number;
 
   @Column({ type: "int", nullable: true })
-  createBy: number;
+  createBy?: number;
 
   @CreateDateColumn()
   createTime: Date;

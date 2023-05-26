@@ -8,9 +8,9 @@ CREATE TABLE "admin_user" (
   password_salt varchar(30) NOT NULL,
   phone varchar(20) UNIQUE NOT NULL,
   email varchar(30) DEFAULT '',
-  status smallint NOT NULL DEFAULT 1,
-  role_id smallint NOT NULL DEFAULT 1,
-  create_by integer NOT NULL,
+  status smallint DEFAULT 1,
+  role_id smallint DEFAULT 1,
+  create_by integer,
   create_time timestamp DEFAULT now(),
   update_time timestamp DEFAULT now()
 );

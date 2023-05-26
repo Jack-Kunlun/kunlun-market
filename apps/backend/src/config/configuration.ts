@@ -1,3 +1,4 @@
+import { CustomDatabaseLogger } from "@utils/index";
 import { SnakeNamingStrategy } from "typeorm-naming-strategies";
 
 export const configuration = () => {
@@ -16,7 +17,7 @@ export const configuration = () => {
       synchronize: false,
       // 让entity中的属性，在映射到数据库的时候，默认转下划线
       namingStrategy: new SnakeNamingStrategy(),
-      logging: ["query", "error"],
+      logger: new CustomDatabaseLogger(),
       timezone: "+08:00",
       cache: {
         duration: 60000,

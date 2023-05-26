@@ -21,8 +21,14 @@ export class UserController {
 
   @Post("register")
   @Public()
-  register(@Body() body: RegisterInfoDto) {
-    return { code: 200, data: body };
+  async register(@Body() body: RegisterInfoDto) {
+    try {
+      throw "error";
+
+      return await this.userService.insertOne(body);
+    } catch (error) {
+      return error;
+    }
   }
 
   @Post("login")

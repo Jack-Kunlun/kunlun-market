@@ -11,6 +11,13 @@ declare global {
      */
     pageSize: number;
   }
+
+  interface ResponseResult<T, E> {
+    code: number;
+    data: T;
+    message: string;
+    error?: E;
+  }
 }
 
 export {};
