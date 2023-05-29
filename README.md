@@ -4,11 +4,11 @@
 
 ## 目录结构
 
-├── .husky // husky 钩子配置目录
-└── apps // 主应用目录
+├── .husky // husky 钩子配置目录  
+└── apps // 主应用目录  
     ├── admin // 管理平台  
-    ├── backend // 后端
-    └── frontend // 应用前端 
+    ├── backend // 后端  
+    └── frontend // 应用前端  
 └── packages // 系统通用包  
     ├── eslint-config-backend // 后端 eslint 配置  
     ├── eslint-config-custom // 前端 eslint 配置  
@@ -17,7 +17,7 @@
     ├── ui // 组件库  
     ├── windi-config // 公共 windiCss 配置 
     └── yhooks // 公共 hooks  
-├── .env                                // 环境变量
+├── .env                                // 环境变量  
 ├── .commitlintrc                       // commitlint配置文件
 ├── .eslintignore                          
 ├── .eslintrc                              
