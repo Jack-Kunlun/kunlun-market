@@ -1,6 +1,6 @@
 # 项目介绍
 
-- 使用`turbo repo`架构搭建的项目，支持`TypeScript`、以及`eslint`/`prettier`/`commitlint`工程化管理。
+- 使用`turbo repo`架构搭建的项目，使用`TypeScript`开发，以及`eslint`/`prettier`/`commitlint`工程化管理。
 
 ## 目录结构
 
@@ -26,12 +26,17 @@
 ├── package.json
 ├── README.md
 ├── turbo.json                   // turbo repo 配置文件
-└── yarn.lock                    
+└── yarn.lock
 ```
 
 ## 计划
 
 - [ ]
+
+## 问题
+
+- 由于 windicss 配置是引入进去的，导致无法实时热更新，需要修改一下项目中的配置文件才能触发热更新，或者重启一下项目
+- vite 配置抽离后再引入，项目无法运行，所以目前前端项目中的 vite 配置都是单独的，vitest 配置也是一样
 
 ## 版本
 
