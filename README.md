@@ -1,4 +1,4 @@
-# 项目介绍
+# Description
 
 - 使用`turbo repo`架构搭建的项目，使用`TypeScript`开发，以及`eslint`/`prettier`/`commitlint`工程化管理。
 
@@ -18,7 +18,6 @@
     ├── ui                       // 组件库
     ├── windi-config             // 公共 windiCss 配置
     └── yhooks                   // 公共 hooks
-├── .env                         // 环境变量
 ├── .commitlintrc                // commitlint配置文件
 ├── .eslintignore
 ├── .eslintrc
@@ -27,6 +26,25 @@
 ├── README.md
 ├── turbo.json                   // turbo repo 配置文件
 └── yarn.lock
+```
+
+## Installation
+
+```bash
+$ yarn
+```
+
+## Running the app
+
+```bash
+# 运行全部项目
+$ yarn dev
+
+# 运行某个项目
+$ yarn dev:admin
+
+# production mode
+$ yarn
 ```
 
 ## 计划

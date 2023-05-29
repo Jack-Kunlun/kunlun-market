@@ -1,30 +1,52 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
-
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
-
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
-
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- 使用 nest.js 搭建的后端服务，使用`TypeScript`开发。
+- 官网: [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+
+## 目录结构
+
+```js
+├── sql                                  // sql目录
+└── src
+  └── apps                               // 主应用目录
+      └── admin                          // 管理平台
+          ├── auth                       // 认证模块
+          ├── ...
+          ├── app.module.ts              // 应用主module
+          └── initAdminService.ts        // 应用加载入口文件
+      └── frontend                       // 应用
+          ├── auth                       // 认证模块
+          ├── ...
+          ├── app.module.ts              // 应用主module
+          └── initFrontendService.ts     // 应用加载入口文件
+  ├── config                             // 通用配置
+  ├── const                              // 常量
+  ├── decorator                          // 自定义装饰器
+  ├── dto                                // dto目录
+  ├── entity                             // 实体目录
+  ├── filter                             // 通用自定义过滤器
+  ├── guard                              // 通用全局守卫
+  ├── interceptor                        // 通用自定义拦截器
+  ├── middleware                         // 通用中间价
+  ├── pipe                               // 通用管道
+  ├── util                               // 公共方法
+  └── main.ts                            // 应用入口文件
+├── test                                 // 测试文件目录
+├── .*.env.*                             // 环境变量配置文件，如：.admin.env.dev
+├── .commitlintrc                        // commitlint配置文件
+├── .eslintignore
+├── .eslintrc.js
+├── .gitignore
+├── .prettierrc                          // prettierrc配置文件
+├── jest.config.js                       // jest配置文件
+├── nest-cli.json
+├── package.json
+├── README.md
+├── tsconfig.build.json
+├── tsconfig.json
+├── type.d.ts                            // 全局类型定义
+└── yarn.lock
+```
 
 ## Installation
 
