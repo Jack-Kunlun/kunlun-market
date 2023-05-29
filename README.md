@@ -26,7 +26,7 @@
 ├── package.json
 ├── README.md
 ├── turbo.json                   // turbo repo 配置文件
-└── yarn.lock                    // typescript 配置文件
+└── yarn.lock                    
 ```
 
 ## 计划
