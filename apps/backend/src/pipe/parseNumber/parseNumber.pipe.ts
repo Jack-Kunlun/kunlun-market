@@ -1,10 +1,10 @@
+/**
+ * 参数转换Pipe
+ * 将get请求 query中有可能为number类型的参数转换为number
+ */
+
 import { PipeTransform, Injectable, ArgumentMetadata } from "@nestjs/common";
 
-/**
- * 全局参数转换管道
- *
- * 将get请求query中有可能为number类型的参数转换为number
- */
 @Injectable()
 export class ParseNumberPipe implements PipeTransform<any, number> {
   transform(value: any, metadata: ArgumentMetadata): number {

@@ -1,3 +1,6 @@
+/**
+ * 入参校验Pipe
+ */
 import { ArgumentMetadata, Injectable, PipeTransform, BadRequestException } from "@nestjs/common";
 import { plainToClass } from "class-transformer";
 import { validate } from "class-validator";
