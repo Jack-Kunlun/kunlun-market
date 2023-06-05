@@ -59,10 +59,11 @@ yarn dev
 ├── package.json
 ├── README.md                           // README
 ├── tsconfig.json                       // typescript配置文件
+├── uno.config.ts                       // unocss 配置文件
 └── vite.config.ts                      // vite配置文件
 ```
 
-## 关于 windicss
+## ~~关于 windicss~~ 已替换为 unocss
 
 ### 选择 windicss 的原因
 

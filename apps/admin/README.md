@@ -40,12 +40,12 @@ $ yarn install
 ├── README.md                           // README
 ├── tsconfig.json                       // typescript配置文件
 ├── tsconfig.node.json
+├── uno.config.ts                       // unocss 配置文件
 ├── vite.config.ts                      // vite配置文件
-├── windi.config.ts                     // vite配置文件
 └── yarn.lock
 ```
 
-## 关于 windicss
+## ~~关于 windicss~~ 已替换为 unocss
 
 ### 选择 windicss 的原因
 

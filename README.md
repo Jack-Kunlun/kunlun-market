@@ -16,7 +16,7 @@
     ├── public-utils             // 公共方法库
     ├── tsconfig                 // tsconfig 配置
     ├── ui                       // 组件库
-    ├── windi-config             // 公共 windiCss 配置
+    ├── uno-config               // 公共 unocss 配置
     └── yhooks                   // 公共 hooks
 ├── .commitlintrc                // commitlint配置文件
 ├── .eslintignore
@@ -53,8 +53,8 @@ $ yarn
 
 ## 问题
 
-- 由于 windicss 配置是引入进去的，导致无法实时热更新，需要修改一下项目中的配置文件才能触发热更新，或者重启一下项目
-- vite 配置抽离后再引入，项目无法运行，所以目前前端项目中的 vite 配置都是单独的，vitest 配置也是一样
+- ~~由于 windicss 配置是引入进去的，导致无法实时热更新，需要修改一下项目中的配置文件才能触发热更新，或者重启一下项目~~，已经使用 unocss 替换 windicss。
+- ~~vite 配置抽离后再引入，项目无法运行，所以目前前端项目中的 vite 配置都是单独的，vitest 配置也是一样~~，已完成 vite 配置抽离。
 
 ## 版本
 
