@@ -10,6 +10,7 @@
     "lint": "eslint --ext .js,.jsx,.ts,.tsx --fix --quiet ./"
   },
   "dependencies": {
+    "@unocss/reset": "^0.53.0",
     "antd": "5.x",
     "classnames": "^2.3.2",
     "eslint-config-custom": "*",
@@ -33,9 +34,8 @@
     "tsconfig": "*",
     "typescript": "^4.6.4",
     "ui": "*",
-    "windi-config": "*",
-    "windicss": "^3.5.6",
+    "vite-config": "*",
     "yhooks": "*",
-    "vite-config": "*"
+    "uno-config": "*"
   }
 }

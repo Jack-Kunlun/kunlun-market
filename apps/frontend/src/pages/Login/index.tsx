@@ -17,7 +17,7 @@ export const LoginPage: FC = () => {
   };
 
   return (
-    <div className="*full bg-gradientPink *flex-center">
+    <div className="full bg-gradientPink flex-center">
       <div className="bg-white rounded-md px-xl w-card h-card">
         <div className="text-38 h-200 font-semibold text-center *flex-center">{t("login")}</div>
 

@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const path = require("path");
 const react = require("@vitejs/plugin-react").default;
+const UnoCSS = require("unocss/vite").default;
 const vitePluginImp = require("vite-plugin-imp").default;
-const WindiCSS = require("vite-plugin-windicss").default;
 
 /**
  * 由于vite配置引入的特性，只能使用commonjs规范导出配置
@@ -25,8 +25,8 @@ module.exports = {
     },
   },
   plugins: [
+    UnoCSS(),
     react(),
-    WindiCSS(),
     vitePluginImp({
       libList: [
         {
@@ -38,7 +38,7 @@ module.exports = {
   ],
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "src"),
+      "@": path.resolve("src"),
       "@assets": path.resolve("src/assets"),
     },
   },

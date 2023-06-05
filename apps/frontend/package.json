@@ -10,8 +10,10 @@
     "lint": "eslint --ext .js,.jsx,.ts,.tsx --fix --quiet ./"
   },
   "dependencies": {
+    "@unocss/reset": "^0.53.0",
     "antd": "^4.23.0",
     "classnames": "^2.3.2",
+    "eslint-config-custom": "*",
     "i18next": "^22.4.15",
     "jsdom": "^21.1.1",
     "less": "^4.1.3",
@@ -26,15 +28,14 @@
     "@types/react-dom": "^18.0.6",
     "babel-loader": "^8.2.5",
     "eslint": "^8.23.0",
-    "react-router-dom": "^6.3.0",
-    "typescript": "^4.6.4",
-    "windicss": "^3.5.6",
-    "windi-config": "*",
-    "ui": "*",
-    "yhooks": "*",
-    "public-utils": "*",
-    "tsconfig": "*",
     "eslint-config-custom": "*",
-    "vite-config": "*"
+    "public-utils": "*",
+    "react-router-dom": "^6.3.0",
+    "tsconfig": "*",
+    "typescript": "^4.6.4",
+    "ui": "*",
+    "vite-config": "*",
+    "yhooks": "*",
+    "uno-config": "*"
   }
 }

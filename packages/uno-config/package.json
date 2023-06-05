@@ -1,10 +1,11 @@
 {
-  "name": "windi-config",
+  "name": "uno-config",
   "version": "0.0.0",
   "private": true,
   "license": "MIT",
   "main": "index.ts",
   "devDependencies": {
+    "unocss": "^0.52.7",
     "public-utils": "*"
   },
   "publishConfig": {

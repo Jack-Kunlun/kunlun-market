@@ -15,6 +15,7 @@
     "dev": "turbo run dev --parallel",
     "lint": "turbo run lint",
     "dev:admin": "yarn workspace admin dev",
+    "dev:frontend": "yarn workspace frontend dev",
     "dev:backend": "yarn workspace backend dev",
     "test": "turbo run test",
     "pre-commit": "lint-staged && turbo run test",

@@ -29,9 +29,9 @@ export const LoginPage: FC = () => {
   };
 
   return (
-    <div className="*full bg-gradientPink *flex-center">
-      <div className="bg-white rounded-md px-xl w-card h-card">
-        <div className="text-38 h-200 font-semibold text-center *flex-center">{t("login")}</div>
+    <div className="full flex-center bg-gradientPink">
+      <div className="bg-white rounded-md px-12 w-card h-card">
+        <div className="text-38px h-200 font-semibold text-center flex-center">{t("login")}</div>
 
         <Form name="normal_login" className="login-form" initialValues={{ remember: true }} onFinish={onFinish}>
           <Form.Item name="username" rules={[{ required: true, message: `${t("please input your Username")}` }]}>
@@ -51,7 +51,7 @@ export const LoginPage: FC = () => {
             <Button className="w-full !bg-gradientViolet !text-white" size="large" htmlType="submit" loading={loading}>
               {t("config")}
             </Button>
-            <div className="mt-smm flex justify-between">
+            <div className="mt-sm flex justify-between">
               <div>
                 {t("Don't have account")}
                 <a href="#">{t("signUp")}</a>

@@ -2,8 +2,8 @@ import { ConfigProvider } from "antd";
 import zhCN from "antd/es/locale/zh_CN";
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "virtual:windi.css";
-import "./index.css";
+import "virtual:uno.css";
+import "@unocss/reset/normalize.css";
 import { RouterContainer } from "@/routes";
 import "./i18n";
 

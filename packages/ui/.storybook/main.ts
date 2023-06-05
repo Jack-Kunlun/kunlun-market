@@ -1,7 +1,7 @@
 import type { StorybookConfig } from "@storybook/react-vite";
 import { mergeConfig } from "vite";
 import vitePluginImp from "vite-plugin-imp";
-import WindiCSS from "vite-plugin-windicss";
+import UnoCSS from "unocss/vite";
 
 const config: StorybookConfig = {
   stories: ["../stories/**/*.mdx", "../stories/**/*.stories.@(js|jsx|ts|tsx)", "../**/*.stories.@(js|jsx|ts|tsx)"],
@@ -26,7 +26,7 @@ const config: StorybookConfig = {
         },
       },
       plugins: [
-        WindiCSS(),
+        UnoCSS(),
         vitePluginImp({
           libList: [
             {

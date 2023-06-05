@@ -8,7 +8,7 @@ interface Props {
 }
 
 export const ASpin: React.FC<Props> = ({ size = "large" }) => (
-  <div className="*full *flex-center">
+  <div className="full flex-center">
     <Spin size={size} />
   </div>
 );

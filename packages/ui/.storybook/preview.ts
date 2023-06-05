@@ -1,5 +1,5 @@
 import type { Preview } from "@storybook/react";
-import "virtual:windi.css";
+import "uno.css";
 
 const preview: Preview = {
   parameters: {
