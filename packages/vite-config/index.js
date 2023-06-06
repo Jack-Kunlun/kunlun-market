@@ -42,15 +42,6 @@ module.exports = {
       "@assets": path.resolve("src/assets"),
     },
   },
-  server: {
-    proxy: {
-      "/api": {
-        target: "http://localhost:3000/admin",
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ""),
-      },
-    },
-  },
   build: {
     rollupOptions: {
       // 确保外部化处理那些你不想打包进库的依赖
