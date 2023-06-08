@@ -1,1 +1,1 @@
-export * from "./cache";
+export * from "./src/useCache";
