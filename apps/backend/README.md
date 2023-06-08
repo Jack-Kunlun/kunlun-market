@@ -8,17 +8,6 @@
 ```js
 ├── sql                                  // sql目录
 └── src
-  └── apps                               // 主应用目录
-      └── admin                          // 管理平台
-          ├── auth                       // 认证模块
-          ├── ...
-          ├── app.module.ts              // 应用主module
-          └── initAdminService.ts        // 应用加载入口文件
-      └── frontend                       // 应用
-          ├── auth                       // 认证模块
-          ├── ...
-          ├── app.module.ts              // 应用主module
-          └── initFrontendService.ts     // 应用加载入口文件
   ├── config                             // 通用配置
   ├── const                              // 常量
   ├── decorator                          // 自定义装饰器
@@ -27,13 +16,13 @@
   ├── filter                             // 通用自定义过滤器
   ├── guard                              // 通用全局守卫
   ├── interceptor                        // 通用自定义拦截器
-  └── middleware                         // 模块目录
+  ├── middleware                         // 通用中间价
+  └── modules                            // 模块目录
       ├── auth                           // 认证模块
           ├── auth.modules.ts            // 模块具体内容
           ├── ...
       ├── ...                            // 等等其他模块
           ├── ...
-  ├── modules                            // 通用中间价
   ├── pipe                               // 通用管道
   ├── util                               // 公共方法
   └── main.ts                            // 应用入口文件
