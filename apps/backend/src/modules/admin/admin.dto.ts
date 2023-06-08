@@ -1,7 +1,7 @@
 import { IsNotEmpty, IsString } from "class-validator";
 import { PagingParameterDto } from "src/dto/pagingParameter.dto";
 
-export class RegisterInfoDto {
+export class RegisterAdminUserInfoDto {
   @IsString()
   @IsNotEmpty({ message: "用户名不能为空" })
   readonly username: string;
@@ -21,7 +21,7 @@ export class RegisterInfoDto {
   readonly email?: string;
 }
 
-export class LoginDto {
+export class AdminUserLoginDto {
   @IsString()
   @IsNotEmpty({ message: "用户名不能为空" })
   readonly username: string;
@@ -31,7 +31,7 @@ export class LoginDto {
   readonly password: string;
 }
 
-export class UserPagingParameter extends PagingParameterDto {
+export class AdminUserPagingParameter extends PagingParameterDto {
   @IsString()
   username: string;
 }

@@ -6,7 +6,7 @@ import { formatResponse } from "@utils/formatResponse";
 import { Repository } from "typeorm";
 
 @Injectable()
-export class UserService {
+export class AdminUserService {
   constructor(
     @InjectRepository(AdminUser)
     private adminUserRepository: Repository<AdminUser>

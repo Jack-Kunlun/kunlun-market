@@ -2,12 +2,12 @@ import { Public } from "@decorator/public.decorator";
 import { Body, Controller, Get, Param, Post, Query } from "@nestjs/common";
 import { PagingParameterDto } from "src/dto/pagingParameter.dto";
 import { AuthService } from "../auth/auth.service";
-import { LoginDto, RegisterInfoDto } from "./user.dto";
-import { UserService } from "./user.service";
+import { AdminUserLoginDto, RegisterAdminUserInfoDto } from "./admin.dto";
+import { AdminUserService } from "./admin.service";
 
-@Controller("user")
-export class UserController {
-  constructor(private readonly userService: UserService, private readonly authService: AuthService) {}
+@Controller("admin")
+export class AdminUserController {
+  constructor(private readonly userService: AdminUserService, private readonly authService: AuthService) {}
 
   @Get("user")
   findUser() {
@@ -21,7 +21,7 @@ export class UserController {
 
   @Post("register")
   @Public()
-  async register(@Body() body: RegisterInfoDto) {
+  async register(@Body() body: RegisterAdminUserInfoDto) {
     try {
       throw "error";
 
@@ -33,7 +33,7 @@ export class UserController {
 
   @Post("login")
   @Public()
-  async login(@Body() body: LoginDto) {
+  async login(@Body() body: AdminUserLoginDto) {
     try {
       const authResult = await this.authService.validateUser(body.username, body.password);
 

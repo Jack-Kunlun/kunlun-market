@@ -1,14 +1,14 @@
 import { Injectable } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
 import { instanceToPlain } from "class-transformer";
-import { AdminUser } from "../../../entity/admin/admin-user.entity";
-import { encryptPassword } from "../../../utils/cryptogram";
-import { UserService } from "../user/user.service";
+import { AdminUser } from "../../entity/admin/admin-user.entity";
+import { encryptPassword } from "../../utils/cryptogram";
+import { AdminUserService } from "../admin/admin.service";
 import { JwtPayload } from "./types";
 
 @Injectable()
 export class AuthService {
-  constructor(private readonly userService: UserService, private readonly jwtService: JwtService) {}
+  constructor(private readonly userService: AdminUserService, private readonly jwtService: JwtService) {}
 
   // JWT验证 - Step 2: 校验用户信息
   async validateUser(username: string, password: string): Promise<any> {

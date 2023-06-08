@@ -20,7 +20,7 @@
       "@pipe/*": ["src/pipe/*"],
       "@interceptor/*": ["src/interceptor/*"],
       "@middleware/*": ["src/middleware/*"],
-      "@apps/*": ["src/apps/*"]
+      "@module/*": ["src/module/*"]
     },
     "incremental": true,
     "skipLibCheck": true,

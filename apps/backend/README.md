@@ -27,7 +27,13 @@
   ├── filter                             // 通用自定义过滤器
   ├── guard                              // 通用全局守卫
   ├── interceptor                        // 通用自定义拦截器
-  ├── middleware                         // 通用中间价
+  └── middleware                         // 模块目录
+      ├── auth                           // 认证模块
+          ├── auth.modules.ts            // 模块具体内容
+          ├── ...
+      ├── ...                            // 等等其他模块
+          ├── ...
+  ├── modules                            // 通用中间价
   ├── pipe                               // 通用管道
   ├── util                               // 公共方法
   └── main.ts                            // 应用入口文件
