@@ -1,4 +1,4 @@
 export * from "./cryptogram";
-export * from "./log4js";
+export * from "./customLogger";
 export * from "./customDatabaseLogger";
 export * from "./formatResponse";

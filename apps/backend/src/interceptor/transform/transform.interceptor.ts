@@ -1,7 +1,7 @@
 import { CallHandler, ExecutionContext, Injectable, NestInterceptor } from "@nestjs/common";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
-import { loggerWithPublic } from "../../utils/log4js";
+import { loggerWithPublic } from "../../utils";
 
 @Injectable()
 export class TransformInterceptor implements NestInterceptor {
@@ -12,7 +12,7 @@ export class TransformInterceptor implements NestInterceptor {
 
     return next.handle().pipe(
       map((data) => {
-        const logFormat = ` Request original url: ${req.originalUrl}
+        const logFormat = `Request original url: ${req.originalUrl}
   Method: ${req.method}
   IP: ${req.ip}
   User: ${JSON.stringify(req.user)}
