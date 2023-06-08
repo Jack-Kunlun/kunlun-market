@@ -4,6 +4,9 @@ import * as dayjs from "dayjs";
 import { LoggingEvent } from "log4js";
 import { LoggerLevel } from "./types";
 
+/**
+ * 自定义日志输出格式
+ */
 export const customLoggerLayout = () => {
   return (logEvent: LoggingEvent) => {
     // 日志组装
@@ -19,7 +22,6 @@ export const customLoggerLayout = () => {
 
     // const categoryName = logEvent.categoryName;
     // const loggerPid = logEvent.pid.toString();
-
     const startTime = logEvent.startTime;
     const loggerTime = dayjs(startTime).format("YYYY-MM-DD HH:mm:ss");
     const loggerInfo = `[${loggerTime}]`;
