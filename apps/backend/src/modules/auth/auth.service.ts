@@ -1,5 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
+import { formatResponse } from "@utils/formatResponse";
 import { instanceToPlain } from "class-transformer";
 import { AdminUser } from "../../entity/admin/admin-user.entity";
 import { encryptPassword } from "../../utils/cryptogram";
@@ -16,24 +17,18 @@ export class AuthService {
       const user = await this.userService.findUserByUsername(username);
 
       if (!user) {
-        return {
-          code: 400,
-          message: "账号或密码错误",
-        };
+        return formatResponse({ code: 400, message: "用户不存在" });
       }
 
       const hashPassword = encryptPassword(password, user.passwordSalt);
 
       if (hashPassword !== user.password) {
-        return {
-          code: 400,
-          message: "账号或密码错误",
-        };
+        return formatResponse({ code: 400, message: "密码不正确" });
       }
 
-      return { code: 200, data: user };
+      return formatResponse({ data: user });
     } catch (error) {
-      return error;
+      throw error;
     }
   }
 
@@ -49,19 +44,9 @@ export class AuthService {
     try {
       const token = this.jwtService.sign(payload);
 
-      return {
-        code: 200,
-        data: {
-          ...instanceToPlain(user),
-          token,
-        },
-        msg: "登录成功",
-      };
+      return formatResponse({ data: { ...instanceToPlain(user), token } });
     } catch (error) {
-      return {
-        code: 400,
-        message: "账号或密码错误",
-      };
+      throw error;
     }
   }
 }

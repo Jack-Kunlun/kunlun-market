@@ -1,6 +1,6 @@
 import { ExceptionFilter, Catch, ArgumentsHost, HttpException } from "@nestjs/common";
 import { Request, Response } from "express";
-import { customLogger } from "../../utils";
+import { customLogger, formatResponse } from "../../utils";
 
 @Catch(HttpException)
 export class HttpExceptionFilter implements ExceptionFilter {
@@ -19,11 +19,6 @@ export class HttpExceptionFilter implements ExceptionFilter {
   Response: ${exception.toString()}`;
 
     customLogger.warn(logFormat);
-
-    response.status(status).json({
-      statusCode: status,
-      error: exception.message,
-      message: `${status >= 500 ? "Service Error" : "Client Error"}`,
-    });
+    response.status(status).json(formatResponse({ code: status, message: exception.message }));
   }
 }
