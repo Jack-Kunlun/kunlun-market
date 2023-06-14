@@ -1,7 +1,9 @@
-import { Form, Input, Button } from "antd";
-import { FC, useState } from "react";
+import { Buffer } from "buffer";
+import { Form, Input, Button, Space } from "antd";
+import { FC, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import { GetCaptchaResponse, getCaptcha } from "@/apis/common";
 import { LoginParams, doLogin } from "@/apis/user";
 
 export const LoginPage: FC = () => {
@@ -9,6 +11,8 @@ export const LoginPage: FC = () => {
 
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
+
+  const [captchaInfo, setCaptchaInfo] = useState<GetCaptchaResponse>();
 
   const onFinish = async (values: LoginParams) => {
     setLoading(true);
@@ -28,10 +32,24 @@ export const LoginPage: FC = () => {
     }
   };
 
+  const fetchCaptcha = async () => {
+    try {
+      const res = await getCaptcha();
+
+      setCaptchaInfo(res?.data);
+    } catch (error) {
+      /* empty */
+    }
+  };
+
+  useEffect(() => {
+    fetchCaptcha();
+  }, []);
+
   return (
     <div className="full flex-center bg-gradientPink">
       <div className="bg-white rounded-md px-12 w-card h-card">
-        <div className="text-38px h-200 font-semibold text-center flex-center">{t("login")}</div>
+        <div className="text-38px h-150 font-semibold text-center flex-center">{t("login")}</div>
 
         <Form name="normal_login" className="login-form" initialValues={{ remember: true }} onFinish={onFinish}>
           <Form.Item name="username" rules={[{ required: true, message: `${t("please input your Username")}` }]}>
@@ -45,6 +63,25 @@ export const LoginPage: FC = () => {
               placeholder={`${t("password")}`}
               autoComplete="off"
             />
+          </Form.Item>
+          <Form.Item>
+            <Space>
+              <Form.Item
+                noStyle
+                name="captcha"
+                rules={[{ required: true, message: `${t("please input your captcha")}` }]}
+              >
+                <Input placeholder={`${t("captcha")}`} size="large" />
+              </Form.Item>
+              <img
+                src={
+                  captchaInfo ? `data:image/svg+xml;base64,${Buffer.from(captchaInfo?.data).toString("base64")}` : ""
+                }
+                alt={`${t("loading")}`}
+                onClick={fetchCaptcha}
+                className="rounded-smm"
+              />
+            </Space>
           </Form.Item>
 
           <Form.Item>

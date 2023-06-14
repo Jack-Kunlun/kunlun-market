@@ -8,7 +8,7 @@ import { NestFactory, Reflector } from "@nestjs/core";
 import { ParseNumberPipe } from "@pipe/parseNumber/parseNumber.pipe";
 import { ValidationPipe } from "@pipe/validation/validation.pipe";
 import * as express from "express";
-import { AppModule } from "./modules/app.module";
+import { AppModule } from "./app.module";
 import { customLogger } from "./utils";
 
 async function bootstrap() {

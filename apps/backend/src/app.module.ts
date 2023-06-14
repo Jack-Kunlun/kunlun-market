@@ -5,9 +5,11 @@ import { Module } from "@nestjs/common";
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import { APP_GUARD } from "@nestjs/core";
 import { TypeOrmModule, TypeOrmModuleOptions } from "@nestjs/typeorm";
-import { AdminUserController } from "./admin/admin.controller";
-import { AdminUserModule } from "./admin/admin.module";
-import { AuthModule } from "./auth/auth.module";
+import { CaptchaService } from "src/services/captcha.service";
+import { AppController } from "./app.controller";
+import { AdminUserController } from "./modules/admin/admin.controller";
+import { AdminUserModule } from "./modules/admin/admin.module";
+import { AuthModule } from "./modules/auth/auth.module";
 
 @Module({
   imports: [
@@ -23,8 +25,9 @@ import { AuthModule } from "./auth/auth.module";
     AdminUserModule,
     AuthModule,
   ],
-  controllers: [AdminUserController],
+  controllers: [AppController, AdminUserController],
   providers: [
+    CaptchaService,
     {
       provide: APP_GUARD,
       useClass: JwtAuthGuard,
