@@ -2,7 +2,7 @@
  * 捕获所有异常
  */
 import { ExceptionFilter, Catch, ArgumentsHost, HttpException, HttpStatus } from "@nestjs/common";
-import { loggerWithPublic } from "../../utils";
+import { customLogger } from "../../utils";
 
 @Catch()
 export class AllExceptionsFilter implements ExceptionFilter {
@@ -21,7 +21,7 @@ export class AllExceptionsFilter implements ExceptionFilter {
   Status code: ${status}
   Response: ${exception}`;
 
-    loggerWithPublic(this.serviceType, "error", logFormat);
+    customLogger.error(logFormat);
 
     response.status(status).json({
       statusCode: status,

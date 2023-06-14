@@ -8,6 +8,7 @@ import { NestFactory, Reflector } from "@nestjs/core";
 import { ParseNumberPipe } from "@pipe/parseNumber/parseNumber.pipe";
 import * as express from "express";
 import { AppModule } from "./modules/app.module";
+import { customLogger } from "./utils";
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -44,6 +45,8 @@ async function bootstrap() {
   app.useGlobalFilters(new AllExceptionsFilter("admin"));
   // 过滤处理 HTTP 异常
   app.useGlobalFilters(new HttpExceptionFilter("admin"));
+
+  customLogger.access(`service is running on: http://localhost:${port}/${globalPrefix}`);
 
   await app.listen(port || 3000);
 }

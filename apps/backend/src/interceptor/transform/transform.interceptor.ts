@@ -1,7 +1,7 @@
 import { CallHandler, ExecutionContext, Injectable, NestInterceptor } from "@nestjs/common";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
-import { loggerWithPublic } from "../../utils";
+import { customLogger } from "../../utils";
 
 @Injectable()
 export class TransformInterceptor implements NestInterceptor {
@@ -18,8 +18,8 @@ export class TransformInterceptor implements NestInterceptor {
   User: ${JSON.stringify(req.user)}
   Response data: ${JSON.stringify(data.data)}`;
 
-        loggerWithPublic(this.serviceType, "info", logFormat);
-        loggerWithPublic(this.serviceType, "access", logFormat);
+        customLogger.info(logFormat);
+        customLogger.access(logFormat);
 
         return data;
       })

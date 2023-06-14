@@ -24,7 +24,7 @@ export const log4jsConfig: log4js.Configuration = {
        */
       layout: { type: "custom" },
     },
-    out: {
+    app: {
       /**
        * 日志类型
        * 会写入文件，并按照日期分类
@@ -49,49 +49,9 @@ export const log4jsConfig: log4js.Configuration = {
       numBackups: 3,
       keepFileExt: true,
     },
-    adminAppOut: {
-      /**
-       * 日志类型
-       * 会写入文件，并按照日期分类
-       */
+    access: {
       type: "dateFile",
-      /**
-       * 日志输出位置以及文件名、文件后缀
-       * 命名规则：[项目根目录]/logs/[模块]/access.[日期].log，如：access.20200320.log
-       * 后期考虑按照日期目录来分割日志，变成这样：[项目根目录]/logs/[模块]/[日期]/access.log
-       */
-      filename: `${logPath}/admin/app-out/app.log`,
-      alwaysIncludePattern: true,
-      // 日志文件按日期（天）切割
-      pattern: "yyyyMMdd",
-      daysToKeep: 60,
-      // maxLogSize: 10485760,
-      numBackups: 3,
-      // 是否保留文件后缀
-      keepFileExt: true,
-      layout: {
-        type: "pattern",
-        // eslint-disable-next-line quotes
-        pattern: '{"date":"%d","level":"%p","category":"%c","host":"%h","pid":"%z","data":"%m"}',
-      },
-    },
-    frontendAppOut: {
-      type: "dateFile",
-      filename: `${logPath}/frontend/app-out/app.log`,
-      alwaysIncludePattern: true,
-      pattern: "yyyyMMdd",
-      daysToKeep: 60,
-      numBackups: 3,
-      keepFileExt: true,
-      layout: {
-        type: "pattern",
-        // eslint-disable-next-line quotes
-        pattern: '{"date":"%d","level":"%p","category":"%c","host":"%h","pid":"%z","data":"%m"}',
-      },
-    },
-    adminAccess: {
-      type: "dateFile",
-      filename: `${logPath}/admin/access/access.log`,
+      filename: `${logPath}/access/access.log`,
       alwaysIncludePattern: true,
       pattern: "yyyyMMdd",
       daysToKeep: 60,
@@ -99,19 +59,9 @@ export const log4jsConfig: log4js.Configuration = {
       keepFileExt: true,
       // layout: { type: "pattern" },
     },
-    frontendAccess: {
+    errorFile: {
       type: "dateFile",
-      filename: `${logPath}/frontend/access/access.log`,
-      alwaysIncludePattern: true,
-      pattern: "yyyyMMdd",
-      daysToKeep: 60,
-      numBackups: 3,
-      keepFileExt: true,
-      // layout: { type: "pattern" },
-    },
-    adminErrorFile: {
-      type: "dateFile",
-      filename: `${logPath}/admin/error/error.log`,
+      filename: `${logPath}/error/error.log`,
       alwaysIncludePattern: true,
       pattern: "yyyyMMdd",
       daysToKeep: 60,
@@ -123,29 +73,10 @@ export const log4jsConfig: log4js.Configuration = {
         pattern: '{"date":"%d","level":"%p","category":"%c","host":"%h","pid":"%z","data":"%m"}',
       },
     },
-    frontendErrorFile: {
-      type: "dateFile",
-      filename: `${logPath}/frontend/error/error.log`,
-      alwaysIncludePattern: true,
-      pattern: "yyyyMMdd",
-      daysToKeep: 60,
-      numBackups: 3,
-      keepFileExt: true,
-      layout: {
-        type: "pattern",
-        // eslint-disable-next-line quotes
-        pattern: '{"date":"%d","level":"%p","category":"%c","host":"%h","pid":"%z","data":"%m"}',
-      },
-    },
-    adminError: {
+    error: {
       type: "logLevelFilter",
       level: "ERROR",
-      appender: "adminErrorFile",
-    },
-    frontendError: {
-      type: "logLevelFilter",
-      level: "ERROR",
-      appender: "frontendErrorFile",
+      appender: "errorFile",
     },
   },
   categories: {
@@ -154,16 +85,16 @@ export const log4jsConfig: log4js.Configuration = {
        * 日志输出器
        * appenders中配置的名称
        */
-      appenders: ["out", "console"],
+      appenders: ["app", "console", "error"],
       // 日志等级
       level: "DEBUG",
     },
-    adminAppOut: { appenders: ["adminAppOut", "console", "adminError"], level: "info" },
-    frontendAppOut: { appenders: ["frontendAppOut", "console", "frontendError"], level: "info" },
-    adminAccess: { appenders: ["adminAccess", "console", "adminError"], level: "info" },
-    frontendAccess: { appenders: ["frontendAccess", "console", "frontendError"], level: "info" },
-    adminHttp: { appenders: ["adminAccess"], level: "DEBUG" },
-    frontendHttp: { appenders: ["frontendAccess"], level: "DEBUG" },
+    info: { appenders: ["console", "app", "error"], level: "info" },
+    access: {
+      appenders: ["access", "console"],
+      level: "info",
+    },
+    http: { appenders: ["access"], level: "DEBUG" },
   },
   // 使用 pm2 来管理项目时，打开
   pm2: true,

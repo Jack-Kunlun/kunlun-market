@@ -1,6 +1,6 @@
 import { Injectable, NestMiddleware } from "@nestjs/common";
 import { NextFunction, Request, Response } from "express";
-import { loggerWithPublic } from "../../utils";
+import { customLogger } from "../../utils";
 
 @Injectable()
 export class LoggerMiddleware implements NestMiddleware {
@@ -21,12 +21,12 @@ export class LoggerMiddleware implements NestMiddleware {
 
     // 根据状态码，进行日志类型区分
     if (code >= 500) {
-      loggerWithPublic(this.serviceType, "error", logFormat);
+      customLogger.error(logFormat);
     } else if (code >= 400) {
-      loggerWithPublic(this.serviceType, "warn", logFormat);
+      customLogger.warn(logFormat);
     } else {
-      loggerWithPublic(this.serviceType, "access", logFormat);
-      loggerWithPublic(this.serviceType, "info", logFormat);
+      customLogger.access(logFormat);
+      customLogger.info(logFormat);
     }
 
     next();
