@@ -11,23 +11,29 @@ export class AdminUserController {
 
   @Get("user")
   findUser() {
-    return this.userService.find();
+    try {
+      return this.userService.find();
+    } catch (error) {
+      throw error;
+    }
   }
 
   @Get("user/:id")
   findOne(@Param("id") id: string) {
-    return this.userService.findOneById(+id);
+    try {
+      return this.userService.findOneById(+id);
+    } catch (error) {
+      throw error;
+    }
   }
 
   @Post("register")
   @Public()
   async register(@Body() body: RegisterAdminUserInfoDto) {
     try {
-      throw "error";
-
       return await this.userService.insertOne(body);
     } catch (error) {
-      return error;
+      throw error;
     }
   }
 
@@ -43,7 +49,7 @@ export class AdminUserController {
 
       return authResult;
     } catch (error) {
-      return error;
+      throw error;
     }
   }
 
@@ -55,7 +61,7 @@ export class AdminUserController {
 
       return users;
     } catch (error) {
-      return error;
+      throw error;
     }
   }
 }

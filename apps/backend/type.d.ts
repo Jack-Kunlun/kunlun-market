@@ -1,6 +1,8 @@
 declare global {
   type ServiceType = "admin" | "frontend";
 
+  type Nullable<T> = T | undefined | null;
+
   interface PagingParameter {
     /**
      * 页码
@@ -13,9 +15,21 @@ declare global {
   }
 
   interface ResponseResult<T, E> {
+    /**
+     * 状态码
+     */
     code: number;
-    data: T;
+    /**
+     * 数据
+     */
+    data: Nullable<T>;
+    /**
+     * 消息
+     */
     message: string;
+    /**
+     * 错误
+     */
     error?: E;
   }
 }

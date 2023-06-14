@@ -1,12 +1,12 @@
 import { AllExceptionsFilter } from "@filter/any-exception/any-exception.filter";
 import { HttpExceptionFilter } from "@filter/http-exception/http-exception.filter";
-import { ResponseFormatInterceptor } from "@interceptor/format/response-format.interceptor";
 import { TransformInterceptor } from "@interceptor/transform/transform.interceptor";
 import { createLoggerMiddleware } from "@middleware/logger/logger.middleware";
-import { ValidationPipe, ClassSerializerInterceptor } from "@nestjs/common";
+import { ClassSerializerInterceptor } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { NestFactory, Reflector } from "@nestjs/core";
 import { ParseNumberPipe } from "@pipe/parseNumber/parseNumber.pipe";
+import { ValidationPipe } from "@pipe/validation/validation.pipe";
 import * as express from "express";
 import { AppModule } from "./modules/app.module";
 import { customLogger } from "./utils";
@@ -30,7 +30,7 @@ async function bootstrap() {
   // 监听所有的请求路由，并打印日志
   app.use(createLoggerMiddleware());
 
-  // 全局验证管道
+  // 全局管道
   app.useGlobalPipes(new ParseNumberPipe(), new ValidationPipe());
 
   app.useGlobalInterceptors(
@@ -38,9 +38,7 @@ async function bootstrap() {
     // 忽略Entity实体中设置了@Exclude的属性
     new ClassSerializerInterceptor(app.get(Reflector)),
     // 使用全局拦截器打印出参
-    new TransformInterceptor(),
-    // 使用全局拦截器格式化出参
-    new ResponseFormatInterceptor()
+    new TransformInterceptor()
   );
 
   // 注意：AllExceptionsFilter 要在 HttpExceptionFilter 的上面，否则 HttpExceptionFilter 就不生效了，全被 AllExceptionsFilter 捕获了。

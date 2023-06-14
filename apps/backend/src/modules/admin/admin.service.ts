@@ -18,7 +18,7 @@ export class AdminUserService {
 
       return user;
     } catch (error) {
-      return error;
+      throw error;
     }
   }
 
@@ -28,7 +28,7 @@ export class AdminUserService {
 
       return user;
     } catch (error) {
-      return error;
+      throw error;
     }
   }
 
@@ -53,9 +53,9 @@ export class AdminUserService {
 
       await this.adminUserRepository.insert({ ...params, passwordSalt: salt, password: hashPwd });
 
-      return formatResponse({ data: null });
+      return formatResponse();
     } catch (error) {
-      return error;
+      throw error;
     }
   }
 
@@ -74,15 +74,14 @@ export class AdminUserService {
 
       const res = await queryBuilder.getManyAndCount();
 
-      return {
-        code: 200,
+      return formatResponse({
         data: {
           data: res[0],
           totalCount: res[1],
         },
-      };
+      });
     } catch (error) {
-      return error;
+      throw error;
     }
   }
 }

@@ -1,18 +1,12 @@
-interface FormatResponseProps<T, E> {
-  code?: number;
-  data: T;
-  message?: string;
-  error?: E;
-}
+type FormatResponseProps<T, E> = Partial<ResponseResult<T, E>>;
 
-export const formatResponse = <T, E>({
-  code = 200,
-  data,
-  message = "Success",
-  error,
-}: FormatResponseProps<T, E>): ResponseResult<T, E> => ({
-  code,
-  message,
-  data,
-  error,
-});
+export const formatResponse = <T, E>(params: FormatResponseProps<T, E> = {}): ResponseResult<T, E> => {
+  const { code = 200, message = "Success", data = null, error } = params;
+
+  return {
+    code,
+    message,
+    data,
+    error,
+  };
+};
