@@ -6,7 +6,7 @@ import { customLogger } from "../../utils";
 
 @Catch()
 export class AllExceptionsFilter implements ExceptionFilter {
-  constructor(private readonly serviceType: ServiceType) {}
+  constructor() {}
 
   catch(exception: unknown, host: ArgumentsHost) {
     const ctx = host.switchToHttp();

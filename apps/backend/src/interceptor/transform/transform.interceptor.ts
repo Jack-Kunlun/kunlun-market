@@ -5,7 +5,7 @@ import { customLogger } from "../../utils";
 
 @Injectable()
 export class TransformInterceptor implements NestInterceptor {
-  constructor(private readonly serviceType: ServiceType) {}
+  constructor() {}
 
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
     const req = context.getArgByIndex(1).req;

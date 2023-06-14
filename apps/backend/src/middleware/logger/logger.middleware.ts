@@ -4,7 +4,7 @@ import { customLogger } from "../../utils";
 
 @Injectable()
 export class LoggerMiddleware implements NestMiddleware {
-  constructor(private readonly serviceType: ServiceType) {}
+  constructor() {}
 
   use(req: Request, res: Response, next: NextFunction) {
     const code = res.statusCode; // 响应状态码
@@ -33,6 +33,6 @@ export class LoggerMiddleware implements NestMiddleware {
   }
 }
 
-export function createLoggerMiddleware(serviceType: "admin" | "frontend") {
-  return new LoggerMiddleware(serviceType).use.bind(new LoggerMiddleware(serviceType));
+export function createLoggerMiddleware() {
+  return new LoggerMiddleware().use.bind(new LoggerMiddleware());
 }

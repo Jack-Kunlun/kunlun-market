@@ -1,5 +1,6 @@
 import { AllExceptionsFilter } from "@filter/any-exception/any-exception.filter";
 import { HttpExceptionFilter } from "@filter/http-exception/http-exception.filter";
+import { ResponseFormatInterceptor } from "@interceptor/format/response-format.interceptor";
 import { TransformInterceptor } from "@interceptor/transform/transform.interceptor";
 import { createLoggerMiddleware } from "@middleware/logger/logger.middleware";
 import { ValidationPipe, ClassSerializerInterceptor } from "@nestjs/common";
@@ -27,7 +28,7 @@ async function bootstrap() {
   // For parsing application/x-www-form-urlencoded
   app.use(express.urlencoded({ extended: true }));
   // 监听所有的请求路由，并打印日志
-  app.use(createLoggerMiddleware("admin"));
+  app.use(createLoggerMiddleware());
 
   // 全局验证管道
   app.useGlobalPipes(new ParseNumberPipe(), new ValidationPipe());
@@ -37,14 +38,16 @@ async function bootstrap() {
     // 忽略Entity实体中设置了@Exclude的属性
     new ClassSerializerInterceptor(app.get(Reflector)),
     // 使用全局拦截器打印出参
-    new TransformInterceptor("admin")
+    new TransformInterceptor(),
+    // 使用全局拦截器格式化出参
+    new ResponseFormatInterceptor()
   );
 
   // 注意：AllExceptionsFilter 要在 HttpExceptionFilter 的上面，否则 HttpExceptionFilter 就不生效了，全被 AllExceptionsFilter 捕获了。
-  // 捕获处理所有异常
-  app.useGlobalFilters(new AllExceptionsFilter("admin"));
-  // 过滤处理 HTTP 异常
-  app.useGlobalFilters(new HttpExceptionFilter("admin"));
+  // 捕获所有异常并打印日志
+  app.useGlobalFilters(new AllExceptionsFilter());
+  // 捕获HttpException异常并打印日志
+  app.useGlobalFilters(new HttpExceptionFilter());
 
   customLogger.access(`service is running on: http://localhost:${port}/${globalPrefix}`);
 
