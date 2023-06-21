@@ -5,7 +5,10 @@
   "config": "确认",
   "username": "用户名",
   "password": "密码",
+  "captcha": "验证码",
   "please input your Username": "请输入用户名",
   "please input your Password": "请输入密码",
-  "Don't have account": "没有帐号？"
+  "Don't have account": "没有帐号？",
+  "please input your captcha": "请输入验证码",
+  "loading": "加载中..."
 }

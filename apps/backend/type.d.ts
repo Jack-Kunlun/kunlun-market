@@ -14,6 +14,11 @@ declare global {
     pageSize: number;
   }
 
+  interface RequestSession {
+    cookie: Record<string, any>;
+    captchaId?: string;
+  }
+
   interface ResponseResult<T, E> {
     /**
      * 状态码
@@ -22,7 +27,7 @@ declare global {
     /**
      * 数据
      */
-    data: Nullable<T>;
+    data: T;
     /**
      * 消息
      */

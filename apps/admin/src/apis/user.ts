@@ -13,7 +13,7 @@ export interface LoginResponse {
 
 export const doLogin = async (params: LoginParams) => {
   try {
-    const res = await HttpRequest.post<LoginResponse>("/api/user/login", params);
+    const res = await HttpRequest.post<LoginResponse>("/api/admin/login", params);
 
     return res;
   } catch (error) {
