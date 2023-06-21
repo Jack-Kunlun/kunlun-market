@@ -29,6 +29,7 @@
     "turbo": "^1.9.3",
     "eslint": "^8.23.0",
     "prettier": "^2.7.1",
+    "eslint-config-react": "*",
     "eslint-config-custom": "*",
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
