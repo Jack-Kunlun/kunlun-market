@@ -1,8 +1,10 @@
-import { Form, Input, Button } from "antd";
-import { FC, useState } from "react";
+import { Buffer } from "buffer";
+import { Form, Input, Button, message } from "antd";
+import { FC, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import { LoginParams, doLogin } from "@/apis/user";
+import { adminUserDoLogin, AdminUserLoginParams } from "@/apis/admin";
+import { getCaptcha } from "@/apis/common";
 
 export const LoginPage: FC = () => {
   const navigate = useNavigate();
@@ -10,28 +12,49 @@ export const LoginPage: FC = () => {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
 
-  const onFinish = async (values: LoginParams) => {
-    setLoading(true);
+  const [captcha, setCaptcha] = useState("");
+
+  const onFinish = async (values: AdminUserLoginParams) => {
+    if (!captcha) {
+      return;
+    }
 
     try {
-      const res = await doLogin(values);
+      setLoading(true);
+      const res = await adminUserDoLogin(values);
 
-      if (res && res.code === 200) {
+      if (res.code === 200) {
         localStorage.setItem("token", res.data.token);
         navigate("/admin/home");
       }
-    } catch (error) {
-      // eslint-disable-next-line no-console
-      console.log(error);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      message.error(error.message);
     } finally {
       setLoading(false);
     }
   };
 
+  const fetchCaptcha = async () => {
+    try {
+      const res = await getCaptcha();
+
+      setCaptcha(res.data);
+    } catch (error) {
+      /* empty */
+    }
+  };
+
+  useEffect(() => {
+    if (!captcha) {
+      fetchCaptcha();
+    }
+  }, []);
+
   return (
     <div className="full flex-center bg-gradientPink">
       <div className="bg-white rounded-md px-12 w-card h-card">
-        <div className="text-38px h-200 font-semibold text-center flex-center">{t("login")}</div>
+        <div className="text-38px h-150 font-semibold text-center flex-center">{t("login")}</div>
 
         <Form name="normal_login" className="login-form" initialValues={{ remember: true }} onFinish={onFinish}>
           <Form.Item name="username" rules={[{ required: true, message: `${t("please input your Username")}` }]}>
@@ -45,6 +68,19 @@ export const LoginPage: FC = () => {
               placeholder={`${t("password")}`}
               autoComplete="off"
             />
+          </Form.Item>
+          <Form.Item>
+            <div className="w-full flex">
+              <Form.Item noStyle name="code" rules={[{ required: true, message: `${t("please input your captcha")}` }]}>
+                <Input className="rounded-br-none rounded-tr-none" placeholder={`${t("captcha")}`} size="large" />
+              </Form.Item>
+              <img
+                src={captcha ? `data:image/svg+xml;base64,${Buffer.from(captcha).toString("base64")}` : ""}
+                alt={`${t("loading")}`}
+                onClick={fetchCaptcha}
+                className="rounded-br-sm rounded-tr-sm"
+              />
+            </div>
           </Form.Item>
 
           <Form.Item>

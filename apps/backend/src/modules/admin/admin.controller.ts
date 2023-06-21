@@ -1,13 +1,18 @@
 import { Public } from "@decorator/public.decorator";
-import { Body, Controller, Get, Param, Post, Query } from "@nestjs/common";
+import { Body, Controller, Get, Param, Post, Query, Session } from "@nestjs/common";
 import { PagingParameterDto } from "src/dto/pagingParameter.dto";
+import { CaptchaService } from "src/services/captcha.service";
 import { AuthService } from "../auth/auth.service";
 import { AdminUserLoginDto, RegisterAdminUserInfoDto } from "./admin.dto";
 import { AdminUserService } from "./admin.service";
 
 @Controller("admin")
 export class AdminUserController {
-  constructor(private readonly userService: AdminUserService, private readonly authService: AuthService) {}
+  constructor(
+    private readonly userService: AdminUserService,
+    private readonly authService: AuthService,
+    private readonly captchaService: CaptchaService
+  ) {}
 
   @Get("user")
   findUser() {
@@ -39,8 +44,14 @@ export class AdminUserController {
 
   @Post("login")
   @Public()
-  async login(@Body() body: AdminUserLoginDto) {
+  async login(@Body() body: AdminUserLoginDto, @Session() session: RequestSession) {
     try {
+      const captchaResult = this.captchaService.verifyCaptcha(session.captchaId, body.code);
+
+      if (captchaResult) {
+        return captchaResult;
+      }
+
       const authResult = await this.authService.validateUser(body.username, body.password);
 
       if (authResult.code === 200) {

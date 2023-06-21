@@ -8,7 +8,8 @@ import { NestFactory, Reflector } from "@nestjs/core";
 import { ParseNumberPipe } from "@pipe/parseNumber/parseNumber.pipe";
 import { ValidationPipe } from "@pipe/validation/validation.pipe";
 import * as express from "express";
-import { AppModule } from "./modules/app.module";
+import * as session from "express-session";
+import { AppModule } from "./app.module";
 import { customLogger } from "./utils";
 
 async function bootstrap() {
@@ -46,6 +47,23 @@ async function bootstrap() {
   app.useGlobalFilters(new AllExceptionsFilter());
   // 捕获HttpException异常并打印日志
   app.useGlobalFilters(new HttpExceptionFilter());
+
+  app.use(
+    session({
+      // 加密密匙
+      secret: "kunlun",
+      resave: true,
+      saveUninitialized: false,
+      // 存在浏览器cookie中的key
+      name: "kl-ssid",
+      // 每次请求添加cookie
+      rolling: true,
+      cookie: {
+        // 过期时间 ms
+        maxAge: 1000 * 60 * 60 * 24 * 7,
+      },
+    })
+  );
 
   customLogger.access(`service is running on: http://localhost:${port}/${globalPrefix}`);
 

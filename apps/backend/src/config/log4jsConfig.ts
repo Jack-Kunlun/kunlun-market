@@ -85,13 +85,13 @@ export const log4jsConfig: log4js.Configuration = {
        * 日志输出器
        * appenders中配置的名称
        */
-      appenders: ["app", "console", "error"],
+      appenders: ["app", "error"],
       // 日志等级
       level: "DEBUG",
     },
-    info: { appenders: ["console", "app", "error"], level: "info" },
+    info: { appenders: ["app", "error"], level: "info" },
     access: {
-      appenders: ["access", "console"],
+      appenders: ["access"],
       level: "info",
     },
     http: { appenders: ["access"], level: "DEBUG" },

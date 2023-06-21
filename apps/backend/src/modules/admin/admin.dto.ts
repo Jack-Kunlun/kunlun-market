@@ -29,6 +29,10 @@ export class AdminUserLoginDto {
   @IsString()
   @IsNotEmpty({ message: "密码不能为空" })
   readonly password: string;
+
+  @IsString()
+  @IsNotEmpty({ message: "验证码不能为空" })
+  readonly code: string;
 }
 
 export class AdminUserPagingParameter extends PagingParameterDto {

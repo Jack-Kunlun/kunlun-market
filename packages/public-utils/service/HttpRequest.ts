@@ -17,7 +17,8 @@ const config = {
 class Http {
   // 定义成员变量并指定类型
   service: AxiosInstance;
-  public constructor(config: AxiosRequestConfig) {
+
+  constructor(config: AxiosRequestConfig) {
     // 实例化axios
     this.service = axios.create(config);
 
@@ -53,15 +54,15 @@ class Http {
         if (data.code === RequestCodes.EXPIRED) {
           localStorage.setItem("token", "");
 
-          return Promise.reject(data);
+          throw new Error("登录过期，请重新登录");
         }
 
-        // 接口正常时直接返回数据，其他状态都被视为错误
-        if (data.code && data.code === RequestCodes.SUCCESS) {
-          return data;
+        // 接口状态码大于400，统一处理
+        if (data.code >= 400) {
+          throw data;
         }
 
-        return Promise.reject(data);
+        return data;
       },
       (error: AxiosError<ResponseError>) => {
         const { response } = error;
