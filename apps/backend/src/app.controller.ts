@@ -1,7 +1,6 @@
 import { Public } from "@decorator/public.decorator";
-import { Controller, Get } from "@nestjs/common";
+import { Controller, Get, Session } from "@nestjs/common";
 import { CaptchaService } from "./services/captcha.service";
-import { formatResponse } from "./utils";
 
 @Controller()
 export class AppController {
@@ -9,11 +8,13 @@ export class AppController {
 
   @Get("captcha")
   @Public()
-  getCaptcha() {
+  getCaptcha(@Session() session: RequestSession) {
     try {
-      const captcha = this.captchaService.captcha();
+      const captchaResult = this.captchaService.createCaptcha();
 
-      return formatResponse({ data: captcha });
+      session.captchaId = captchaResult.captchaId;
+
+      return captchaResult.result;
     } catch (error) {
       throw error;
     }
