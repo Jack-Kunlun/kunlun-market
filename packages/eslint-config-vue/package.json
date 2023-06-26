@@ -1,0 +1,17 @@
+{
+  "name": "eslint-config-vue",
+  "version": "0.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "@vue/eslint-config-prettier": "^7.1.0",
+    "eslint": "^8.23.0",
+    "eslint-config-common": "*"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "eslint-plugin-vue": "^9.15.1"
+  }
+}

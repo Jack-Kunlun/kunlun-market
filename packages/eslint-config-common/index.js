@@ -115,5 +115,7 @@ module.exports = {
     "unicorn/no-nested-ternary": "error",
     // 禁用 export default 规则
     "import/no-default-export": "error",
+    // 禁止在循环中出现 await
+    "no-await-in-loop": "off",
   },
 };
