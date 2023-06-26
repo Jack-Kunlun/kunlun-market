@@ -14,9 +14,10 @@ module.exports = {
       },
     },
   ],
+  parser: "vue-eslint-parser",
   parserOptions: {
-    ecmaVersion: "latest",
-    sourceType: "module",
+    parser: "@typescript-eslint/parser",
+    ecmaVersion: 2020,
   },
   rules: {
     // 在<template>中强制一致缩进
@@ -32,5 +33,11 @@ module.exports = {
     ],
     // 要求单行元素的内容前后有一个换行符
     "vue/singleline-html-element-content-newline": "off",
+    "vue/multi-word-component-names": [
+      "error",
+      {
+        ignores: ["index"], //需要忽略的组件名
+      },
+    ],
   },
 };

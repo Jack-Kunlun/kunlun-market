@@ -3483,6 +3483,11 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-16.18.25.tgz#8863940fefa1234d3fcac7a4b7a48a6c992d67af"
   integrity sha512-rUDO6s9Q/El1R1I21HG4qw/LstTHCPO/oQNAwI/4b2f9EWvMnqt4d3HJwPMawfZ3UvodB8516Yg+VAq54YM+eA==
 
+"@types/node@^20.3.1":
+  version "20.3.1"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.3.1.tgz#e8a83f1aa8b649377bb1fb5d7bac5cb90e784dfe"
+  integrity sha512-EhcH/wvidPy1WeML3TtYFGR83UzjxeWRen9V402T8aUGYsCHOmfoisV3ZSg03gAFIbLq8TnWOJ0f4cALtnSEUg==
+
 "@types/normalize-package-data@^2.4.0":
   version "2.4.1"
   resolved "https://registry.yarnpkg.com/@types/normalize-package-data/-/normalize-package-data-2.4.1.tgz#d3357479a0fdfdd5907fe67e17e0a85c906e1301"
@@ -4169,6 +4174,11 @@
   dependencies:
     "@vue/compiler-dom" "3.3.4"
     "@vue/shared" "3.3.4"
+
+"@vue/devtools-api@^6.5.0":
+  version "6.5.0"
+  resolved "https://registry.yarnpkg.com/@vue/devtools-api/-/devtools-api-6.5.0.tgz#98b99425edee70b4c992692628fa1ea2c1e57d07"
+  integrity sha512-o9KfBeaBmCKl10usN4crU53fYtC1r7jJwdGKjPT24t348rHxgfpZ0xL3Xm/gLUYnc0oTp8LAmrxOeLyu6tbk2Q==
 
 "@vue/eslint-config-prettier@^7.1.0":
   version "7.1.0"
@@ -12900,7 +12910,7 @@ void-elements@3.1.0:
   resolved "https://registry.yarnpkg.com/void-elements/-/void-elements-3.1.0.tgz#614f7fbf8d801f0bb5f0661f5b2f5785750e4f09"
   integrity sha512-Dhxzh5HZuiHQhbvTW9AMetFfBHDMYpo23Uo9btPXgdYP+3T5S+p+jgNy7spra+veYhBP2dCSgxR/i2Y02h5/6w==
 
-vue-eslint-parser@^9.3.0:
+vue-eslint-parser@^9.3.0, vue-eslint-parser@^9.3.1:
   version "9.3.1"
   resolved "https://registry.yarnpkg.com/vue-eslint-parser/-/vue-eslint-parser-9.3.1.tgz#429955e041ae5371df5f9e37ebc29ba046496182"
   integrity sha512-Clr85iD2XFZ3lJ52/ppmUDG/spxQu6+MAeHXjjyI4I1NUYZ9xmenQp4N0oaHJhrA8OOxltCVxMRfANGa70vU0g==
@@ -12912,6 +12922,13 @@ vue-eslint-parser@^9.3.0:
     esquery "^1.4.0"
     lodash "^4.17.21"
     semver "^7.3.6"
+
+vue-router@^4.2.2:
+  version "4.2.2"
+  resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-4.2.2.tgz#b0097b66d89ca81c0986be03da244c7b32a4fd81"
+  integrity sha512-cChBPPmAflgBGmy3tBsjeoe3f3VOSG6naKyY5pjtrqLGbNEXdzCigFUHgBvp9e3ysAtFtEx7OLqcSDh/1Cq2TQ==
+  dependencies:
+    "@vue/devtools-api" "^6.5.0"
 
 vue-template-compiler@^2.7.14:
   version "2.7.14"
