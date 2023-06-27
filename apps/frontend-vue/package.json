@@ -10,9 +10,12 @@
     "lint": "eslint --ext .js,.jsx,.ts,.tsx --fix --quiet ./"
   },
   "dependencies": {
+    "@ant-design/icons-vue": "^6.1.0",
     "@unocss/reset": "^0.53.0",
+    "ant-design-vue": "^3.2.20",
     "eslint": "^8.23.0",
     "unocss": "^0.52.7",
+    "unplugin-vue-components": "^0.25.1",
     "vue": "^3.2.47",
     "vue-router": "^4.2.2"
   },
@@ -23,6 +26,7 @@
     "public-utils": "*",
     "typescript": "^5.0.2",
     "uno-config": "*",
+    "unplugin-auto-import": "^0.16.4",
     "vite": "^4.3.9",
     "vite-config": "*",
     "vue-eslint-parser": "^9.3.1",
