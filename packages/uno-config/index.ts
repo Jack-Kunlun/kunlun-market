@@ -191,7 +191,7 @@ export const unocssConfig: UserConfig<any> = {
     {
       getCSS: () => {
         return `
-          #root {
+          #root,#app {
             padding: 0;
             margin: 0;
             height: 100%;
