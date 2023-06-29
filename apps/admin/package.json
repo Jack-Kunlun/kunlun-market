@@ -14,6 +14,7 @@
     "antd": "5.x",
     "classnames": "^2.3.2",
     "eslint-config-react": "*",
+    "unocss": "^0.52.7",
     "i18next": "^22.4.15",
     "jsdom": "^21.1.1",
     "less": "^4.1.3",

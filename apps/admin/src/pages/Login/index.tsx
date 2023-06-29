@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { adminUserDoLogin, AdminUserLoginParams } from "@/apis/admin";
 import { getCaptcha } from "@/apis/common";
+import LogoSvg from "@/assets/svg/logo.svg";
 
 export const LoginPage: FC = () => {
   const navigate = useNavigate();
@@ -55,6 +56,8 @@ export const LoginPage: FC = () => {
     <div className="full flex-center bg-gradientPink">
       <div className="bg-white rounded-md px-12 w-card h-card">
         <div className="text-38px h-150 font-semibold text-center flex-center">{t("login")}</div>
+
+        <img w="100px" src={LogoSvg} alt="" />
 
         <Form name="normal_login" className="login-form" initialValues={{ remember: true }} onFinish={onFinish}>
           <Form.Item name="username" rules={[{ required: true, message: `${t("please input your Username")}` }]}>
