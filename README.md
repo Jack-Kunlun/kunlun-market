@@ -7,9 +7,9 @@
 ```js
 ├── .husky                       // husky 钩子配置目录
 └── apps                         // 主应用目录
-    ├── admin                    // 管理平台
-    ├── backend                  // 后端
-    └── frontend                 // 应用前端
+    ├── admin                    // 管理平台，使用react18.x搭建，全面使用ts+hooks
+    ├── backend                  // 后端，使用nest.js搭建，全面使用ts
+    └── frontend                 // 应用前端，使用vue3.x搭建，全面使用ts+composition api
 └── packages                     // 系统通用包
     ├── eslint-config-common     // 公共 eslint rules 配置
     ├── eslint-config-custom     // 基础项目 eslint 配置，如yhooks，utils等

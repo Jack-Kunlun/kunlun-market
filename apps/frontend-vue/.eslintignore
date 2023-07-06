@@ -1,8 +1,0 @@
-.vite
-node_modules
-.vscode
-.husky
-dist
-.*
-package-lock.json
-yarn.lock
