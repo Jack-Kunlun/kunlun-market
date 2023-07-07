@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { Buffer } from "buffer";
 import { message } from "ant-design-vue";
+import { reactive, ref, onMounted } from "vue";
+import { useRouter } from "vue-router";
 import { getCaptcha } from "@/apis/common";
 import { userDoLogin } from "@/apis/user";
 import LogoSvg from "@/assets/svg/logo.svg";
-import "ant-design-vue/es/message/style/css";
 
 interface FormState {
   username: string;
@@ -30,8 +31,6 @@ const fetchCaptcha = async () => {
     if (res.code === 200) {
       captcha.value = `data:image/svg+xml;base64,${Buffer.from(res.data).toString("base64")}`;
     }
-
-    throw new Error(res.message);
   } catch (error) {
     // throw error;
   }

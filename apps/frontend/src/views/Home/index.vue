@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useRouter } from "vue-router";
+import HelloWorld from "@/components/HelloWorld.vue";
 import { useStore } from "@/stores";
 
 const router = useRouter();
