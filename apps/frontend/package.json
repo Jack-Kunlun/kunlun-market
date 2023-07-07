@@ -19,6 +19,7 @@
     "public-utils": "*",
     "unocss": "^0.52.7",
     "unplugin-vue-components": "^0.25.1",
+    "vite-plugin-imp": "^2.4.0",
     "vue": "^3.2.47",
     "vue-router": "^4.2.2"
   },
@@ -29,7 +30,6 @@
     "public-utils": "*",
     "typescript": "^5.0.2",
     "uno-config": "*",
-    "unplugin-auto-import": "^0.16.4",
     "vite": "^4.3.9",
     "vite-config": "*",
     "vue-eslint-parser": "^9.3.1",

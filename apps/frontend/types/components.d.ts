@@ -12,7 +12,6 @@ declare module 'vue' {
     AFormItem: typeof import('ant-design-vue/es')['FormItem']
     AInput: typeof import('ant-design-vue/es')['Input']
     AInputPassword: typeof import('ant-design-vue/es')['InputPassword']
-    ASpace: typeof import('ant-design-vue/es')['Space']
     HelloWorld: typeof import('./../src/components/HelloWorld.vue')['default']
     LockOutlined: typeof import('@ant-design/icons-vue')['LockOutlined']
     RouterLink: typeof import('vue-router')['RouterLink']
