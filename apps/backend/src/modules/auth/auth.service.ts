@@ -5,13 +5,43 @@ import { instanceToPlain } from "class-transformer";
 import { AdminUser } from "../../entity/admin/admin-user.entity";
 import { encryptPassword } from "../../utils/cryptogram";
 import { AdminUserService } from "../admin/admin.service";
+import { UserService } from "../user/user.service";
 import { JwtPayload } from "./types";
 
 @Injectable()
 export class AuthService {
-  constructor(private readonly userService: AdminUserService, private readonly jwtService: JwtService) {}
+  constructor(
+    private readonly adminUserService: AdminUserService,
+    private readonly jwtService: JwtService,
+    private readonly userService: UserService
+  ) {}
 
-  // JWT验证 - Step 2: 校验用户信息
+  /**
+   * 校验管理平台用户信息
+   */
+  async validateAdminUser(username: string, password: string): Promise<any> {
+    try {
+      const user = await this.adminUserService.findUserByUsername(username);
+
+      if (!user) {
+        return formatResponse({ code: 400, message: "用户不存在" });
+      }
+
+      const hashPassword = encryptPassword(password, user.passwordSalt);
+
+      if (hashPassword !== user.password) {
+        return formatResponse({ code: 400, message: "密码不正确" });
+      }
+
+      return formatResponse({ data: user });
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  /**
+   * 校验用户信息
+   */
   async validateUser(username: string, password: string): Promise<any> {
     try {
       const user = await this.userService.findUserByUsername(username);

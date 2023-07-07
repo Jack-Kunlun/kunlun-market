@@ -3,6 +3,7 @@ import { JwtModule } from "@nestjs/jwt";
 import { PassportModule } from "@nestjs/passport";
 import { jwtConstants } from "src/const";
 import { AdminUserModule } from "../admin/admin.module";
+import { UserModule } from "../user/user.module";
 import { AuthService } from "./auth.service";
 import { JwtStrategy } from "./jwt.strategy";
 import { LocalStrategy } from "./local.strategy";
@@ -15,6 +16,7 @@ import { LocalStrategy } from "./local.strategy";
       signOptions: { expiresIn: jwtConstants.expiresIn },
     }),
     AdminUserModule,
+    UserModule,
   ],
   providers: [AuthService, LocalStrategy, JwtStrategy],
   exports: [AuthService],

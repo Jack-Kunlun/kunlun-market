@@ -10,6 +10,8 @@ import { AppController } from "./app.controller";
 import { AdminUserController } from "./modules/admin/admin.controller";
 import { AdminUserModule } from "./modules/admin/admin.module";
 import { AuthModule } from "./modules/auth/auth.module";
+import { UserController } from "./modules/user/user.controller";
+import { UserModule } from "./modules/user/user.module";
 
 @Module({
   imports: [
@@ -24,8 +26,9 @@ import { AuthModule } from "./modules/auth/auth.module";
     }),
     AdminUserModule,
     AuthModule,
+    UserModule,
   ],
-  controllers: [AppController, AdminUserController],
+  controllers: [AppController, AdminUserController, UserController],
   providers: [
     CaptchaService,
     {

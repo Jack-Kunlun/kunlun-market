@@ -52,7 +52,7 @@ export class AdminUserController {
         return captchaResult;
       }
 
-      const authResult = await this.authService.validateUser(body.username, body.password);
+      const authResult = await this.authService.validateAdminUser(body.username, body.password);
 
       if (authResult.code === 200) {
         return await this.authService.certificate(authResult.data);
