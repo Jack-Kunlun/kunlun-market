@@ -6,6 +6,7 @@ import "virtual:uno.css";
 import "@unocss/reset/normalize.css";
 import { RouterContainer } from "@/routes";
 import "./i18n";
+import "./style.css";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   /**

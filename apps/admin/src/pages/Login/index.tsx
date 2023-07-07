@@ -16,10 +16,6 @@ export const LoginPage: FC = () => {
   const [captcha, setCaptcha] = useState("");
 
   const onFinish = async (values: AdminUserLoginParams) => {
-    if (!captcha) {
-      return;
-    }
-
     try {
       setLoading(true);
       const res = await adminUserDoLogin(values);
