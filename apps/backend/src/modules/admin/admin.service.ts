@@ -37,7 +37,9 @@ export class AdminUserService {
       const users = await this.adminUserRepository.find();
 
       return users;
-    } catch (error) {}
+    } catch (error) {
+      throw error;
+    }
   }
 
   async insertOne(params: Omit<AdminUser, "id" | "createTime" | "updateTime" | "passwordSalt" | "roleId">) {

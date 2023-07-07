@@ -6,7 +6,7 @@ import { AdminUserService } from "./admin.service";
 
 @Module({
   imports: [TypeOrmModule.forFeature([AdminUser])],
-  // controllers: [AdminController],
+  controllers: [],
   providers: [AdminUserService, CaptchaService],
   exports: [AdminUserService],
 })

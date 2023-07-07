@@ -9,14 +9,10 @@ export class AppController {
   @Get("captcha")
   @Public()
   getCaptcha(@Session() session: RequestSession) {
-    try {
-      const captchaResult = this.captchaService.createCaptcha();
+    const captchaResult = this.captchaService.createCaptcha();
 
-      session.captchaId = captchaResult.captchaId;
+    session.captchaId = captchaResult.captchaId;
 
-      return captchaResult.result;
-    } catch (error) {
-      throw error;
-    }
+    return captchaResult.result;
   }
 }
