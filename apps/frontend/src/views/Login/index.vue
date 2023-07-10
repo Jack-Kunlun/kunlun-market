@@ -60,7 +60,7 @@ const onFinish = async (values: FormState) => {
 
 <template>
   <div class="full flex-center bg-gradientPink">
-    <div class="bg-white rounded-md px-12 w-card h-card relative">
+    <div class="bg-white rounded-md px-12 w-card relative">
       <div class="text-38px h-140 font-semibold text-center flex-center">Login</div>
 
       <img class="absolute top-12px right-24px" w="100px" :src="LogoSvg" alt="加载中" />
@@ -102,10 +102,10 @@ const onFinish = async (values: FormState) => {
           </a-button>
           <div class="mt-sm flex justify-between">
             <div>
-              Don't have account
-              <a href="#">sign up</a>
+              Don't have account?
+              <a-button type="link" href="/register">sign up</a-button>
             </div>
-            <a class="login-form-forgot" href="">forgot password</a>
+            <a-button type="link">forgot password</a-button>
           </div>
         </a-form-item>
       </a-form>
