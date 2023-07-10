@@ -22,3 +22,23 @@ export const userDoLogin = async (params: UserLoginParams) => {
     throw error;
   }
 };
+
+export interface UserRegisterParams {
+  username: string;
+  password: string;
+  code: string;
+  email: string;
+  phone: string;
+  realName: string;
+}
+
+export const userDoRegister = async (params: UserRegisterParams) => {
+  try {
+    return await HttpRequest.post("/api/user/register", params);
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.log(error);
+
+    throw error;
+  }
+};
