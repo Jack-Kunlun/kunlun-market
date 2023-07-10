@@ -23,14 +23,14 @@ export class User {
   @Column({ type: "varchar", length: 30, nullable: true })
   email: string;
 
-  @Column({ type: "smallint", default: 1 })
-  status: number;
+  @Column({ type: "smallint", default: 1, nullable: true })
+  status?: number;
 
-  @Column({ type: "smallint", default: 1 })
+  @Column({ type: "smallint", default: 1, nullable: true })
   roleId: number;
 
-  @Column({ type: "int" })
-  createBy: number;
+  @Column({ type: "int", default: 0 })
+  createBy?: number;
 
   @CreateDateColumn()
   createTime: Date;

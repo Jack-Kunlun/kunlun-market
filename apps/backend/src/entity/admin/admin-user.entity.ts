@@ -32,7 +32,7 @@ export class AdminUser {
   @Column({ type: "smallint", default: 1, nullable: true })
   roleId: number;
 
-  @Column({ type: "int", nullable: true })
+  @Column({ type: "int", default: 0 })
   createBy?: number;
 
   @CreateDateColumn()
