@@ -8,6 +8,8 @@ export const unocssConfig: UserConfig<any> = {
       grey: "#d9d9d9",
       gradientPink: "linear-gradient(to right, #fbc2eb, #a6c1ee)",
       gradientViolet: "linear-gradient(to right, #a6c1ee, #fbc2eb)",
+      orange: "#fde3cf",
+      green: "#87d068",
     },
     fontSize: {
       sm: "12px",
@@ -109,7 +111,7 @@ export const unocssConfig: UserConfig<any> = {
             case "x":
               return { "padding-left": theme.padding[c], "padding-right": theme.padding[c] };
             case "y":
-              return { "padding-top": theme.padding[c], "paddingB-bottom": theme.padding[c] };
+              return { "padding-top": theme.padding[c], "padding-bottom": theme.padding[c] };
             default:
               break;
           }
