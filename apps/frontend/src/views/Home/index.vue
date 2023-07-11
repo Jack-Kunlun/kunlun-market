@@ -4,7 +4,10 @@ import HelloWorld from "@/components/HelloWorld.vue";
 import { useStore } from "@/stores";
 
 const router = useRouter();
-const { counter } = useStore();
+const {
+  counter,
+  userStore: { userInfo },
+} = useStore();
 </script>
 
 <template>
@@ -12,6 +15,8 @@ const { counter } = useStore();
     Home
 
     <div>pinia count: {{ counter.count }}</div>
+
+    <div>userInfo: {{ userInfo.realName }}</div>
 
     <HelloWorld msg="666" />
 

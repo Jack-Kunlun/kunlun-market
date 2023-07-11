@@ -6,6 +6,7 @@ import { useRouter } from "vue-router";
 import { getCaptcha } from "@/apis/common";
 import { userDoLogin } from "@/apis/user";
 import LogoSvg from "@/assets/svg/logo.svg";
+import { useStore } from "@/stores";
 
 interface FormState {
   username: string;
@@ -18,6 +19,8 @@ const formState = reactive<FormState>({
   password: "",
   code: "",
 });
+
+const { userStore } = useStore();
 
 const captcha = ref("");
 
@@ -47,7 +50,10 @@ const onFinish = async (values: FormState) => {
     const res = await userDoLogin(values);
 
     if (res.code === 200) {
-      localStorage.setItem("token", res.data.token);
+      const { id, token, username, realName, phone, email, roleId } = res.data;
+
+      localStorage.setItem("token", token);
+      userStore.setUserInfo({ id, username, realName, phone, email, roleId });
       router.push("/home");
     }
   } catch (error: any) {

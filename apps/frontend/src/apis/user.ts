@@ -7,9 +7,19 @@ export interface UserLoginParams {
 }
 
 export interface UserLoginResponse {
-  username: string;
+  createBy: number;
+  createTime: string;
+  email: string;
+  id: number;
   password: string;
+  passwordSalt: string;
+  phone: string;
+  realName: string;
+  roleId: number;
+  status: number;
   token: string;
+  updateTime: string;
+  username: string;
 }
 
 export const userDoLogin = async (params: UserLoginParams) => {
