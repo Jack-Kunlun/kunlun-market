@@ -1,5 +1,7 @@
 import { FC } from "react";
 
-export const UserSetting: FC = () => {
+const UserSetting: FC = () => {
   return <div>UserSetting</div>;
 };
+
+export default UserSetting;

@@ -1,7 +1,7 @@
 import { Button } from "antd";
 import { FC } from "react";
 
-export const UserPage: FC = () => {
+const UserPage: FC = () => {
   return (
     <div>
       User
@@ -9,3 +9,5 @@ export const UserPage: FC = () => {
     </div>
   );
 };
+
+export default UserPage;

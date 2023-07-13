@@ -1,3 +1,3 @@
 export * from "./RouterContainer";
-export * from "./routes";
 export * from "./types";
+export * from "./menus";

@@ -1,5 +1,7 @@
 import { FC } from "react";
 
-export const Help: FC = () => {
+const Help: FC = () => {
   return <div>Help</div>;
 };
+
+export default Help;

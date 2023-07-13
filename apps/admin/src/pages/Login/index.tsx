@@ -7,7 +7,7 @@ import { adminUserDoLogin, AdminUserLoginParams } from "@/apis/admin";
 import { getCaptcha } from "@/apis/common";
 import LogoSvg from "@/assets/svg/logo.svg";
 
-export const LoginPage: FC = () => {
+const LoginPage: FC = () => {
   const navigate = useNavigate();
 
   const { t } = useTranslation();
@@ -22,7 +22,7 @@ export const LoginPage: FC = () => {
 
       if (res.code === 200) {
         localStorage.setItem("token", res.data.token);
-        navigate("/admin/home");
+        navigate("/home");
       }
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
@@ -50,8 +50,8 @@ export const LoginPage: FC = () => {
 
   return (
     <div className="full flex-center bg-gradientPink">
-      <div className="bg-white rounded-md px-12 w-card h-card">
-        <div className="text-38px h-150 font-semibold text-center flex-center">{t("login")}</div>
+      <div className="bg-white rounded-md px-12 w-card pb-lg">
+        <div className="text-38px h-120 font-semibold text-center flex-center">{t("login")}</div>
 
         <img w="100px" src={LogoSvg} alt="" />
 
@@ -101,3 +101,5 @@ export const LoginPage: FC = () => {
     </div>
   );
 };
+
+export default LoginPage;
