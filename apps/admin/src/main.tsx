@@ -4,7 +4,7 @@ import { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
 import "virtual:uno.css";
 import "@unocss/reset/normalize.css";
-import { RouterContainer } from "@/routes";
+import { RouterContainer } from "@/router";
 import "./i18n";
 import "./style.css";
 

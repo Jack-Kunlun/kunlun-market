@@ -2,36 +2,10 @@ import { UserOutlined, MenuUnfoldOutlined, MenuFoldOutlined } from "@ant-design/
 import { Avatar, Breadcrumb, Button, Dropdown, Layout, Menu } from "antd";
 import type { MenuProps } from "antd";
 import React, { useMemo, useState } from "react";
-import { Outlet, useNavigate } from "react-router-dom";
-import { IRoute, menuRoute } from "@/routes";
+import { Outlet, useNavigate, useLocation } from "react-router-dom";
+import { menus, routePathMap, routeKeyMap } from "@/router";
 
 const { Header, Content, Sider } = Layout;
-
-const routeList = new Map<string, { path: string; title: string }>();
-
-const formatMenu = (routes: IRoute[], level = 0) => {
-  const menus: MenuProps["items"] = [];
-
-  routes.forEach((route) => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const menuItem: any = {
-      key: route.key,
-      icon: route.icon ? React.createElement(route.icon) : route.icon,
-      label: route.title,
-      path: route.path,
-    };
-
-    if (route.children && route.children.length > 0) {
-      menuItem.children = formatMenu(route.children, level + 1);
-    }
-
-    routeList.set(route.key as string, { path: route.path, title: route.title as string });
-
-    menus.push(menuItem);
-  });
-
-  return menus;
-};
 
 const items: MenuProps["items"] = [
   {
@@ -50,10 +24,9 @@ const items: MenuProps["items"] = [
 export const BasicLayout: React.FC = () => {
   const [collapsed, setCollapsed] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
 
-  const [keyPath, setKeyPath] = useState<string[]>(["HomeIndex", "Home"]);
-
-  const menus = formatMenu(menuRoute);
+  const [keyPath, setKeyPath] = useState<string[]>(routePathMap.get(location.pathname) || []);
 
   const onClick: MenuProps["onClick"] = ({ key }) => {
     switch (key) {
@@ -67,7 +40,7 @@ export const BasicLayout: React.FC = () => {
   };
 
   const breadcrumbItems = useMemo(() => {
-    return [...keyPath].reverse().map((key) => ({ title: routeList.get(key)?.title }));
+    return [...keyPath].reverse().map((key) => ({ title: routeKeyMap.get(key)?.title }));
   }, [keyPath]);
 
   return (
@@ -97,11 +70,11 @@ export const BasicLayout: React.FC = () => {
             onClick={(info) => {
               setKeyPath(info.keyPath);
 
-              if (!routeList.has(info.key)) {
+              if (!routeKeyMap.has(info.key)) {
                 return;
               }
 
-              navigate(routeList.get(info.key)?.path as string);
+              navigate(routeKeyMap.get(info.key)?.path as string);
             }}
           />
         </Sider>

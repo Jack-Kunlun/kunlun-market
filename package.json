@@ -20,7 +20,8 @@
     "test": "turbo run test",
     "pre-commit": "lint-staged && turbo run test",
     "test:ui": "yarn workspace ui test",
-    "lint:ui": "yarn workspace ui lint"
+    "lint:ui": "yarn workspace ui lint",
+    "lint:admin": "yarn workspace admin lint"
   },
   "dependencies": {
     "eslint-config-turbo": "latest"
@@ -47,7 +48,7 @@
   },
   "lint-staged": {
     "apps/admin/src/**/*.{js,jsx,ts,tsx}": [
-      "eslint --fix --config apps/admin/.eslintrc.cjs --quiet",
+      "yarn lint:admin",
       "prettier --write"
     ],
     "apps/frontend/src/**/*.{js,jsx,ts,tsx}": [

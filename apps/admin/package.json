@@ -14,13 +14,14 @@
     "antd": "5.x",
     "classnames": "^2.3.2",
     "eslint-config-react": "*",
-    "unocss": "^0.52.7",
     "i18next": "^22.4.15",
     "jsdom": "^21.1.1",
     "less": "^4.1.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-i18next": "^12.2.2",
+    "react-router-dom": "^6.14.1",
+    "unocss": "^0.52.7",
     "vite": "^4.3.9"
   },
   "devDependencies": {
@@ -31,12 +32,11 @@
     "babel-loader": "^8.2.5",
     "eslint": "^8.23.0",
     "public-utils": "*",
-    "react-router-dom": "^6.3.0",
     "tsconfig": "*",
     "typescript": "^4.6.4",
     "ui": "*",
+    "uno-config": "*",
     "vite-config": "*",
-    "yhooks": "*",
-    "uno-config": "*"
+    "yhooks": "*"
   }
 }
