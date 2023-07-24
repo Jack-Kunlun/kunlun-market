@@ -1,22 +1,35 @@
 import { HttpRequest } from "public-utils";
 
-export interface LoginParams {
+export interface UserInfoDate {
+  createBy: number;
+  createTime: string;
+  email: string;
+  id: number;
+  phone: string;
+  realName: string;
+  roleId: number;
+  status: string;
+  updateTime: string;
   username: string;
-  password: string;
 }
 
-export interface LoginResponse {
-  username: string;
-  password: string;
-  token: string;
+export interface UserPageParams extends PagingParameter {
+  username?: string;
+  realName?: string;
 }
 
-export const doLogin = async (params: LoginParams) => {
+export interface UserPageResponse {
+  data: UserInfoDate[];
+  total: number;
+}
+
+export const getUserPage = async (params: UserPageParams) => {
+  // eslint-disable-next-line no-useless-catch
   try {
-    const res = await HttpRequest.post<LoginResponse>("/api/admin/login", params);
+    const res = await HttpRequest.get<UserPageResponse>("/api/user/getUserPage", params);
 
     return res;
   } catch (error) {
-    // return error;
+    throw error;
   }
 };

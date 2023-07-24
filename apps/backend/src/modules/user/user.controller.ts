@@ -2,10 +2,11 @@
  * user controller.
  */
 import { Public } from "@decorator/public.decorator";
-import { Body, Controller, Post, Session } from "@nestjs/common";
+import { Roles } from "@decorator/roles.decorator";
+import { Body, Controller, Get, Post, Query, Session } from "@nestjs/common";
 import { CaptchaService } from "src/services/captcha.service";
 import { AuthService } from "../auth/auth.service";
-import { UserLoginDto, UserRegisterDto } from "./user.dto";
+import { UserLoginDto, UserPageParameterDto, UserRegisterDto } from "./user.dto";
 import { UserService } from "./user.service";
 
 @Controller("user")
@@ -29,7 +30,7 @@ export class UserController {
       const authResult = await this.authService.validateUser(body.username, body.password);
 
       if (authResult.code === 200) {
-        return await this.authService.certificate(authResult.data);
+        return await this.authService.certificate(authResult.data, "frontend");
       }
 
       return authResult;
@@ -49,6 +50,16 @@ export class UserController {
       }
 
       return await this.userService.register(body);
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  @Get("getUserPage")
+  @Roles("admin")
+  async getUserPage(@Query() query: UserPageParameterDto) {
+    try {
+      return await this.userService.getUserPage(query);
     } catch (error) {
       throw error;
     }

@@ -4,6 +4,7 @@ import { RolesGuard } from "@guard/roles.guard";
 import { Module } from "@nestjs/common";
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import { APP_GUARD } from "@nestjs/core";
+import { JwtService } from "@nestjs/jwt";
 import { TypeOrmModule, TypeOrmModuleOptions } from "@nestjs/typeorm";
 import { CaptchaService } from "src/services/captcha.service";
 import { AppController } from "./app.controller";
@@ -31,6 +32,7 @@ import { UserModule } from "./modules/user/user.module";
   controllers: [AppController, AdminUserController, UserController],
   providers: [
     CaptchaService,
+    JwtService,
     {
       provide: APP_GUARD,
       useClass: JwtAuthGuard,

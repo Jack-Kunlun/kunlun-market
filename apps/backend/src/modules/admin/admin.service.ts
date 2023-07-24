@@ -79,7 +79,7 @@ export class AdminUserService {
       return formatResponse({
         data: {
           data: res[0],
-          totalCount: res[1],
+          total: res[1],
         },
       });
     } catch (error) {

@@ -3,4 +3,5 @@ export interface JwtPayload {
   username: string;
   realName: string;
   roleId: number;
+  serviceType: ServiceType;
 }
