@@ -1,5 +1,5 @@
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
-import { RequestCodes, Response, EndpointType, ResponseError } from "./types";
+import { HttpRequestCodes, HttpResponse, EndpointType, HttpResponseError } from "./types";
 import { handleCode } from "./utils";
 
 //默认路径，这里也可以使用env来判断环境
@@ -47,11 +47,11 @@ class Http {
      * 服务器换返回信息 -> [拦截统一处理]
      */
     this.service.interceptors.response.use(
-      (response: AxiosResponse<Response>) => {
+      (response: AxiosResponse<HttpResponse>) => {
         const { data } = response;
 
         // 登录过期，清空本地的token
-        if (data.code === RequestCodes.EXPIRED) {
+        if (data.code === HttpRequestCodes.EXPIRED) {
           localStorage.setItem("token", "");
 
           throw new Error("登录过期，请重新登录");
@@ -64,10 +64,10 @@ class Http {
 
         return data;
       },
-      (error: AxiosError<ResponseError>) => {
+      (error: AxiosError<HttpResponseError>) => {
         const { response } = error;
 
-        if (response && response?.status !== RequestCodes.SUCCESS) {
+        if (response && response?.status !== HttpRequestCodes.SUCCESS) {
           handleCode(response.status, response.data.message);
         }
 
@@ -90,22 +90,22 @@ class Http {
    * config：请求配置（一般不用，特殊情况需要添加配置时使用）
    */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  get<T, P = any>(url: EndpointType, params?: P, config?: AxiosRequestConfig): Promise<Response<T>> {
+  get<T, P = any>(url: EndpointType, params?: P, config?: AxiosRequestConfig): Promise<HttpResponse<T>> {
     return this.service.get(url, { params, ...config });
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  post<T, P = any>(url: EndpointType, params?: P, config?: AxiosRequestConfig): Promise<Response<T>> {
+  post<T, P = any>(url: EndpointType, params?: P, config?: AxiosRequestConfig): Promise<HttpResponse<T>> {
     return this.service.post(url, params, config);
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  put<T, P = any>(url: EndpointType, params?: P, config?: AxiosRequestConfig): Promise<Response<T>> {
+  put<T, P = any>(url: EndpointType, params?: P, config?: AxiosRequestConfig): Promise<HttpResponse<T>> {
     return this.service.put(url, params, config);
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  delete<T, P = any>(url: EndpointType, params?: P, config?: AxiosRequestConfig): Promise<Response<T>> {
+  delete<T, P = any>(url: EndpointType, params?: P, config?: AxiosRequestConfig): Promise<HttpResponse<T>> {
     return this.service.delete(url, { params, ...config });
   }
 }
