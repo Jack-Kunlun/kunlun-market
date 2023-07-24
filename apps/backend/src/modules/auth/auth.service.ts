@@ -63,12 +63,13 @@ export class AuthService {
   }
 
   // JWT验证 - Step 3: 处理 jwt 签证
-  async certificate(user: AdminUser) {
+  async certificate(user: AdminUser, serviceType: ServiceType) {
     const payload: JwtPayload = {
       username: user.username,
       id: user.id,
       roleId: user.roleId,
       realName: user.realName,
+      serviceType,
     };
 
     try {

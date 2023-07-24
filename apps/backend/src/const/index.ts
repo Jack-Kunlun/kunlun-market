@@ -1,3 +1,3 @@
 export * from "./publicKey";
-export * from "./adminRole";
+export * from "./role";
 export * from "./jwtConstants";
