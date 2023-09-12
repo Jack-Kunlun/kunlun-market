@@ -14,10 +14,17 @@ import { AuthModule } from "./modules/auth/auth.module";
 import { UserController } from "./modules/user/user.controller";
 import { UserModule } from "./modules/user/user.module";
 
+const env = process.env.NODE_ENV || "dev";
+
+/**
+ * TODO: windows环境下使用动态拼接的文件名无法正确加载，后续再完善这部分
+ */
+const envFilePath = env === "dev" ? ".env" : ".env";
+
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: `.env.${process.env.NODE_ENV || "dev"}`,
+      envFilePath,
       load: [configuration],
     }),
     TypeOrmModule.forRootAsync({

@@ -19,9 +19,9 @@ export const configuration = () => {
       namingStrategy: new SnakeNamingStrategy(),
       logger: new CustomDatabaseLogger(),
       timezone: "+08:00",
-      cache: {
-        duration: 60000,
-      },
+      // cache: {
+      //   duration: 60000,
+      // },
       extra: {
         poolMax: 32,
         poolMin: 16,
