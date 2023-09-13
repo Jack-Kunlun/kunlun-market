@@ -45,7 +45,7 @@ const clickMenu: MenuProps["onClick"] = ({ key }) => {
       </a-menu>
 
       <a-dropdown :trigger="['click']">
-        <a-avatar class="bg-green cursor-pointer" :size="48">{{ userInfo.realName }}</a-avatar>
+        <a-avatar class="bg-green cursor-pointer" :size="38">{{ userInfo.realName }}</a-avatar>
         <template #overlay>
           <a-menu @click="clickMenu">
             <a-menu-item key="0">用户设置</a-menu-item>

@@ -8,8 +8,6 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     AAvatar: typeof import('ant-design-vue/es')['Avatar']
-    ABreadcrumb: typeof import('ant-design-vue/es')['Breadcrumb']
-    ABreadcrumbItem: typeof import('ant-design-vue/es')['BreadcrumbItem']
     AButton: typeof import('ant-design-vue/es')['Button']
     ADropdown: typeof import('ant-design-vue/es')['Dropdown']
     AForm: typeof import('ant-design-vue/es')['Form']
@@ -23,12 +21,8 @@ declare module 'vue' {
     AMenu: typeof import('ant-design-vue/es')['Menu']
     AMenuDivider: typeof import('ant-design-vue/es')['MenuDivider']
     AMenuItem: typeof import('ant-design-vue/es')['MenuItem']
-    ContactsOutlined: typeof import('@ant-design/icons-vue')['ContactsOutlined']
-    EmailOutlined: typeof import('@ant-design/icons-vue')['EmailOutlined']
     HelloWorld: typeof import('./../src/components/HelloWorld.vue')['default']
     LockOutlined: typeof import('@ant-design/icons-vue')['LockOutlined']
-    MailOutlined: typeof import('@ant-design/icons-vue')['MailOutlined']
-    PhoneOutlined: typeof import('@ant-design/icons-vue')['PhoneOutlined']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     UserOutlined: typeof import('@ant-design/icons-vue')['UserOutlined']
