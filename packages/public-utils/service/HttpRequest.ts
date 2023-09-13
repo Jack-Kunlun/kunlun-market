@@ -17,10 +17,13 @@ const config = {
 class Http {
   // 定义成员变量并指定类型
   service: AxiosInstance;
+  // 存放取消请求控制器Map
+  abortControllerMap: Map<string, AbortController>;
 
   constructor(config: AxiosRequestConfig) {
     // 实例化axios
     this.service = axios.create(config);
+    this.abortControllerMap = new Map();
 
     /**
      * 请求拦截器
@@ -29,6 +32,12 @@ class Http {
     this.service.interceptors.request.use(
       (config: AxiosRequestConfig) => {
         const token = localStorage.getItem("token") || "";
+
+        const controller = new AbortController();
+        const url = config.url || "";
+
+        config.signal = controller.signal;
+        this.abortControllerMap.set(url, controller);
 
         return {
           ...config,
@@ -48,7 +57,12 @@ class Http {
      */
     this.service.interceptors.response.use(
       (response: AxiosResponse<HttpResponse>) => {
-        const { data } = response;
+        const { data, config } = response;
+
+        const url = config.url || "";
+
+        // 清理已完成请求的AbortController
+        this.clearAbortController(url);
 
         // 登录过期，清空本地的token
         if (data.code === HttpRequestCodes.EXPIRED) {
@@ -107,6 +121,40 @@ class Http {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   delete<T, P = any>(url: EndpointType, params?: P, config?: AxiosRequestConfig): Promise<HttpResponse<T>> {
     return this.service.delete(url, { params, ...config });
+  }
+
+  /**
+   * 取消全部请求
+   */
+  cancelAllRequest() {
+    for (const [, controller] of this.abortControllerMap) {
+      controller.abort();
+    }
+
+    this.abortControllerMap.clear();
+  }
+
+  /**
+   * 取消指定的请求
+   * @param url 待取消的请求URL
+   */
+  cancelRequest(url: string | string[]) {
+    const urlList = Array.isArray(url) ? url : [url];
+
+    for (const key of urlList) {
+      this.abortControllerMap.get(key)?.abort();
+      this.abortControllerMap.delete(key);
+    }
+  }
+
+  /**
+   * 清理请求完成的AbortController
+   * @param url 请求URL
+   */
+  clearAbortController(url: string) {
+    if (this.abortControllerMap.has(url)) {
+      this.abortControllerMap.delete(url);
+    }
   }
 }
 
