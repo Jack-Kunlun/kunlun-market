@@ -59,16 +59,12 @@ export const useBasicTable = <T extends object>({ columns, fetchTableData }: Use
     switch (type) {
       case "TOGGLE_LOADING":
         return { ...state, loading: payload.loading } as BasicTableState<T>;
-        break;
       case "SET_PAGINATION":
         return { ...state, pagination: payload.pagination } as BasicTableState<T>;
-        break;
       case "SET_TABLE_DATA":
         return { ...state, tableData: payload.tableData } as BasicTableState<T>;
-        break;
       default:
         return state;
-        break;
     }
   };
 
@@ -92,6 +88,10 @@ export const useBasicTable = <T extends object>({ columns, fetchTableData }: Use
       setLoading(true);
 
       const res = await fetchTableData({ current: state.pagination.current, pageSize: state.pagination.pageSize });
+
+      if (!res) {
+        throw "暂无数据";
+      }
 
       dispatch({ type: "SET_TABLE_DATA", payload: { tableData: res } });
     } catch (error) {

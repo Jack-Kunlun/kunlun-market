@@ -21,17 +21,22 @@ export const formatMenu = (routes: RouteConfig[], level = 0) => {
 
     if (route.children && route.children.length > 0) {
       menus.push({
+        ...route,
         key,
         icon: route.icon ? React.createElement(route.icon) : route.icon,
         label: route.name,
         children: formatMenu(route.children, level + 1),
       });
     } else {
-      menus.push({
-        key,
-        icon: route.icon ? React.createElement(route.icon) : route.icon,
-        label: route.name,
-      });
+      // 只拼接菜单页面
+      if (!route.hideMenu) {
+        menus.push({
+          ...route,
+          key,
+          icon: route.icon ? React.createElement(route.icon) : route.icon,
+          label: route.name,
+        });
+      }
     }
   });
 

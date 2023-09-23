@@ -1,10 +1,10 @@
 import { Button, Space, Tag } from "antd";
 import type { TableColumnsType } from "antd";
 import { FC } from "react";
-import { UserInfoDate, getUserPage } from "@/apis/user";
+import { UserInfo, getUserPage } from "@/apis/user";
 import { useBasicTable } from "@/hooks/useBasicTable";
 
-const tableColumns: TableColumnsType<UserInfoDate> = [
+const tableColumns: TableColumnsType<UserInfo> = [
   {
     title: "ID",
     dataIndex: "id",
@@ -37,16 +37,12 @@ const tableColumns: TableColumnsType<UserInfoDate> = [
       switch (status) {
         case 0:
           return <Tag color="warning">禁用</Tag>;
-          break;
         case 1:
           return <Tag color="success">正常</Tag>;
-          break;
         case 2:
           return <Tag color="error">锁定</Tag>;
-          break;
         default:
           return "";
-          break;
       }
     },
   },

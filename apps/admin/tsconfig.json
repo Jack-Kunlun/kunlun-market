@@ -7,6 +7,7 @@
     },
     "types": ["vitest/globals"]
   },
-  "include": ["src", "types"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": ["src", "types", "scripts"],
+  "references": [{ "path": "./tsconfig.node.json" }],
+  "ts-node": { "esm": true }
 }

@@ -1,6 +1,6 @@
 import { HttpRequest } from "public-utils";
 
-export interface UserInfoDate {
+export interface UserInfo {
   createBy: number;
   createTime: string;
   email: string;
@@ -19,7 +19,7 @@ export interface UserPageParams extends PagingParameter {
 }
 
 export interface UserPageResponse {
-  data: UserInfoDate[];
+  data: UserInfo[];
   total: number;
 }
 
