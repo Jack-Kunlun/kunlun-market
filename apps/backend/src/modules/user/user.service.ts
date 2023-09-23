@@ -1,7 +1,7 @@
 /**
  * User service.
  */
-import { User } from "@entity/frontend/user.entity";
+import { User } from "@entity/user.entity";
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { encryptPassword, formatResponse, makeSalt } from "@utils/index";

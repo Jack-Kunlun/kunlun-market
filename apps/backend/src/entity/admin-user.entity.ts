@@ -2,21 +2,21 @@ import { Exclude } from "class-transformer";
 import { Entity, Column, PrimaryGeneratedColumn, PrimaryColumn, CreateDateColumn, UpdateDateColumn } from "typeorm";
 
 @Entity()
-export class User {
+export class AdminUser {
   @PrimaryGeneratedColumn()
   id: number;
 
   @PrimaryColumn({ type: "varchar", length: 30 })
   username: string;
 
-  @Column({ type: "varchar", length: 30 })
+  @Column({ type: "varchar", length: 30, nullable: true })
   realName: string;
 
-  @Exclude()
+  @Exclude({ toPlainOnly: true })
   @Column({ type: "varchar", length: 30 })
   password: string;
 
-  @Exclude()
+  @Exclude({ toPlainOnly: true })
   @Column({ type: "varchar", length: 30 })
   passwordSalt: string;
 
@@ -24,7 +24,7 @@ export class User {
   phone: string;
 
   @Column({ type: "varchar", length: 30, nullable: true })
-  email: string;
+  email?: string;
 
   @Column({ type: "smallint", default: 1, nullable: true })
   status?: number;

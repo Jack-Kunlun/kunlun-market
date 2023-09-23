@@ -2,7 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
 import { formatResponse } from "@utils/formatResponse";
 import { instanceToPlain } from "class-transformer";
-import { AdminUser } from "../../entity/admin/admin-user.entity";
+import { AdminUser } from "../../entity/admin-user.entity";
 import { encryptPassword } from "../../utils/cryptogram";
 import { AdminUserService } from "../admin/admin.service";
 import { UserService } from "../user/user.service";

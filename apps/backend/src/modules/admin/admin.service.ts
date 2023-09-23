@@ -1,4 +1,4 @@
-import { AdminUser } from "@entity/admin/admin-user.entity";
+import { AdminUser } from "@entity/admin-user.entity";
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { encryptPassword, makeSalt } from "@utils/cryptogram";

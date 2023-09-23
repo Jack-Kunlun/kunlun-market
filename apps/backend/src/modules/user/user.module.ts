@@ -1,7 +1,7 @@
 /**
  * User module.
  */
-import { User } from "@entity/frontend/user.entity";
+import { User } from "@entity/user.entity";
 import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { CaptchaService } from "src/services/captcha.service";
