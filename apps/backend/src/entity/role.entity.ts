@@ -11,6 +11,9 @@ export class Role {
   @Column({ type: "jsonb", array: true, default: [] })
   authList: object[];
 
+  @Column({ type: "varchar", default: "", length: 100, nullable: true })
+  description: string;
+
   @Column({ type: "smallint", default: 1, nullable: true })
   status?: number;
 

@@ -42,7 +42,7 @@ export const menuRoutes: RouteConfig[] = [
     children: [
       {
         index: true,
-        name: "User",
+        name: "Role",
         element: <RolePage />,
       },
       {
