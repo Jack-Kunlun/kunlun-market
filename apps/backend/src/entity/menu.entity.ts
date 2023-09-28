@@ -9,7 +9,7 @@ export class Menu {
   menuName: string;
 
   @Column({ type: "varchar", default: null, length: 100, nullable: true })
-  menu_code: string;
+  menuCode: string;
 
   @PrimaryColumn({ type: "varchar", length: 100 })
   path: string;
@@ -18,16 +18,16 @@ export class Menu {
   description: string;
 
   @Column({ type: "smallint", default: 0, nullable: true })
-  parent_id?: number;
+  parentId?: number;
 
   @Column({ type: "smallint", default: 1, nullable: true })
-  node_type?: number;
+  nodeType?: number;
 
   @Column({ type: "smallint", default: 1, nullable: true })
   sort?: number;
 
   @Column({ type: "boolean", default: false, nullable: true })
-  hideMenu: string;
+  hideMenu: boolean;
 
   @Column({ type: "varchar", default: "", length: 255, nullable: true })
   icon: string;

@@ -10,6 +10,7 @@ export const unocssConfig: UserConfig<any> = {
       gradientViolet: "linear-gradient(to right, #a6c1ee, #fbc2eb)",
       orange: "#fde3cf",
       green: "#87d068",
+      original: "#f50",
     },
     fontSize: {
       sm: "12px",

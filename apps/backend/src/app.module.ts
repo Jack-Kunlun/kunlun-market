@@ -11,6 +11,8 @@ import { AppController } from "./app.controller";
 import { AdminUserController } from "./modules/admin/admin.controller";
 import { AdminUserModule } from "./modules/admin/admin.module";
 import { AuthModule } from "./modules/auth/auth.module";
+import { MenuController } from "./modules/menu/menu.controller";
+import { MenuModule } from "./modules/menu/menu.module";
 import { UserController } from "./modules/user/user.controller";
 import { UserModule } from "./modules/user/user.module";
 
@@ -35,8 +37,9 @@ const envFilePath = env === "dev" ? ".env" : ".env";
     AdminUserModule,
     AuthModule,
     UserModule,
+    MenuModule,
   ],
-  controllers: [AppController, AdminUserController, UserController],
+  controllers: [AppController, AdminUserController, UserController, MenuController],
   providers: [
     CaptchaService,
     JwtService,

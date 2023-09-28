@@ -1,8 +1,5 @@
-import type { MenuProps } from "antd";
 import React from "react";
 import { RouteConfig } from "@/router";
-
-type MenuItem = Required<MenuProps>["items"][number];
 
 /**
  * 格式化菜单
@@ -13,7 +10,7 @@ type MenuItem = Required<MenuProps>["items"][number];
  * @returns 菜单配置
  */
 export const formatMenu = (routes: RouteConfig[], level = 0) => {
-  const menus: MenuItem[] = [];
+  const menus: Record<string, any>[] = [];
 
   routes.forEach((route, index) => {
     // 生成唯一key

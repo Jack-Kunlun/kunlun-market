@@ -29,3 +29,23 @@ export const getUserPage = async (params: RolePageParams) => {
     throw error;
   }
 };
+
+export interface MenuItem {
+  id: number;
+  menuName: string;
+  menuCode: string;
+  path: string;
+  description: string;
+  parentId?: number;
+  nodeType?: number;
+  sort?: number;
+  hideMenu: boolean;
+  icon: string;
+  status: number;
+  createBy: number;
+  children: MenuItem[];
+  createTime: string;
+  updateTime: string;
+}
+
+export const getMenuList = async () => await HttpRequest.get<MenuItem[]>("/api/menu/list");

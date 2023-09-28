@@ -11,6 +11,7 @@ const UserSetting = lazy(() => import("@/pages/Settings/UserSetting"));
 const UserPage = lazy(() => import("@/pages/User"));
 const RolePage = lazy(() => import("@/pages/Role"));
 const AddRolePage = lazy(() => import("@/pages/Role/Add"));
+const MenuPage = lazy(() => import("@/pages/Role/Menu"));
 const HomePage = lazy(() => import("@/pages/Home"));
 const HelpPage = lazy(() => import("@/pages/Help"));
 
@@ -44,6 +45,11 @@ export const menuRoutes: RouteConfig[] = [
         index: true,
         name: "Role",
         element: <RolePage />,
+      },
+      {
+        path: "/role/menu",
+        name: "Menu",
+        element: <MenuPage />,
       },
       {
         path: "/role/add",

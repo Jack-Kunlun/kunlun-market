@@ -174,7 +174,7 @@ CREATE TABLE "menu" (
   parent_id integer DEFAULT 0,
   node_type smallint DEFAULT 1,
   sort smallint DEFAULT 1,
-  hideMenu boolean DEFAULT false,
+  hide_menu boolean DEFAULT false,
   icon varchar(255) DEFAULT NULL,
   status smallint DEFAULT 1,
   create_by integer DEFAULT 0,
@@ -200,7 +200,7 @@ comment on column "menu".node_type is '节点类型 1 - 菜单 | 2 - 页面 | 3 
 
 comment on column "menu".sort is '菜单顺序';
 
-comment on column "menu".hideMenu is '是否不显示在菜单列表';
+comment on column "menu".hide_menu is '是否不显示在菜单列表';
 
 comment on column "menu".icon is '图标地址';
 
