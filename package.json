@@ -48,15 +48,11 @@
   },
   "lint-staged": {
     "apps/admin/src/**/*.{js,jsx,ts,tsx}": [
-      "yarn lint:admin",
+      "eslint --fix --config apps/admin/.eslintrc.cjs --quiet",
       "prettier --write"
     ],
     "apps/frontend/src/**/*.{js,jsx,ts,tsx}": [
       "eslint --fix --config apps/frontend/.eslintrc.cjs --quiet",
-      "prettier --write"
-    ],
-    "apps/frontend-vue/src/**/*.{js,jsx,ts,tsx,.vue}": [
-      "eslint --fix --config apps/frontend-vue/.eslintrc.cjs --quiet",
       "prettier --write"
     ],
     "packages/ui/**/*.{js,jsx,ts,tsx}": [

@@ -22,6 +22,8 @@ module.exports = {
   rules: {
     // 在<template>中强制一致缩进
     "vue/html-indent": ["error", 2],
+    // "vue/html-indent": ["error", "tab"], // enforce tabs in template
+    // indent: ["error", "tab"], // enforce tabs in script and js files
     "vue/html-self-closing": "off",
     // 要求单行元素的内容前后有一个换行符
     "vue/singleline-html-element-content-newline": "off",

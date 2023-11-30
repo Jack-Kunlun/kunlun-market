@@ -44,11 +44,11 @@ THEN
 
   INSERT INTO menu (id, menu_name, menu_code, path, parent_id, sort, icon) 
   VALUES 
-    (1, 'Home', '@/pages/Home', '/home', 0, 1, '1'),
-    (2, 'User', '@/pages/User', '/user', 0, 2, '1'),
-    (3, 'Role', '@/pages/Role', '/role', 0, 3, '1'),
-    (4, 'Help', '@/pages/Help', '/help', 0, 4, '1'),
-    (5, 'Setting', '@/pages/Settings', '/settings', 0, 5, '1')
+    (1, 'Home', '@/pages/Home', '/home', 0, 0, 'HomeOutlined'),
+    (2, 'User', '@/pages/User', '/user', 0, 1, 'UserOutlined'),
+    (3, 'Role', '@/pages/Role', '/role', 0, 2, 'ClusterOutlined'),
+    (4, 'Help', '@/pages/Help', '/help', 0, 3, 'ApiOutlined'),
+    (5, 'Setting', '@/pages/Settings', '/settings', 0, 4, 'SettingOutlined')
   ON CONFLICT (id) DO UPDATE SET 
     menu_name = EXCLUDED.menu_name,
     menu_code = EXCLUDED.menu_code,
@@ -60,10 +60,10 @@ THEN
   INSERT INTO menu
     (menu_name, menu_code, path, parent_id, node_type, sort, hideMenu) 
   VALUES 
-    ('User', 'index', '/user/index', 2, 2, 1, false),
-    ('Role', 'index', '/role/index', 3, 2, 1, false),
-    ('AddRole', '@/pages/Role/Add', '/role/add', 3, 2, 2, true),
-    ('UserSetting', '@/pages/Settings/UserSetting', '/settings/user', 5, 2, 1, false);
+    ('User', 'index', '/user/index', 2, 2, 0, false),
+    ('Role', 'index', '/role/index', 3, 2, 0, false),
+    ('AddRole', '@/pages/Role/Add', '/role/add', 3, 2, 1, true),
+    ('UserSetting', '@/pages/Settings/UserSetting', '/settings/user', 5, 2, 0, false);
 
 END IF;
 

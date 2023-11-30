@@ -117,5 +117,10 @@ module.exports = {
     "import/no-default-export": "error",
     // 禁止在循环中出现 await
     "no-await-in-loop": "off",
+    // 不允许any类型
+    "@typescript-eslint/no-explicit-any": "error",
+    // Note: you must disable the base rule as it can report incorrect errors
+    "no-empty-function": "off",
+    "@typescript-eslint/no-empty-function": "off",
   },
 };
