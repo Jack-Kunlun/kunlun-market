@@ -1,4 +1,4 @@
-import { HomeOutlined, UserOutlined, SettingOutlined, ApiOutlined } from "@ant-design/icons";
+import { HomeOutlined, UserOutlined, SettingOutlined, ApiOutlined, ClusterOutlined } from "@ant-design/icons";
 import { lazy } from "react";
 import { loader as rootLoader } from "./loader";
 import { RouteConfig } from "./types";
@@ -39,7 +39,7 @@ export const menuRoutes: RouteConfig[] = [
     path: "/role",
     name: "Role",
     element: <BlankLayout />,
-    icon: HomeOutlined,
+    icon: ClusterOutlined,
     children: [
       {
         index: true,

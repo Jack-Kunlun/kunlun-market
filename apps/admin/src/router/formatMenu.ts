@@ -1,3 +1,4 @@
+import type { MenuProps } from "antd";
 import React from "react";
 import { RouteConfig } from "@/router";
 
@@ -10,7 +11,7 @@ import { RouteConfig } from "@/router";
  * @returns 菜单配置
  */
 export const formatMenu = (routes: RouteConfig[], level = 0) => {
-  const menus: Record<string, any>[] = [];
+  const menus: MenuProps["items"] = [];
 
   routes.forEach((route, index) => {
     // 生成唯一key
@@ -18,7 +19,7 @@ export const formatMenu = (routes: RouteConfig[], level = 0) => {
 
     if (route.children && route.children.length > 0) {
       menus.push({
-        ...route,
+        // ...route,
         key,
         icon: route.icon ? React.createElement(route.icon) : route.icon,
         label: route.name,
@@ -28,7 +29,7 @@ export const formatMenu = (routes: RouteConfig[], level = 0) => {
       // 只拼接菜单页面
       if (!route.hideMenu) {
         menus.push({
-          ...route,
+          // ...route,
           key,
           icon: route.icon ? React.createElement(route.icon) : route.icon,
           label: route.name,
