@@ -11,6 +11,7 @@ export const unocssConfig: UserConfig<any> = {
       orange: "#fde3cf",
       green: "#87d068",
       original: "#f50",
+      primary: "#4096ff",
     },
     fontSize: {
       sm: "12px",

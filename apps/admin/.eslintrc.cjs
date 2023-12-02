@@ -15,5 +15,11 @@ module.exports = {
         "import/no-default-export": "error",
       },
     },
+    {
+      files: ["src/components/**/*.{jsx,tsx}", "src/components/**/index.{js,ts}"],
+      rules: {
+        "import/no-default-export": "off",
+      },
+    },
   ],
 };

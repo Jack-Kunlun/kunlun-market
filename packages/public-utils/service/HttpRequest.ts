@@ -65,7 +65,7 @@ class Http {
         this.clearAbortController(url);
 
         // 登录过期，清空本地的token
-        if (data.code === HttpRequestCodes.EXPIRED) {
+        if (data.code === HttpRequestCodes.UNAUTHORIZED) {
           localStorage.setItem("token", "");
 
           throw new Error("登录过期，请重新登录");
@@ -80,6 +80,13 @@ class Http {
       },
       (error: AxiosError<HttpResponseError>) => {
         const { response } = error;
+
+        // 登录过期，清空本地的token
+        if (response?.status === HttpRequestCodes.UNAUTHORIZED) {
+          localStorage.setItem("token", "");
+
+          throw new Error("登录过期，请重新登录");
+        }
 
         if (response && response?.status !== HttpRequestCodes.SUCCESS) {
           handleCode(response.status, response.data.message);
