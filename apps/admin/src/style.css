@@ -16,16 +16,6 @@ body {
   font-feature-settings: "tnum";
 }
 
-/* body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-  width: 100%;
-  height: 100%;
-} */
-
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -40,4 +30,15 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+}
+
+*::-webkit-scrollbar-thumb {
+  /*  滑块颜色 */
+  background: #ccc;
+  /*  滑块圆角 */
+  border-radius: 4px;
 }
