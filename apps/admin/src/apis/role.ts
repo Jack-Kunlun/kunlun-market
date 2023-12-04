@@ -3,6 +3,7 @@ import { HttpRequest } from "public-utils";
 export interface RoleInfo {
   id: number;
   roleName: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   authList: any[];
   status: number;
   createBy: number;

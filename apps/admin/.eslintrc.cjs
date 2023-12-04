@@ -10,15 +10,15 @@ module.exports = {
       },
     },
     {
-      files: ["src/pages/**/{components,component}/*.{ts,js,jsx,tsx}"],
+      files: ["src/components/**/*.{jsx,tsx,ts,js}"],
       rules: {
-        "import/no-default-export": "error",
+        "import/no-default-export": "off",
       },
     },
     {
-      files: ["src/components/**/*.{jsx,tsx}", "src/components/**/index.{js,ts}"],
+      files: ["src/pages/**/{components,component}/*.{ts,js,jsx,tsx}"],
       rules: {
-        "import/no-default-export": "off",
+        "import/no-default-export": "error",
       },
     },
   ],
