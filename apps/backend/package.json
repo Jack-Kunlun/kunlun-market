@@ -20,6 +20,15 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
+  "lint-staged": {
+    "*.{js,ts}": [
+      "prettier --write",
+      "eslint --fix --quiet"
+    ],
+    "*.{json,md,yaml}": [
+      "prettier --write"
+    ]
+  },
   "dependencies": {
     "@nestjs/common": "^9.0.0",
     "@nestjs/config": "^2.3.2",
@@ -59,6 +68,7 @@
     "@types/supertest": "^2.0.11",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "eslint": "^8.0.1",
+    "lint-staged": "^13.0.3",
     "eslint-config-prettier": "^8.3.0",
     "jest": "29.5.0",
     "prettier": "^2.7.1",

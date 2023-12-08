@@ -18,7 +18,7 @@
     "dev:frontend": "yarn workspace frontend dev",
     "dev:backend": "yarn workspace backend dev",
     "test": "turbo run test",
-    "pre-commit": "lint-staged && turbo run test",
+    "pre-commit": "yarn lint-staged && turbo run test",
     "test:ui": "yarn workspace ui test",
     "lint:ui": "yarn workspace ui lint",
     "lint:admin": "yarn workspace admin lint"
@@ -45,34 +45,5 @@
     "singleQuote": false,
     "tabWidth": 2,
     "trailingComma": "es5"
-  },
-  "lint-staged": {
-    "apps/admin/src/**/*.{js,jsx,ts,tsx}": [
-      "yarn lint:admin",
-      "prettier --write"
-    ],
-    "apps/frontend/src/**/*.{js,jsx,ts,tsx}": [
-      "eslint --fix --config apps/frontend/.eslintrc.cjs --quiet",
-      "prettier --write"
-    ],
-    "packages/ui/**/*.{js,jsx,ts,tsx}": [
-      "eslint --fix --config packages/ui/.eslintrc.cjs --quiet",
-      "prettier --write"
-    ],
-    "packages/public-utils/**/*.{js,jsx,ts,tsx}": [
-      "eslint --fix --config packages/public-utils/.eslintrc.cjs --quiet",
-      "prettier --write"
-    ],
-    "packages/yhooks/**/*.{js,jsx,ts,tsx}": [
-      "eslint --fix --config packages/yhooks/.eslintrc.cjs --quiet",
-      "prettier --write"
-    ],
-    "apps/backend/{src,apps,libs,test}/**/*.ts": [
-      "eslint --fix --config apps/backend/.eslintrc.js --quiet",
-      "prettier --write"
-    ],
-    "*.{json,md,yaml}": [
-      "prettier --write"
-    ]
   }
 }

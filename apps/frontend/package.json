@@ -9,11 +9,19 @@
     "preview": "vite preview",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx --fix --quiet ./"
   },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,.vue}": [
+      "prettier --write",
+      "eslint --fix --quiet"
+    ],
+    "*.{json,md,yaml}": [
+      "prettier --write"
+    ]
+  },
   "dependencies": {
     "@ant-design/icons-vue": "^6.1.0",
     "@unocss/reset": "^0.53.0",
     "ant-design-vue": "^3.2.20",
-    "eslint": "^8.23.0",
     "pinia": "^2.1.4",
     "pinia-plugin-persistedstate": "^3.1.0",
     "public-utils": "*",
@@ -26,6 +34,8 @@
   "devDependencies": {
     "@types/node": "^20.3.1",
     "@vitejs/plugin-vue": "^4.1.0",
+    "eslint": "^8.23.0",
+    "lint-staged": "^13.0.3",
     "eslint-config-vue": "*",
     "public-utils": "*",
     "typescript": "^5.0.2",

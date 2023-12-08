@@ -10,11 +10,21 @@
   "scripts": {
     "lint": "eslint --ext .js,.jsx,.ts,.tsx --fix --quiet ./"
   },
+  "lint-staged": {
+    "*.{js,ts}": [
+      "prettier --write",
+      "eslint --fix --quiet"
+    ],
+    "*.{json,md,yaml}": [
+      "prettier --write"
+    ]
+  },
   "dependencies": {
     "axios": "^0.27.2"
   },
   "devDependencies": {
     "eslint": "^8.23.0",
+    "lint-staged": "^13.0.3",
     "eslint-config-custom": "*",
     "tsconfig": "*"
   }

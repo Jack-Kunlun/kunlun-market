@@ -10,8 +10,18 @@
   "scripts": {
     "lint": "eslint --ext .js,.jsx,.ts,.tsx --fix --quiet ./"
   },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "prettier --write",
+      "eslint --fix --quiet"
+    ],
+    "*.{json,md,yaml}": [
+      "prettier --write"
+    ]
+  },
   "devDependencies": {
     "eslint": "^8.23.0",
+    "lint-staged": "^13.0.3",
     "eslint-config-custom": "*",
     "tsconfig": "*",
     "public-utils": "*"

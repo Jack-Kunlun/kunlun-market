@@ -9,6 +9,15 @@
     "preview": "vite preview",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx --fix --quiet ./"
   },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "prettier --write",
+      "eslint --fix --quiet"
+    ],
+    "*.{json,md,yaml}": [
+      "prettier --write"
+    ]
+  },
   "dependencies": {
     "@ant-design/icons": "^5.2.6",
     "@unocss/reset": "^0.53.0",
@@ -33,6 +42,7 @@
     "@vitejs/plugin-react": "^4.0.0",
     "babel-loader": "^8.2.5",
     "eslint": "^8.23.0",
+    "lint-staged": "^13.0.3",
     "public-utils": "*",
     "tsconfig": "*",
     "typescript": "^4.6.4",

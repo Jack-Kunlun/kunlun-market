@@ -12,6 +12,15 @@
     "build-storybook": "storybook build",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx --fix --quiet ./"
   },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "prettier --write",
+      "eslint --fix --quiet"
+    ],
+    "*.{json,md,yaml}": [
+      "prettier --write"
+    ]
+  },
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "antd": "^5.6.4",
@@ -33,6 +42,7 @@
     "@types/react-dom": "^18.0.6",
     "@testing-library/react": "^14.0.0",
     "eslint": "^8.23.0",
+    "lint-staged": "^13.0.3",
     "eslint-config-react": "*",
     "eslint-plugin-storybook": "^0.6.12",
     "prop-types": "^15.8.1",
