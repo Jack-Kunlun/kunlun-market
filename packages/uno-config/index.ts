@@ -8,42 +8,106 @@ export const unocssConfig: UserConfig<any> = {
       grey: "#d9d9d9",
       gradientPink: "linear-gradient(to right, #fbc2eb, #a6c1ee)",
       gradientViolet: "linear-gradient(to right, #a6c1ee, #fbc2eb)",
+      pink: "#fbc2eb",
+      violet: "#a6c1ee",
       orange: "#fde3cf",
       green: "#87d068",
       original: "#f50",
       primary: "#4096ff",
+      gray: "#BABABA",
+      main: "#1c68b8",
+      black: "#191919",
     },
     fontSize: {
-      sm: "12px",
-      base: "14px",
+      xs: "12px",
+      sm: "14px",
       md: "16px",
-      lg: "24px",
-      xl: "32px",
-      xxl: "40px",
+      lg: "20px",
+      xl: "24px",
+      xxl: "28px",
+      xxxl: "36px",
     },
     padding: {
       smm: "4px",
-      sm: "8px",
-      md: "16px",
-      lg: "24px",
-      xl: "32px",
-      xxl: "40px",
+      xs: "8px",
+      sm: "12px",
+      lg: "16px",
+      xl: "20px",
+      xxl: "24px",
+      xxxl: "48px",
+      oversized: "60px",
     },
     margin: {
       smm: "4px",
-      sm: "8px",
-      md: "16px",
-      lg: "24px",
-      xl: "32px",
-      xxl: "40px",
+      xs: "8px",
+      sm: "12px",
+      lg: "16px",
+      xl: "20px",
+      xxl: "24px",
+      xxxl: "48px",
+      oversized: "60px",
     },
     borderRadius: {
       smm: "4px",
-      sm: "8px",
-      md: "16px",
-      lg: "24px",
-      xl: "32px",
-      xxl: "40px",
+      xs: "8px",
+      sm: "12px",
+      lg: "16px",
+      xl: "20px",
+      xxl: "24px",
+    },
+    height: {
+      full: "100%",
+      half: "50%",
+      card: "480px",
+    },
+    width: {
+      full: "100%",
+      half: "50%",
+      card: "480px",
+    },
+    top: {
+      half: "50%",
+      smm: "4px",
+      xs: "8px",
+      sm: "12px",
+      lg: "16px",
+      xl: "20px",
+      xxl: "24px",
+      xxxl: "48px",
+      oversized: "60px",
+    },
+    left: {
+      half: "50%",
+      smm: "4px",
+      xs: "8px",
+      sm: "12px",
+      lg: "16px",
+      xl: "20px",
+      xxl: "24px",
+      xxxl: "48px",
+      oversized: "60px",
+    },
+    right: {
+      half: "50%",
+      smm: "4px",
+      xs: "8px",
+      sm: "12px",
+      lg: "16px",
+      xl: "20px",
+      xxl: "24px",
+      xxxl: "48px",
+      oversized: "60px",
+    },
+    bottom: {
+      half: "50%",
+      smm: "4px",
+      xs: "8px",
+      sm: "12px",
+      lg: "16px",
+      xl: "20px",
+      xxl: "24px",
+      xxxl: "48px",
+      oversized: "60px",
     },
   },
   /**
@@ -123,14 +187,10 @@ export const unocssConfig: UserConfig<any> = {
     /**
      * height
      */
-    ["h-full", { height: "100%" }],
-    ["h-card", { height: "480px" }],
     [/^h-(\d+)$/, ([, d]) => ({ height: `${d}px` }), { autocomplete: "h-<num>" }],
     /**
      * width
      */
-    ["w-full", { width: "100%" }],
-    ["w-card", { width: "480px" }],
     [/^w-(\d+)$/, ([, d]) => ({ width: `${d}px` }), { autocomplete: "w-<num>" }],
     /**
      * background
@@ -165,6 +225,21 @@ export const unocssConfig: UserConfig<any> = {
         if (theme.borderRadius[c]) {
           return { "border-radius": theme.colors[c] };
         }
+      },
+    ],
+    // top/right/bottom/left
+    [
+      /^(top|right|bottom|left)-(.*)$/,
+      ([, d, c], { theme }) => {
+        if (theme[d][c]) {
+          return { [d]: theme[d][c] };
+        }
+      },
+    ],
+    [
+      "transform-center",
+      {
+        transform: "translate(-50%, -50%)",
       },
     ],
   ],
